@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './NotFound.css';
 import CtaSection from '../Home/sections/CtaSection';
 

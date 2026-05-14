@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './Footer.css';
 
 const EXAM_LINKS = ['UPSC', 'APSC', 'ADRE', 'SSC', 'Banking', 'NDA'];
 
@@ -35,9 +36,6 @@ export default function Footer() {
         <div className="container footer__grid">
           {/* Brand Column */}
           <div className="footer__brand">
-            {/* <Link to="/" className="footer__logo">
-              <img src={logo} alt="Ashoka IAS Academy" />
-            </Link> */}
             <p className="footer__tagline">
               Empowering Aspirations. Shaping Leaders.
             </p>
