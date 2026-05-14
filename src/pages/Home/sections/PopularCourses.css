@@ -1,0 +1,110 @@
+/* ============================================================
+   POPULAR COURSES SECTION
+   ============================================================ */
+.popular-courses {
+  background: var(--color-bg-page);
+}
+
+.popular-courses__header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.popular-courses__title {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--color-navy);
+  margin-bottom: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .popular-courses__title { font-size: var(--text-4xl); }
+}
+
+.popular-courses__sub {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+}
+
+/* Grid */
+.popular-courses__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .popular-courses__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+}
+
+/* Card */
+.pc-card {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--color-bg-white);
+  border-radius: 2px;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #7e7c99;
+  border-style: dashed;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+
+/* Image panel */
+.pc-card__accent {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-3);
+  background: transparent;
+}
+
+.pc-card__img {
+  width: 150px;
+  height: 124px;
+  object-fit: contain;
+  display: block;
+  border-radius: 100%;
+}
+
+/* Body */
+.pc-card__body {
+  flex: 1;
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-2);
+  min-width: 0;
+}
+
+.pc-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-navy);
+  line-height: 1.3;
+  margin-bottom: var(--space-2);
+}
+
+.pc-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pc-card__meta span {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+}
+
+.pc-card__meta strong {
+  color: var(--color-navy);
+  font-weight: 600;
+  margin-right: 3px;
+}

@@ -1,0 +1,6 @@
+/* App-level styles — page-specific overrides go here */
+
+.App {
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+}

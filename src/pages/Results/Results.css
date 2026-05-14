@@ -1,0 +1,122 @@
+/* ============================================================
+   RESULTS PAGE
+   ============================================================ */
+.results-page {
+  background: var(--color-bg-page);
+}
+
+/* Stats */
+.results-stats {
+  background: var(--color-navy);
+  padding-block: var(--space-8);
+}
+
+.results-stats__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-6);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .results-stats__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.results-stat__value {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--color-gold);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.results-stat__label {
+  display: block;
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+/* Grid */
+.results-grid-section {
+  background: var(--color-bg-page);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .results-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .results-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Card */
+.result-card {
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.result-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.result-card__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-full);
+  background: var(--color-navy);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+}
+
+.result-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.result-card__name {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-navy);
+}
+
+.result-card__rank {
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  color: var(--color-gold);
+}
+
+.result-card__exam {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.result-card__batch {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

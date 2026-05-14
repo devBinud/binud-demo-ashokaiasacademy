@@ -1,0 +1,146 @@
+/* ============================================================
+   CTA BANNER
+   ============================================================ */
+.cta-banner {
+  background: var(--color-navy);
+  padding-block: var(--space-8);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle gold glow */
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 146, 42, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-banner__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cta-banner__inner {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-8);
+  }
+}
+
+/* Logo */
+.cta-banner__logo {
+  flex-shrink: 0;
+}
+
+.cta-banner__logo img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(184, 146, 42, 0.4);
+}
+
+/* Text */
+.cta-banner__text {
+  flex: 1;
+}
+
+.cta-banner__title {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-2);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .cta-banner__title {
+    font-size: var(--text-2xl);
+  }
+}
+
+.cta-banner__sub {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+}
+
+/* Button */
+.cta-banner__action {
+  flex-shrink: 0;
+}
+
+.cta-banner__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  color: rgb(69, 92, 126);
+  font-size: var(--text-sm);
+  font-weight: 800;
+  padding: 12px 28px;
+  border-radius: 40px;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.cta-banner__btn:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-1px);
+}
+
+/* Shimmer */
+.cta-banner__btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 100%);
+  animation: ctaBannerShimmer 2.2s ease-in-out infinite;
+}
+
+@keyframes ctaBannerShimmer {
+  0% {
+    left: -100%;
+  }
+
+  55% {
+    left: 150%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-banner__title {
+    font-size: 18px;
+  }
+
+  .cta-banner__btn {
+    font-size: var(--text-sm);
+    padding: 9px 18px;
+  }
+}

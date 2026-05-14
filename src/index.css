@@ -1,0 +1,463 @@
+/* ============================================================
+   ASHOKA IAS ACADEMY — Global Design Tokens & Base Styles
+   Mobile-first | Clean | Modern | Lightweight
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. CSS CUSTOM PROPERTIES (Design Tokens)
+   ------------------------------------------------------------ */
+:root {
+  /* --- Brand Colors --- */
+  --color-navy:          #273c68;   /* Primary — deep navy (logo shield) */
+  --color-navy-dark:     #0D1B35;   /* Darker navy for hover / footer */
+  --color-navy-light:    #2C3E6B;   /* Lighter navy for cards / sections */
+
+  --color-gold:          #B8922A;   /* Primary accent — rich gold */
+  --color-gold-light:    #D4A843;   /* Lighter gold for highlights */
+  --color-gold-muted:    #C9A96E;   /* Muted gold for subtle accents */
+
+  --color-cream:         #F5F0E8;   /* Page background — warm off-white */
+  --color-cream-dark:    #EDE7D9;   /* Slightly darker cream for alt sections */
+
+  --color-white:         #FFFFFF;
+  --color-black:         #0A0A0A;
+
+  /* --- Text Colors --- */
+  --color-text-primary:  #1B2A4A;   /* Navy — main headings & body */
+  --color-text-secondary:#4A5568;   /* Muted slate for subtext */
+  --color-text-muted:    #718096;   /* Light grey for captions / labels */
+  --color-text-inverse:  #FFFFFF;   /* White text on dark backgrounds */
+  --color-text-gold:     #B8922A;   /* Gold text for emphasis */
+
+  /* --- Background Colors --- */
+  --color-bg-page:       #fcfaf8;   /* Main page background */
+  --color-bg-white:      #FFFFFF;   /* Card / form backgrounds */
+  --color-bg-navy:       #1B2A4A;   /* Dark section backgrounds */
+  --color-bg-navy-dark:  #0D1B35;   /* Footer / deepest dark */
+  --color-bg-cream-alt:  #EDE7D9;   /* Alternate section background */
+
+  /* --- Border Colors --- */
+  --color-border:        #E2D9C8;   /* Default border */
+  --color-border-gold:   #B8922A;   /* Gold border for accents */
+  --color-border-navy:   #1B2A4A;   /* Navy border */
+
+  /* --- Status Colors --- */
+  --color-success:       #2D7A4F;
+  --color-error:         #C0392B;
+  --color-warning:       #D4A843;
+  --color-info:          #2C3E6B;
+
+  /* --- Typography --- */
+  --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'Courier New', Courier, monospace;
+
+  /* Font Sizes — mobile-first fluid scale */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-md:    1.125rem;   /* 18px */
+  --text-lg:    1.25rem;    /* 20px */
+  --text-xl:    1.5rem;     /* 24px */
+  --text-2xl:   1.875rem;   /* 30px */
+  --text-3xl:   2.25rem;    /* 36px */
+  --text-4xl:   3rem;       /* 48px */
+  --text-5xl:   3.75rem;    /* 60px */
+
+  /* Font Weights */
+  --font-light:    300;
+  --font-regular:  400;
+  --font-medium:   500;
+  --font-semibold: 600;
+  --font-bold:     700;
+
+  /* Line Heights */
+  --leading-tight:  1.25;
+  --leading-snug:   1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed:1.625;
+  --leading-loose:  2;
+
+  /* Letter Spacing */
+  --tracking-tight:  -0.025em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.05em;
+  --tracking-wider:   0.1em;
+  --tracking-widest:  0.2em;
+
+  /* --- Spacing Scale --- */
+  --space-1:   0.25rem;   /* 4px  */
+  --space-2:   0.5rem;    /* 8px  */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+
+  /* --- Border Radius --- */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm:  0 1px 3px rgba(27, 42, 74, 0.08);
+  --shadow-md:  0 4px 12px rgba(27, 42, 74, 0.10);
+  --shadow-lg:  0 8px 24px rgba(27, 42, 74, 0.12);
+  --shadow-xl:  0 16px 40px rgba(27, 42, 74, 0.15);
+  --shadow-gold: 0 4px 16px rgba(184, 146, 42, 0.25);
+
+  /* --- Transitions --- */
+  --transition-fast:   150ms ease;
+  --transition-base:   250ms ease;
+  --transition-slow:   400ms ease;
+
+  /* --- Layout --- */
+  --container-sm:   640px;
+  --container-md:   768px;
+  --container-lg:   1024px;
+  --container-xl:   1280px;
+  --container-2xl:  1440px;
+
+  --header-height-mobile: 56px;
+  --header-height-desktop: 64px;
+}
+
+/* ------------------------------------------------------------
+   2. CSS RESET & BASE
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+/* ------------------------------------------------------------
+   3. TYPOGRAPHY UTILITIES
+   ------------------------------------------------------------ */
+
+/* Headings use Playfair Display */
+h1, h2, h3, h4, h5, h6,
+.heading {
+  font-family: var(--font-heading);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-navy);
+}
+
+h1 { font-size: var(--text-2xl); }
+h2 { font-size: var(--text-xl); }
+h3 { font-size: var(--text-lg); }
+h4 { font-size: var(--text-md); }
+h5 { font-size: var(--text-base); }
+h6 { font-size: var(--text-sm); }
+
+/* Responsive heading scale — tablet+ */
+@media (min-width: 768px) {
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+  h3 { font-size: var(--text-xl); }
+  h4 { font-size: var(--text-lg); }
+}
+
+/* Responsive heading scale — desktop */
+@media (min-width: 1024px) {
+  h1 { font-size: var(--text-4xl); }
+  h2 { font-size: var(--text-3xl); }
+  h3 { font-size: var(--text-2xl); }
+  h4 { font-size: var(--text-xl); }
+}
+
+p {
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* Section label — small gold uppercase text above headings */
+.section-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+/* Gold accent text */
+.text-gold { color: var(--color-gold); }
+.text-navy { color: var(--color-navy); }
+.text-muted { color: var(--color-text-muted); }
+.text-inverse { color: var(--color-text-inverse); }
+
+/* ------------------------------------------------------------
+   4. LAYOUT UTILITIES
+   ------------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container { padding-inline: var(--space-6); }
+}
+
+@media (min-width: 1024px) {
+  .container { padding-inline: var(--space-8); }
+}
+
+.section {
+  padding-block: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .section { padding-block: var(--space-16); }
+}
+
+@media (min-width: 1024px) {
+  .section { padding-block: var(--space-20); }
+}
+
+/* ------------------------------------------------------------
+   5. COMMON COMPONENT BASE STYLES
+   ------------------------------------------------------------ */
+
+/* Card */
+.card {
+  background: var(--color-bg-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: 1;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-navy);
+  color: var(--color-white);
+  border-color: var(--color-navy);
+}
+.btn-primary:hover {
+  background: var(--color-navy-dark);
+  border-color: var(--color-navy-dark);
+}
+
+.btn-gold {
+  background: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
+}
+.btn-gold:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-light);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-navy);
+  border-color: var(--color-navy);
+}
+.btn-outline:hover {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+.btn-outline-gold:hover {
+  background: var(--color-gold);
+  color: var(--color-white);
+}
+
+/* Input base */
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background: var(--color-bg-white);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+.input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(184, 146, 42, 0.15);
+}
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* Gold divider line */
+.divider-gold {
+  width: 48px;
+  height: 3px;
+  background: var(--color-gold);
+  border-radius: var(--radius-full);
+  margin-block: var(--space-4);
+}
+
+/* ------------------------------------------------------------
+   6. SCROLLBAR (subtle, on-brand)
+   ------------------------------------------------------------ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-muted);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+/* ------------------------------------------------------------
+   7. SELECTION COLOR
+   ------------------------------------------------------------ */
+::selection {
+  background: var(--color-gold-muted);
+  color: var(--color-navy);
+}
+
+/* ------------------------------------------------------------
+   9. PAGE HERO — shared across all pages
+   ------------------------------------------------------------ */
+.page-hero {
+  background: var(--color-bg-page);
+  padding-block: var(--space-12) var(--space-10);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.page-hero__inner {
+  /* Always aligns with the container grid */
+}
+
+.page-hero__label {
+  /* uses .section-label */
+}
+
+.page-hero__title {
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.page-hero__desc {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 600px;
+}
+
+@media (min-width: 768px) {
+  .page-hero {
+    padding-block: var(--space-16) var(--space-12);
+  }
+}
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Inputs handle their own focus style — suppress outline */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+}
+
+/* ── Form validation error styles ── */
+.input--error {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1) !important;
+}
+
+.input-wrap--error {
+  border-color: var(--color-error) !important;
+}
+
+.form-error {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+}

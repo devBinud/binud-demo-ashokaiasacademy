@@ -1,0 +1,95 @@
+/* ============================================================
+   FLOATING BUTTONS — Call (left) & WhatsApp (right)
+   ============================================================ */
+
+.float-btn {
+  position: fixed;
+  bottom: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 9999;
+  transition: transform 0.2s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.08);
+}
+
+/* Notification badge */
+.float-btn__badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #e53e3e;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  z-index: 1;
+}
+
+/* Call — bottom left */
+.float-btn--call {
+  left: 20px;
+  background: linear-gradient(135deg, #38bdf8, #2563eb);
+  color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(27, 42, 74, 0.4);
+  animation: pulseBlue 2s ease-in-out infinite;
+}
+
+/* WhatsApp — bottom right */
+.float-btn--wa {
+  right: 20px;
+  background: #25D366;
+  color: var(--color-white);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  animation: pulseGreen 2s ease-in-out infinite;
+}
+
+@keyframes pulseBlue {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(27, 42, 74, 0.4), 0 0 0 0 rgba(27, 42, 74, 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(27, 42, 74, 0.4), 0 0 0 12px rgba(27, 42, 74, 0);
+  }
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.35);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .float-btn {
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+  }
+  
+  .float-btn--call { left: 24px; }
+  .float-btn--wa   { right: 24px; }
+}
+
+@media (max-width: 768px) {
+   .float-btn {
+    width: 47px;
+    height: 47px;
+    bottom: 13px;
+  }
+}

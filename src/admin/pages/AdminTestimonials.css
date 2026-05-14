@@ -1,0 +1,94 @@
+@import './AdminDashboard.css';
+
+.admin-testimonials__form-card {
+  padding: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.admin-testimonials__form-card h3 {
+  font-size: var(--text-lg);
+  color: var(--color-navy);
+  margin-bottom: var(--space-5);
+}
+
+.admin-testimonials__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.admin-testimonials__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .admin-testimonials__grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (min-width: 1024px) {
+  .admin-testimonials__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.admin-testimonial-card {
+  background: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.admin-testimonial-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-navy);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+}
+
+.admin-testimonial-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-testimonial-card__body strong {
+  display: block;
+  font-size: var(--text-sm);
+  color: var(--color-navy);
+  margin-bottom: 2px;
+}
+
+.admin-testimonial-card__body span {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-gold);
+  margin-bottom: var(--space-2);
+}
+
+.admin-testimonial-card__body p {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  font-style: italic;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.admin-testimonial-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
