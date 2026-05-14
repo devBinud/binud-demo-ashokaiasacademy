@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/images/logo.jpeg';
-import './Footer.css';
 
 const EXAM_LINKS = ['UPSC', 'APSC', 'ADRE', 'SSC', 'Banking', 'NDA'];
 
