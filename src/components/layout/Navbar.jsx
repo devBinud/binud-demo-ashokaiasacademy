@@ -40,6 +40,7 @@ const NAV_LINKS = [
           { label: 'APSC Test Series', to: '/intermediate' },
         ],
       },
+      { label: 'Assam Section', to: '/assam-section' },
       {
         label: 'Upcomming Batch',
         to: null,
@@ -60,7 +61,6 @@ const NAV_LINKS = [
       },
     ],
   },
-  { label: 'Assam Section', to: '/assam-section' },
     { label: 'Gallery', to: '/gallery' },
   {
     label: 'Admissions',

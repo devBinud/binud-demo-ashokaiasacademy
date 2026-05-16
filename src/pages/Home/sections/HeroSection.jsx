@@ -91,7 +91,7 @@ export default function HeroSection() {
           <h1 className="hero__title">
             Premier Coaching for<br />
             <span className="hero__title-gold">UPSC, APSC</span><br />
-            and Civil Services
+            other Allied Exams(SSC, BANKING, NDA & CDS)
           </h1>
 
           <p className="hero__desc">
