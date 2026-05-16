@@ -1,34 +1,34 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import { Inbox, Bell, Star } from 'lucide-react';
+import { Inbox, Bell, Star, MessageSquare } from 'lucide-react';
 import Loader from '../../components/ui/Loader';
 import './AdminDashboard.css';
 
 export default function AdminDashboard() {
-  const [stats, setStats] = useState({ total: 0, new: 0, testimonials: 0 });
+  const [stats, setStats] = useState({ total: 0, new: 0, testimonials: 0, queries: 0 });
   const [recent, setRecent] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        const [enqSnap, testSnap] = await Promise.all([
+        const [enqSnap, testSnap, querySnap] = await Promise.all([
           getDocs(collection(db, 'enquiries')),
           getDocs(collection(db, 'testimonials')),
+          getDocs(collection(db, 'student_queries')),
         ]);
 
         const enqs = enqSnap.docs.map((d) => ({ id: d.id, ...d.data() }));
         const newCount = enqs.filter((e) => e.status === 'new' || !e.status).length;
 
-        // Recent 5
         const sorted = [...enqs].sort((a, b) => {
           const ta = a.createdAt?.seconds || 0;
           const tb = b.createdAt?.seconds || 0;
           return tb - ta;
         }).slice(0, 5);
 
-        setStats({ total: enqs.length, new: newCount, testimonials: testSnap.size });
+        setStats({ total: enqs.length, new: newCount, testimonials: testSnap.size, queries: querySnap.size });
         setRecent(sorted);
       } catch (e) {
         console.error(e);
@@ -75,6 +75,15 @@ export default function AdminDashboard() {
           <div>
             <span className="admin-stat-card__value">{stats.testimonials}</span>
             <span className="admin-stat-card__label">Testimonials</span>
+          </div>
+        </div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-card__icon" style={{ background: 'rgba(99,102,241,0.1)', color: '#4f46e5' }}>
+            <MessageSquare size={20} strokeWidth={1.8} />
+          </div>
+          <div>
+            <span className="admin-stat-card__value">{stats.queries}</span>
+            <span className="admin-stat-card__label">Student Queries</span>
           </div>
         </div>
       </div>

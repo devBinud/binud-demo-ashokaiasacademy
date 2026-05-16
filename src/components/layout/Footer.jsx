@@ -37,7 +37,7 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="footer__brand">
             <p className="footer__tagline">
-              Empowering Aspirations. Shaping Leaders.
+              Transforming your dreams into reality
             </p>
             <p className="footer__desc">
               Premier UPSC &amp; APSC coaching in Assam and North-East India,

@@ -13,6 +13,7 @@ import AdminLayout from '../admin/components/AdminLayout';
 import AdminDashboard from '../admin/pages/AdminDashboard';
 import AdminEnquiries from '../admin/pages/AdminEnquiries';
 import AdminTestimonials from '../admin/pages/AdminTestimonials';
+import AdminQueries from '../admin/pages/AdminQueries';
 import AdminGuard from '../admin/guards/AdminGuard';
 import FoundationOne from '../pages/Courses/FoundationOne/FoundationOne';
 import FoundationTwo from '../pages/Courses/FoundationTwo/FoundationTwo';
@@ -59,8 +60,9 @@ const router = createBrowserRouter([
     element: <AdminGuard><AdminLayout /></AdminGuard>,
     children: [
       { index: true, element: <AdminDashboard /> },
-      { path: 'dashboard', element: <AdminDashboard /> },
-      { path: 'enquiries', element: <AdminEnquiries /> },
+      { path: 'dashboard',    element: <AdminDashboard /> },
+      { path: 'enquiries',    element: <AdminEnquiries /> },
+      { path: 'queries',      element: <AdminQueries /> },
       { path: 'testimonials', element: <AdminTestimonials /> },
     ],
   },

@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Inbox, Star, CircleUser, LogOut, Menu } from 'lucide-react';
+import { LayoutDashboard, Inbox, Star, CircleUser, LogOut, Menu, MessageSquare } from 'lucide-react';
 import logo from '../../assets/images/logo.jpeg';
 import './AdminLayout.css';
 
 const NAV = [
   { to: '/admin/dashboard', icon: <LayoutDashboard size={18} strokeWidth={1.8} />, label: 'Dashboard' },
   { to: '/admin/enquiries', icon: <Inbox size={18} strokeWidth={1.8} />, label: 'Enquiries' },
+  { to: '/admin/queries',   icon: <MessageSquare size={18} strokeWidth={1.8} />, label: 'Student Queries' },
   { to: '/admin/testimonials', icon: <Star size={18} strokeWidth={1.8} />, label: 'Testimonials' },
 ];
 

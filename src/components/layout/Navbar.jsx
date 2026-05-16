@@ -6,34 +6,17 @@ import './Navbar.css';
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
-  { label: 'Assam Section', to: '/assam-section' },
-{
-    label: 'Admissions',
+  {
+    label: 'Classroom Courses',
     to: null,
     dropdown: [
-      {
-        label: 'Offline Admissions',
-        to: null,
-        children: [
-          { label: 'View Admission Brochure', to: '/view-admission-brochure' },
-          { label: 'Download Application Form', to: '/download-application-form' },
-        ],
-      },
-      { label: 'Online Admission', to: '/online-application' },
+      { label: 'Integrated Program — Class 11 & 12', to: '/courses-all', state: { courseId: 'integrated-class-11-12' } },
+      { label: 'One Year Foundation Course', to: '/courses-all', state: { courseId: 'one-year-foundation' } },
+      { label: '6-Month Pre-Foundation Course', to: '/courses-all', state: { courseId: 'pre-foundation' } },
+      { label: 'Crash Course Programme', to: '/courses-all', state: { courseId: 'crash-course' } },
+      { label: 'Integrated Degree + Competitive Exam Coaching Programme', to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
     ],
   },
-{
-  label: 'Courses',
-  to: null,
-  dropdown: [
-    { label: 'Integrated Program — Class 11 & 12', to: '/courses-all', state: { courseId: 'integrated-class-11-12' } },
-    { label: 'Degree Plus Coaching Programme',     to: '/courses-all', state: { courseId: 'degree-plus-coaching' } },
-    { label: 'One Year Foundation Course',         to: '/courses-all', state: { courseId: 'one-year-foundation' } },
-    { label: '6-Month Pre-Foundation Course',      to: '/courses-all', state: { courseId: 'pre-foundation' } },
-    { label: 'Crash Course Programme',             to: '/courses-all', state: { courseId: 'crash-course' } },
-    { label: 'Integrated Degree + Competitive Coaching Programme',   to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
-  ],
-},
   {
     label: 'Student Zone',
     to: null,
@@ -42,8 +25,11 @@ const NAV_LINKS = [
         label: 'Free Study Material',
         to: null,
         children: [
-          { label: 'Beginner', to: '/beginner' },
-          { label: 'Intermediate', to: '/intermediate' },
+          { label: 'PYQ (Previous Year Questions)', to: '/pyq' },
+          { label: 'Daily Current Affairs Analysis', to: '/daily-current-affairs-analysis' },
+          { label: 'Prelims Notes', to: '/prelims-notes' },
+          { label: 'Mains Notes', to: '/mains-notes' },
+          { label: 'Online Notes', to: '/online-notes' },
         ],
       },
       {
@@ -62,11 +48,33 @@ const NAV_LINKS = [
           { label: 'Crash Course', to: '/intermediate' },
         ],
       },
-      { label: 'Scholarship Test', to: '/results' },
-      { label: 'Library Section', to: '/results' },
+      { label: 'Scholarship Test', to: '/scholarship-test' },
+      {
+        label: 'Beginners Road Map',
+        to: null,
+        children: [
+          { label: 'Strategy booklet for different exam ', to: '/strategy-booklet' },
+          { label: 'NCERT booklist ', to: '/ncert-booklist' },
+          { label: 'Study time table ', to: '/study-time-table' },
+        ],
+      },
     ],
   },
-  { label: 'Gallery', to: '/gallery' },
+  { label: 'Assam Section', to: '/assam-section' },
+    { label: 'Gallery', to: '/gallery' },
+  {
+    label: 'Admissions',
+    to: null,
+    dropdown: [
+      {
+        label: 'Offline Admissions',
+      },
+      { label: 'Online Admission', to: '/online-application' },
+    ],
+  },
+
+
+
   { label: 'FAQs', to: '/faq' },
   { label: 'Contact Us', to: '/contact' },
 ];

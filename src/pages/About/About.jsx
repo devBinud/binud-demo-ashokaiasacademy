@@ -10,13 +10,13 @@ const WHY_POINTS = [
   { num: '05', title: 'Current Affairs Mastery', desc: 'Daily analysis, monthly magazines, and exam-focused coverage.' },
   { num: '06', title: 'Performance Tracking System', desc: 'Regular tests, analytics, and improvement plans for every student.' },
   { num: '07', title: 'Holistic Development', desc: 'Personality development, interview guidance, and communication training.' },
-  { num: '08', title: 'Affordable Quality Education', desc: 'Premium coaching at a cost that remains accessible for all aspirants.' },
+  { num: '08', title: 'Affordable Fee Structure', desc: 'Premium coaching at a cost that remains accessible for all aspirants.' },
 ];
 
 const STATS = [
   { value: '120+', label: 'Officers Produced' },
   { value: '500+', label: 'Students Enrolled' },
-  { value: 'ACS 9', label: 'Top Rank (1st Year)' },
+  { value: 'ACS 9', label: 'Top Rank' },
   { value: '2021', label: 'Est. Year' },
 ];
 
@@ -68,7 +68,7 @@ export default function About() {
               Ashoka IAS Academy is a premier institute dedicated to shaping the next generation of civil servants
               and professionals. Founded on the principles of quality education, discipline, and mentorship, the
               academy has emerged as a trusted destination for aspirants preparing for <strong>UPSC, APSC, SSC,
-              Banking, and Defence</strong> examinations.
+                Banking, and Defence</strong> examinations.
             </p>
             <p>
               At Ashoka IAS Academy, learning goes beyond conventional classroom coaching. The institute focuses on
@@ -96,9 +96,9 @@ export default function About() {
           <div className="about-content__right">
             <div className="about-quote">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--color-gold)', opacity: 0.4 }}>
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
               </svg>
-              <p>Empowering Aspirations. Shaping Leaders. Serving the Nation.</p>
+              <p>Transforming your dreams into reality</p>
               <span>— Ashoka IAS Academy</span>
             </div>
 
@@ -106,13 +106,15 @@ export default function About() {
               <h4 className="about-results__title">Our Results</h4>
               <div className="about-results__list">
                 <div className="about-result-item">
-                  <span className="about-result-item__rank">ACS Rank 9</span>
-                  <span className="about-result-item__year">1st Year</span>
-                </div>
-                <div className="about-result-item">
                   <span className="about-result-item__rank">APS Rank 3</span>
                   <span className="about-result-item__year">1st Year</span>
                 </div>
+
+                <div className="about-result-item">
+                  <span className="about-result-item__rank">ACS Rank 9</span>
+                  <span className="about-result-item__year">1st Year</span>
+                </div>
+
                 <div className="about-result-item">
                   <span className="about-result-item__rank">ACS Rank 24</span>
                   <span className="about-result-item__year">Subsequent Year</span>
@@ -196,7 +198,7 @@ export default function About() {
       </section>
 
       {/* Common CTA Section  */}
-      <CtaSection/>
+      <CtaSection />
 
     </div>
   );

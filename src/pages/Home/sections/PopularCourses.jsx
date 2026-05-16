@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import course11 from '../../../assets/images/courses/1.jpg';
-import course2 from '../../../assets/images/courses/3.jpg';
 import course3 from '../../../assets/images/courses/2.jpg';
 import course4 from '../../../assets/images/courses/4.jpg';
 import course5 from '../../../assets/images/courses/6.jpg';
@@ -16,15 +15,6 @@ const COURSES = [
     to: '/courses-all',
     state: { courseId: 'integrated-class-11-12' },
     img: course11,
-  },
-  {
-    title: 'Degree Plus Coaching Programme',
-    duration: '3 Years',
-    eligibility: 'Students after Class 12',
-    batch: 'Enrolling Now',
-    to: '/courses-all',
-    state: { courseId: 'degree-plus-coaching' },
-    img: course2,
   },
   {
     title: 'One Year Foundation Course',
@@ -54,7 +44,7 @@ const COURSES = [
     img: course5,
   },
    {
-    title: 'Integrated Degree + Competitive Coaching Programme',
+    title: 'Integrated Degree + Competitive Exam Coaching Programme',
     duration: '36 Months',
     eligibility: 'APSC / UPSC / SSC Aspirants',
     batch: 'Available Now',

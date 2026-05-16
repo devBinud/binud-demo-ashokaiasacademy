@@ -26,7 +26,7 @@
 
 .wp-modal {
   background: #fff;
-  border-radius: 20px;
+  border-radius: 0px;
   width: 100%;
   max-width: 440px;
   overflow: hidden;
