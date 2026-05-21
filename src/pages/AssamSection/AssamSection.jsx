@@ -1,17 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { 
+  HelpCircle, 
+  CheckCircle2, 
+  XCircle, 
+  ChevronDown, 
+  ChevronUp, 
+  Award, 
+  Clock, 
+  Sparkles,
+  FileSpreadsheet
+} from 'lucide-react';
 import crossLine from '../../assets/images/cross-line.png';
 import logoImg from '../../assets/images/logo.jpeg';
 import './AssamSection.css';
 import CtaSection from '../Home/sections/CtaSection';
 
-const TABS = [
+const PRELIMS_TABS = [
   {
     id: 'history',
     label: 'History of Assam',
     sublabel: 'Ancient to Modern Era',
     heading: 'History of Assam',
-    subheading: 'Ancient to Modern Era',
+    subheading: 'Ancient to Modern Era — High Yield Facts',
     image: logoImg,
     points: [
       { title: 'Ancient Period', desc: 'Assam, known as Pragjyotisha and later Kamarupa, has a recorded history dating back to the 4th century. The Varman dynasty established the first historical kingdom.' },
@@ -26,6 +37,17 @@ const TABS = [
       { label: 'British Treaty', value: 'Treaty of Yandabo, 1826' },
       { label: 'Statehood', value: '26 January 1950' },
     ],
+    mcq: {
+      question: "Which of the following treaties was signed in 1826, marking the beginning of British rule in Assam?",
+      options: [
+        "Treaty of Purandar",
+        "Treaty of Yandabo",
+        "Treaty of Sagauli",
+        "Treaty of Badarpur"
+      ],
+      correctIndex: 1,
+      explanation: "The Treaty of Yandabo was signed on 24 February 1826 between the East India Company and the King of Ava (Burma), ending the First Anglo-Burmese War and bringing Assam under British control."
+    }
   },
   {
     id: 'polity',
@@ -47,6 +69,17 @@ const TABS = [
       { label: 'Rajya Sabha Seats', value: '7' },
       { label: 'High Court', value: 'Gauhati High Court' },
     ],
+    mcq: {
+      question: "How many districts currently comprise the Bodoland Territorial Region (BTR) in Assam under the Sixth Schedule?",
+      options: [
+        "Three districts",
+        "Four districts",
+        "Five districts",
+        "Six districts"
+      ],
+      correctIndex: 1,
+      explanation: "The Bodoland Territorial Region (BTR) comprises four districts: Kokrajhar, Chirang, Baksa, and Udalguri, established under the Sixth Schedule of the Indian Constitution."
+    }
   },
   {
     id: 'economics',
@@ -68,6 +101,17 @@ const TABS = [
       { label: 'GI Tagged Silk', value: 'Muga Silk' },
       { label: 'Longest Bridge', value: 'Bogibeel Bridge' },
     ],
+    mcq: {
+      question: "Which town in Assam is famous as the oldest operating oil refinery in Asia?",
+      options: [
+        "Bongaigaon",
+        "Numaligarh",
+        "Digboi",
+        "Guwahati"
+      ],
+      correctIndex: 2,
+      explanation: "Digboi in Tinsukia district is the oldest operating oil refinery in Asia, with oil discovery dating back to 1889 and the refinery commissioned in 1901."
+    }
   },
   {
     id: 'geography',
@@ -80,7 +124,7 @@ const TABS = [
       { title: 'Location & Boundaries', desc: 'Assam is located in Northeast India between 24°N–28°N latitude and 89°E–96°E longitude. It shares borders with Bhutan, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Meghalaya, Tripura, and Bangladesh.' },
       { title: 'Brahmaputra Valley', desc: 'The Brahmaputra River (called Luit in Assamese) flows through the heart of Assam. The valley is one of the most fertile plains in India, prone to annual floods.' },
       { title: 'Barak Valley', desc: 'The Barak Valley in southern Assam is drained by the Barak River. It comprises Cachar, Hailakandi, and Karimganj districts and has a distinct cultural identity.' },
-      { title: 'National Parks & Wildlife', desc: 'Assam has 5 national parks — Kaziranga (UNESCO World Heritage, home to one-horned rhino), Manas (UNESCO World Heritage), Dibru-Saikhowa, Nameri, and Orang.' },
+      { title: 'National Parks & Wildlife', desc: 'Assam has 7 national parks — Kaziranga (UNESCO World Heritage, home to one-horned rhino), Manas (UNESCO World Heritage), Dibru-Saikhowa, Nameri, Orang, Raimona, and Dihing Patkai.' },
       { title: 'Climate & Rainfall', desc: 'Assam has a humid subtropical climate with heavy monsoon rainfall (1,500–3,000 mm annually). The state is highly prone to floods and earthquakes (seismic zone V).' },
     ],
     facts: [
@@ -89,16 +133,197 @@ const TABS = [
       { label: 'Major River', value: 'Brahmaputra (Luit)' },
       { label: 'UNESCO Sites', value: 'Kaziranga & Manas' },
     ],
+    mcq: {
+      question: "Which of the following is the newest National Park declared in Assam?",
+      options: [
+        "Raimona National Park",
+        "Dihing Patkai National Park",
+        "Orang National Park",
+        "Dibru-Saikhowa National Park"
+      ],
+      correctIndex: 1,
+      explanation: "Dihing Patkai was notified as the 7th National Park of Assam in June 2021, shortly after Raimona was declared as the 6th."
+    }
   },
 ];
 
+const MAINS_TABS = [
+  {
+    id: 'history',
+    label: 'History & Culture',
+    sublabel: 'Mains Focus & Articles',
+    heading: 'Assam History & Culture',
+    subheading: 'APSC GS 5 Paper — Analytical Essays',
+    article: {
+      title: "Ahom Administration and its Strength in Resisting Mughal Expansion",
+      syllabusTag: "APSC GS 5: Assam History, Art & Culture",
+      readTime: "12 min read",
+      difficulty: "Advanced",
+      introduction: "The Ahom dynasty's nearly 600-year uninterrupted rule (1228–1826 AD) represents one of the most resilient kingdoms in medieval Indian history. Central to their longevity was a brilliant fusion of socio-military organization, decentralised governance, and tactical warfare that successfully resisted seventeen Mughal onslaughts.",
+      sections: [
+        {
+          title: "1. The Paik System: A Decentralized Socio-Economic Engine",
+          content: "Unlike the feudal armies of contemporary India, the Ahom administration relied on the Paik System—a system of compulsory state service. Every male citizen (Paik) aged 15 to 50 had to render military or civil services in rotation. This structure eliminated the need for a massive, expensive standing army during peacetime, while providing an instantly mobilizable citizen militia during crises.",
+          highlight: "The Paik system made every ordinary citizen a defender of the state, ensuring high morale and deeply ingrained combat readiness."
+        },
+        {
+          title: "2. Strategic Naval Superiority & Riverine Guerrilla Tactics",
+          content: "The Brahmaputra Valley's unique topography, dominated by rivers and dense hills, was utilized masterfully by Ahom generals. Rather than engaging in open-field cavalry battles where the Mughals excelled, the Ahoms employed 'Guerrilla Warfare' (Daga-Yuddha) and built strong fortifications along narrow river bottlenecks. The Battle of Saraighat (1671) remains a textbook example of naval tactics, where Lachit Borphukan outmaneuvered the Mughal fleet through coordinated amphibious ambushes.",
+          highlight: "Topographical mastery combined with superior lightweight boat designs gave the Ahom navy critical mobility over heavy Mughal warships."
+        }
+      ],
+      practiceQuestion: "Examine the administrative and military factors that enabled the Ahom Kingdom to successfully resist Mughal expansionism in the Brahmaputra Valley.",
+      answerGuide: [
+        "Introduction: Outline the temporal span of Ahom rule and state their historical significance in halting Mughal imperial expansion.",
+        "Core Administrative Pillar (Paik System): Detail the structure of 'Gots', the rotational service model, and how it sustained both agrarian productivity and sudden military mobilization.",
+        "Tactical & Military Strategy: Discuss the concept of 'Daga-Yuddha' (guerrilla tactics), utilization of high mud-walls (Garhs), and naval superiority in riverine war zones.",
+        "Leadership & Diplomacy: Highlight the role of Lachit Borphukan's strategic leadership and alliances with neighboring hill tribes.",
+        "Conclusion: Summarize how this integrated social, political, and physical strategy preserved Assam's sovereign identity."
+      ]
+    }
+  },
+  {
+    id: 'polity',
+    label: 'Polity & Governance',
+    sublabel: 'Mains Focus & Articles',
+    heading: 'Assam Polity & Governance',
+    subheading: 'Constitutional Protections & Local Bodies',
+    article: {
+      title: "Sixth Schedule & Autonomous District Councils: Tribal Autonomy in Assam",
+      syllabusTag: "APSC GS 5: Polity and Constitution of Assam",
+      readTime: "10 min read",
+      difficulty: "Intermediate",
+      introduction: "The Sixth Schedule of the Indian Constitution offers a robust framework for tribal self-governance in Northeast India. In Assam, Autonomous District Councils (ADCs) provide legislative, executive, and judicial powers to protect indigenous tribal identities and accelerate socioeconomic growth.",
+      sections: [
+        {
+          title: "1. Constitutional Mandate & Administrative Set-up",
+          content: "Assam has three major Sixth Schedule Councils: the Bodoland Territorial Council (BTC), the Karbi Anglong Autonomous Council (KAAC), and the Dima Hasao Autonomous Council (DHAC). Unlike panchayats, these councils enjoy extensive legislative powers over subjects like land, forestry, agriculture, and local customs, coupled with judicial powers to adjudicate disputes under customary laws.",
+          highlight: "Sixth Schedule Councils act as mini-legislatures within the state, protecting tribal culture and customary land rights."
+        },
+        {
+          title: "2. Challenges in Decentralized Autonomy",
+          content: "Despite their constitutionally secure nature, Sixth Schedule Councils face structural and operational hurdles. Chief among these are dependencies on state government grants, delays in holding regular local elections, administrative overlapping with state agencies, and debates around the rights of non-tribal residents within council jurisdictions.",
+          highlight: "Financial autonomy remains the critical bottleneck, as councils rely heavily on discretionary state transfers."
+        }
+      ],
+      practiceQuestion: "Analyze the role of the Sixth Schedule of the Indian Constitution in addressing ethnic aspirations in Assam. To what extent have Autonomous District Councils succeeded in local governance?",
+      answerGuide: [
+        "Introduction: Define the Sixth Schedule, its historical origin (Bardoloi Committee), and list the three Councils currently functional in Assam.",
+        "Successes: Outline successes in preserving customary laws, control over local resources, forest protection, and curbing major ethnic conflicts by offering political representation.",
+        "Limitations & Failures: Discuss the lack of separate financial cadres, administrative overlap with state bureaucrats, and conflicts regarding non-tribal minorities (particularly in BTR).",
+        "Recommendations: Suggest pathways such as direct funding (pursuant to the 125th Amendment Bill recommendations) and training local councilors.",
+        "Conclusion: Reiterate that while ADCs have democratized power, institutional reforms are necessary to fulfill their potential."
+      ]
+    }
+  },
+  {
+    id: 'economics',
+    label: 'Economy & Development',
+    sublabel: 'Mains Focus & Articles',
+    heading: 'Assam Economy & Development',
+    subheading: 'Agro-industry & Economic Modernization',
+    article: {
+      title: "Assam's Tea & Silk Industries: Opportunities in the Global Value Chain",
+      syllabusTag: "APSC GS 5: Economy of Assam & Agri-Industries",
+      readTime: "14 min read",
+      difficulty: "Advanced",
+      introduction: "Assam is a global brand in tea and a heritage center for unique varieties of wild silk like Muga and Eri. However, both sectors are operating below capacity, facing dual challenges of climate change, archaic infrastructure, and low returns to grassroot producers.",
+      sections: [
+        {
+          title: "1. The Crisis and Revitalization of the Tea Sector",
+          content: "Producing nearly 50% of India's tea, Assam's tea estates are critical economic engines. Today, the sector is buffeted by rising production costs, sluggish global prices, and climate-induced unpredictable monsoons. Revitalizing the sector requires a shift towards high-value organic specialty teas, modernization of factory equipment, and ensuring robust living wages and social security for the vast plantation workforce.",
+          highlight: "Moving up the value chain from commodity-grade CTC tea to organic and orthodox varieties is vital for survival."
+        },
+        {
+          title: "2. Muga & Eri Silk: Geographical Indication (GI) and Rural Livelihoods",
+          content: "Assam's Muga Silk (the golden silk) has a Geographical Indication (GI) status and is unique to the region due to the specific climate required by the Antheraea assamensis silkworm. Eri silk, known as the 'peace silk' because it is harvested without killing the pupa, has massive potential in sustainable vegan fashion. Modernizing reel technologies, expanding cocoon farms, and linking weavers directly with global e-commerce portals are essential steps.",
+          highlight: "Traditional weaving clusters require micro-finance, technology integration, and brand promotion to thrive globally."
+        }
+      ],
+      practiceQuestion: "The tea industry of Assam is facing dual challenges of climate change and structural inefficiencies. Suggest measures to revitalize this sector while securing the livelihoods of plantation workers.",
+      answerGuide: [
+        "Introduction: Mention the volume and export share of Assam tea, highlighting its role in state employment and GSDP.",
+        "Identify Key Issues: Explain challenges like rising wages vs stagnant auction prices, climate disruptions (pest attacks, rain patterns), and age-old tea bushes.",
+        "Revitalization Measures: Highlight solutions like value addition (orthodox and green teas), direct-to-consumer digital channels, setting up tea-tourism packages, and cooperative models.",
+        "Worker Livelihoods: Address implementation of the Occupational Safety, Health and Working Conditions Code, and provision of health and primary education.",
+        "Conclusion: Conclude with a vision of sustainable agro-industry that balances commercial viability with social justice."
+      ]
+    }
+  },
+  {
+    id: 'geography',
+    label: 'Geography & Environment',
+    sublabel: 'Mains Focus & Articles',
+    heading: 'Assam Geography & Environment',
+    subheading: 'Disaster Management & Physical Landscape',
+    article: {
+      title: "Brahmaputra Floods: Moving from Yearly Disaster to River Basin Management",
+      syllabusTag: "APSC GS 5: Geography, Environment & Disasters in Assam",
+      readTime: "11 min read",
+      difficulty: "Advanced",
+      introduction: "Annual flooding in the Brahmaputra and Barak basins is one of Assam's most severe developmental bottlenecks. Rather than treating floods as isolated yearly disasters, experts advocate for a transition toward an integrated, holistic River Basin Management strategy.",
+      sections: [
+        {
+          title: "1. The Complex Etiology of Assam's Floods",
+          content: "The flooding is not simply caused by excessive rainfall. The Brahmaputra is a highly braided, high-sediment river flowing through an active seismic zone (Zone V). Landslides in upstream Tibet and Arunachal Pradesh dump enormous volumes of silt into the riverbed, raising its level and causing severe riverbank erosion during monsoons. Anthropogenic factors, such as wetland destruction, deforestation, and poorly designed embankments, exacerbate the vulnerability.",
+          highlight: "Siltation, high seismicity, and embankment failures create a complex, multi-dimensional flood ecosystem."
+        },
+        {
+          title: "2. The Paradigm Shift: Integrated Water Resources Management (IWRM)",
+          content: "Traditional structural measures, such as building earthen embankments, have offered temporary relief but often failed catastrophically. A sustainable approach must focus on non-structural measures: advanced satellite-based early warning networks, restoration of natural wetlands (Beels) to act as sponge basins, catchment area afforestation, and construction of multi-purpose reservoirs. Cooperating with upstream states and nations is critical.",
+          highlight: "Living with the river entails adapting agricultural calendars (e.g. promoting 'Boro' winter paddy) and designing flood-resilient villages."
+        }
+      ],
+      practiceQuestion: "Brahmaputra floods are an annual recurring disaster in Assam. Discuss the ecological and anthropological factors causing this, and propose a comprehensive flood mitigation strategy.",
+      answerGuide: [
+        "Introduction: State the magnitude of Brahmaputra flood damages and their impact on lives, agriculture, and Kaziranga wildlife.",
+        "Ecological Factors: Detail the young Himalayan geology, extreme rainfall patterns, heavy silt load, and high seismic activity changing river courses.",
+        "Anthropological Factors: Discuss encroachment of floodplains and wetlands, deforestation in hills, and structural failures of aging embankments.",
+        "Mitigation Strategy (Structural + Non-Structural): Outline dredging of channels, reservoir control, swamp restoration, flood zoning laws, and flood-resistant crop varieties.",
+        "Conclusion: Advocate for a river-basin authority combining science, community wisdom, and interstate coordination."
+      ]
+    }
+  }
+];
+
 export default function AssamSection() {
-  const [activeTab, setActiveTab] = useState('history');
-  const active = TABS.find(t => t.id === activeTab);
+  const [activeSection, setActiveSection] = useState('prelims'); // 'prelims' or 'mains'
+  const [activeTab, setActiveTab] = useState('history'); // 'history', 'polity', 'economics', 'geography'
+  
+  // MCQ state
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [mcqSubmitted, setMcqSubmitted] = useState(false);
+  
+  // Mains state
+  const [showAnswerGuide, setShowAnswerGuide] = useState(false);
+
+  // Reset interactive states when changing tabs or sections
+  useEffect(() => {
+    setSelectedOption(null);
+    setMcqSubmitted(false);
+    setShowAnswerGuide(false);
+  }, [activeSection, activeTab]);
+
+  const currentTabs = activeSection === 'prelims' ? PRELIMS_TABS : MAINS_TABS;
+  const active = currentTabs.find(t => t.id === activeTab) || currentTabs[0];
+
+  const handleOptionClick = (idx) => {
+    if (mcqSubmitted) return;
+    setSelectedOption(idx);
+  };
+
+  const handleMcqSubmit = () => {
+    if (selectedOption === null) return;
+    setMcqSubmitted(true);
+  };
+
+  const handleMcqReset = () => {
+    setSelectedOption(null);
+    setMcqSubmitted(false);
+  };
 
   return (
     <div className="assam-page">
-
       {/* Hero */}
       <section className="assam-hero">
         <div className="assam-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
@@ -118,13 +343,47 @@ export default function AssamSection() {
         </div>
       </section>
 
-      {/* Main */}
+      {/* Section Selector Tab Bar */}
+      <div className="assam-section-selector-container">
+        <div className="container">
+          <div className="assam-section-selector">
+            <button 
+              className={`assam-section-btn ${activeSection === 'prelims' ? 'active' : ''}`}
+              onClick={() => {
+                setActiveSection('prelims');
+                setActiveTab('history');
+              }}
+            >
+              <Award className="btn-icon" size={18} />
+              <div className="btn-text">
+                <strong>Prelims Focus</strong>
+                <span>Factual Notes & MCQs</span>
+              </div>
+            </button>
+            <button 
+              className={`assam-section-btn ${activeSection === 'mains' ? 'active' : ''}`}
+              onClick={() => {
+                setActiveSection('mains');
+                setActiveTab('history');
+              }}
+            >
+              <FileSpreadsheet className="btn-icon" size={18} />
+              <div className="btn-text">
+                <strong>Mains Articles</strong>
+                <span>Analytical Studies & Essays</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Area */}
       <section className="section assam-main">
         <div className="container assam-layout">
 
-          {/* LEFT — Sidebar tabs */}
+          {/* LEFT — Sidebar Sub-Tabs */}
           <aside className="assam-sidebar">
-            {TABS.map(tab => (
+            {currentTabs.map(tab => (
               <button
                 key={tab.id}
                 className={`assam-tab${activeTab === tab.id ? ' assam-tab--active' : ''}`}
@@ -141,48 +400,203 @@ export default function AssamSection() {
             ))}
           </aside>
 
-          {/* RIGHT — Content */}
-          <div className="assam-detail" key={activeTab}>
+          {/* RIGHT — Content Display */}
+          <div className="assam-detail" key={`${activeSection}-${activeTab}`}>
+            
+            {activeSection === 'prelims' ? (
+              // PRELIMS VIEW
+              <div className="prelims-content-flow">
+                {/* Header */}
+                <div className="assam-detail__header">
+                  <h2 className="assam-detail__title">{active.heading}</h2>
+                  <p className="assam-detail__sub">{active.subheading}</p>
+                </div>
 
-            {/* Header */}
-            <div className="assam-detail__header">
-              <h2 className="assam-detail__title">{active.heading}</h2>
-              <p className="assam-detail__sub">{active.subheading}</p>
-            </div>
-
-            {/* Quick Facts */}
-            <div className="assam-facts-section">
-              <h3 className="assam-section-title">Quick Facts</h3>
-              <div className="assam-facts">
-                {active.facts.map(f => (
-                  <div key={f.label} className="assam-fact">
-                    <span className="assam-fact__label">{f.label}</span>
-                    <span className="assam-fact__value">{f.value}</span>
+                {/* Quick Facts */}
+                <div className="assam-facts-section">
+                  <h3 className="assam-section-title">Quick Facts</h3>
+                  <div className="assam-facts">
+                    {active.facts.map(f => (
+                      <div key={f.label} className="assam-fact">
+                        <span className="assam-fact__label">{f.label}</span>
+                        <span className="assam-fact__value">{f.value}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
 
-            {/* Key Points */}
-            <div className="assam-points-section">
-              <h3 className="assam-section-title">Key Topics</h3>
-              <div className="assam-points">
-                {active.points.map((p, i) => (
-                  <div key={i} className="assam-point">
-                    <div className="assam-point__num">{i + 1}</div>
-                    <div className="assam-point__body">
-                      <strong>{p.title}</strong>
-                      <p>{p.desc}</p>
+                {/* Key Topics */}
+                <div className="assam-points-section">
+                  <h3 className="assam-section-title">Key Core Topics</h3>
+                  <div className="assam-points">
+                    {active.points.map((p, i) => (
+                      <div key={i} className="assam-point">
+                        <div className="assam-point__num">{i + 1}</div>
+                        <div className="assam-point__body">
+                          <strong>{p.title}</strong>
+                          <p>{p.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Interactive Prelims MCQ Card */}
+                {active.mcq && (
+                  <div className="mcq-practice-card">
+                    <div className="mcq-card-header">
+                      <HelpCircle className="mcq-header-icon" size={20} />
+                      <span className="mcq-header-tag">Prelims Practice Challenge</span>
+                    </div>
+                    <div className="mcq-card-body">
+                      <p className="mcq-question-text">{active.mcq.question}</p>
+                      
+                      <div className="mcq-options-list">
+                        {active.mcq.options.map((option, idx) => {
+                          let optionClass = "";
+                          if (selectedOption === idx) {
+                            optionClass = "selected";
+                          }
+                          if (mcqSubmitted) {
+                            if (idx === active.mcq.correctIndex) {
+                              optionClass = "correct";
+                            } else if (selectedOption === idx) {
+                              optionClass = "incorrect";
+                            } else {
+                              optionClass = "disabled";
+                            }
+                          }
+                          
+                          return (
+                            <button
+                              key={idx}
+                              className={`mcq-option-btn ${optionClass}`}
+                              onClick={() => handleOptionClick(idx)}
+                              disabled={mcqSubmitted}
+                            >
+                              <span className="option-letter">{String.fromCharCode(65 + idx)}</span>
+                              <span className="option-text">{option}</span>
+                              {mcqSubmitted && idx === active.mcq.correctIndex && (
+                                <CheckCircle2 className="feedback-icon correct" size={16} />
+                              )}
+                              {mcqSubmitted && selectedOption === idx && idx !== active.mcq.correctIndex && (
+                                <XCircle className="feedback-icon incorrect" size={16} />
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+
+                      <div className="mcq-action-row">
+                        {!mcqSubmitted ? (
+                          <button 
+                            className="btn btn-primary mcq-submit-btn" 
+                            disabled={selectedOption === null}
+                            onClick={handleMcqSubmit}
+                          >
+                            Submit Answer
+                          </button>
+                        ) : (
+                          <button 
+                            className="btn btn-outline mcq-reset-btn" 
+                            onClick={handleMcqReset}
+                          >
+                            Try Again
+                          </button>
+                        )}
+                      </div>
+
+                      {mcqSubmitted && (
+                        <div className={`mcq-explanation-panel ${selectedOption === active.mcq.correctIndex ? 'success' : 'fail'}`}>
+                          <div className="explanation-title-row">
+                            <Sparkles size={16} className="explanation-sparkle" />
+                            <strong>
+                              {selectedOption === active.mcq.correctIndex ? 'Correct! Excellent explanation:' : 'Incorrect. Study the explanation below:'}
+                            </strong>
+                          </div>
+                          <p className="explanation-paragraph">{active.mcq.explanation}</p>
+                        </div>
+                      )}
                     </div>
                   </div>
-                ))}
+                )}
               </div>
-            </div>
+            ) : (
+              // MAINS ARTICLE VIEW
+              <div className="mains-content-flow">
+                {/* Article Header Details */}
+                <div className="mains-article-metadata">
+                  <div className="meta-badge">{active.article.syllabusTag}</div>
+                  <div className="meta-stats">
+                    <span className="meta-stat">
+                      <Clock size={13} />
+                      {active.article.readTime}
+                    </span>
+                    <span className="meta-stat">
+                      <Award size={13} />
+                      Difficulty: {active.article.difficulty}
+                    </span>
+                  </div>
+                </div>
 
-            {/* CTA */}
-            {/* <div className="assam-detail__cta">
-              <Link to="/contact" className="btn btn-primary">Enquire About Courses →</Link>
-            </div> */}
+                <h2 className="mains-article-title">{active.article.title}</h2>
+                <div className="mains-article-divider" />
+                
+                <p className="mains-article-intro">{active.article.introduction}</p>
+
+                {/* Article Sections */}
+                <div className="mains-article-sections">
+                  {active.article.sections.map((section, idx) => (
+                    <div key={idx} className="mains-article-section">
+                      <h3 className="mains-section-subtitle">{section.title}</h3>
+                      <p className="mains-section-text">{section.content}</p>
+                      {section.highlight && (
+                        <blockquote className="mains-section-quote">
+                          <div className="quote-accent" />
+                          <p>{section.highlight}</p>
+                        </blockquote>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Practice Mains Question Section */}
+                <div className="mains-question-card">
+                  <div className="question-card-header">
+                    <span className="question-badge">APSC / UPSC Mains Question</span>
+                  </div>
+                  <div className="question-card-body">
+                    <p className="mains-question-prompt">"{active.article.practiceQuestion}"</p>
+                    
+                    {/* Toggle Guideline Button */}
+                    <button 
+                      className={`btn-toggle-guidelines ${showAnswerGuide ? 'active' : ''}`}
+                      onClick={() => setShowAnswerGuide(!showAnswerGuide)}
+                    >
+                      <span>{showAnswerGuide ? 'Hide Model Answer Structure' : 'View Model Answer Structure & Hints'}</span>
+                      {showAnswerGuide ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </button>
+
+                    {showAnswerGuide && (
+                      <div className="answer-guidelines-box">
+                        <h4 className="guidelines-title">Syllabus-Aligned Answer Framework</h4>
+                        <ol className="guideline-steps">
+                          {active.article.answerGuide.map((step, sIdx) => {
+                            const [heading, ...rest] = step.split(':');
+                            return (
+                              <li key={sIdx} className="guideline-step-item">
+                                <span className="step-badge">{heading}</span>
+                                <span className="step-desc">{rest.join(':').trim()}</span>
+                              </li>
+                            );
+                          })}
+                        </ol>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* WhatsApp Contact */}
             <div className="assam-contact">
@@ -208,7 +622,6 @@ export default function AssamSection() {
         </div>
       </section>
       <CtaSection/>
-
     </div>
   );
 }

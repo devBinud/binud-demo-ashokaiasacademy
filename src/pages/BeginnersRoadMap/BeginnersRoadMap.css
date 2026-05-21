@@ -1,0 +1,681 @@
+/* ============================================================
+   ASHOKA IAS ACADEMY — Premium Editorial Article Roadmap Styling
+   ============================================================ */
+
+.roadmap-page {
+  background: var(--color-bg-page);
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Hero Block ── */
+.roadmap-hero {
+  background: var(--color-navy);
+  padding-block: 4rem 3.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.roadmap-hero__pattern {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.roadmap-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; 
+  right: -80px;
+  width: 400px; 
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,146,42,0.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.roadmap-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.roadmap-hero__title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .roadmap-hero__title {
+    font-size: 3rem;
+  }
+}
+
+.roadmap-hero__desc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 640px;
+  margin: 0 auto 1.75rem;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.roadmap-hero__breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  padding: 6px 16px;
+}
+
+.roadmap-hero__bc-link {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.roadmap-hero__bc-link:hover {
+  color: var(--color-gold);
+}
+
+.roadmap-hero__breadcrumb svg {
+  color: rgba(255, 255, 255, 0.35);
+  flex-shrink: 0;
+}
+
+.roadmap-hero__bc-current {
+  font-size: 0.75rem;
+  color: var(--color-gold-light);
+  font-weight: 700;
+}
+
+/* ============================================================
+   ARTICLE CONTAINER (Substack / Medium style high-readability)
+   ============================================================ */
+.roadmap-article-container {
+  max-width: 860px;
+  width: 92%;
+  margin: 3.5rem auto 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+@media (max-width: 768px) {
+  .roadmap-article-container {
+    margin-top: 2rem;
+    margin-bottom: 3.5rem;
+    gap: 2.5rem;
+  }
+}
+
+.roadmap-section {
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Section Header Typography */
+.section-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid rgba(39, 60, 104, 0.08);
+  padding-bottom: 0.65rem;
+}
+
+.section-title-wrapper h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.section-prose {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+/* ============================================================
+   INTRO PROSE & BRAND BLOCKQUOTE
+   ============================================================ */
+.tab-intro-card {
+  background: var(--color-white);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(39, 60, 104, 0.06);
+  box-shadow: 0 4px 20px rgba(13, 27, 53, 0.02);
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-intro-card::before {
+  content: '';
+  position: absolute;
+  left: 0; 
+  top: 0; 
+  bottom: 0;
+  width: 4px;
+  background: var(--color-gold);
+}
+
+.intro-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(184, 146, 42, 0.1);
+  color: var(--color-gold);
+  padding: 4px 10px;
+  border-radius: 50px;
+  margin-bottom: 0.75rem;
+}
+
+.tab-intro-card h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.tab-intro-card p {
+  font-size: 0.925rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ============================================================
+   TABS STYLING
+   ============================================================ */
+.roadmap-tabs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 2px solid rgba(39, 60, 104, 0.08);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 680px) {
+  .roadmap-tabs-container {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+  }
+}
+
+.roadmap-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  background: var(--color-white);
+  border: 1px solid rgba(39, 60, 104, 0.1);
+  border-radius: 50px;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(13, 27, 53, 0.02);
+}
+
+.roadmap-tab-btn:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+  transform: translateY(-1px);
+}
+
+.roadmap-tab-btn.active {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
+  color: var(--color-white);
+  border-color: var(--color-navy);
+  box-shadow: 0 4px 12px rgba(39, 60, 104, 0.15);
+}
+
+.roadmap-tab-btn.active svg {
+  color: var(--color-gold) !important;
+}
+
+.animate-fade-in {
+  animation: fadeUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.book-row-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+
+.roadmap-quote {
+  background: rgba(184, 146, 42, 0.03);
+  border-left: 4px solid var(--color-gold);
+  border-radius: 4px 12px 12px 4px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  box-shadow: inset 0 0 10px rgba(184, 146, 42, 0.01);
+}
+
+.quote-icon {
+  color: var(--color-gold);
+  opacity: 0.8;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.roadmap-quote p {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #8A6D1C;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ============================================================
+   CHRONOLOGICAL PREPARATION PHASES (SECTION 1)
+   ============================================================ */
+.roadmap-phases-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.phase-card {
+  background: var(--color-white);
+  border: 1px solid rgba(39, 60, 104, 0.06);
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 15px rgba(13, 27, 53, 0.02);
+  transition: all 0.25s ease;
+}
+
+.phase-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(184, 146, 42, 0.2);
+  box-shadow: 0 8px 25px rgba(13, 27, 53, 0.04);
+}
+
+.phase-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.phase-badge {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
+  color: var(--color-white);
+  font-weight: 800;
+  font-size: 0.95rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(39, 60, 104, 0.15);
+  flex-shrink: 0;
+}
+
+.phase-title-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.phase-duration {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.phase-title-group h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.phase-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.phase-tasks {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  padding-left: 0;
+}
+
+@media (min-width: 680px) {
+  .phase-tasks {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+  }
+}
+
+.phase-task-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.task-check {
+  color: #10B981;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.phase-task-item span {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* ============================================================
+   NCERT BOOKLIST MATRIX (SECTION 2)
+   ============================================================ */
+.ncert-static-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 680px) {
+  .ncert-static-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ncert-sub-list {
+  background: var(--color-white);
+  border: 1px solid rgba(39, 60, 104, 0.06);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(13, 27, 53, 0.02);
+}
+
+.ncert-sub-list h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  border-bottom: 2px solid #F3F4F6;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.ncert-books-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ncert-book-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #FAF9F6;
+  border: 1px solid rgba(39, 60, 104, 0.03);
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  gap: 0.75rem;
+  transition: background 0.2s ease;
+}
+
+.ncert-book-row:hover {
+  background: #F3EFE6;
+}
+
+.book-row-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.book-row-title {
+  display: block;
+  font-size: 0.785rem;
+  color: var(--color-text-primary);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.book-row-class {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+
+.static-priority {
+  font-size: 0.55rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.static-priority.must-read {
+  background: rgba(220, 38, 38, 0.08);
+  color: #DC2626;
+}
+
+.static-priority.highly-recommended {
+  background: rgba(37, 99, 235, 0.08);
+  color: #2563EB;
+}
+
+/* ============================================================
+   DAILY STUDY ROUTINES (SECTION 3)
+   ============================================================ */
+.routines-box {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .routines-box {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.routine-column {
+  background: var(--color-white);
+  border: 1px solid rgba(39, 60, 104, 0.06);
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 15px rgba(13, 27, 53, 0.02);
+}
+
+.routine-header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--color-navy);
+  margin-bottom: 1.5rem;
+}
+
+.routine-header h4 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.routine-header svg {
+  color: var(--color-gold);
+}
+
+.routine-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  padding-left: 0.25rem;
+}
+
+.routine-item {
+  position: relative;
+  padding-left: 1.25rem;
+  border-left: 2px solid rgba(39, 60, 104, 0.06);
+}
+
+.routine-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: 2px solid var(--color-white);
+  box-shadow: 0 0 0 2px rgba(184, 146, 42, 0.2);
+}
+
+.routine-item-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  background: rgba(184, 146, 42, 0.06);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 0.35rem;
+}
+
+.routine-item h5 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0 0 2px 0;
+}
+
+.routine-item p {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ============================================================
+   THREE SUCCESS GUIDELINE TIPS (SECTION 4)
+   ============================================================ */
+.tips-banner {
+  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%) !important;
+  border: none !important;
+  color: var(--color-white);
+  padding: 2.5rem !important;
+}
+
+.tips-banner-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-gold-light);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.tip-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+.tip-index {
+  width: 30px;
+  height: 30px;
+  background: rgba(184, 146, 42, 0.2);
+  color: var(--color-gold-light);
+  font-weight: 800;
+  font-size: 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(184, 146, 42, 0.3);
+}
+
+.tip-row h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-white);
+  margin: 0 0 0.35rem 0;
+}
+
+.tip-row p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* ============================================================
+   KEYFRAME TRANSITIONS
+   ============================================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,418 @@
+/* ============================================================
+   TEST SERIES PAGES — APSC Test Series & DPP
+   ============================================================ */
+
+/* Hero desc */
+.sm-hero__desc {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 560px;
+  margin: 0 auto var(--space-5);
+  line-height: 1.7;
+  font-family: var(--font-body);
+}
+
+/* ── Upcoming banner ── */
+.ts-upcoming-banner {
+  background: rgba(184, 146, 42, 0.08);
+  border-bottom: 1px solid rgba(184, 146, 42, 0.2);
+  padding: 12px 0;
+}
+
+.ts-upcoming-banner__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+}
+
+.ts-upcoming-badge {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+  flex-shrink: 0;
+}
+
+.ts-upcoming-link {
+  color: var(--color-navy);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--color-gold);
+  padding-bottom: 1px;
+  transition: color 0.15s ease;
+}
+.ts-upcoming-link:hover { color: var(--color-gold); }
+
+/* ── Section common ── */
+.ts-section { background: #fff; }
+.ts-section--alt { background: #f7f8fc; }
+
+.ts-section-header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ts-section-title {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-navy);
+  margin: 0;
+  font-family: var(--font-body);
+  line-height: 1.2;
+}
+
+.ts-section-sub {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ── Features grid ── */
+.ts-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .ts-features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ts-feature-card {
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ts-section--alt .ts-feature-card { background: #fff; }
+
+.ts-feature-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: rgba(184, 146, 42, 0.08);
+  border: 1.5px solid rgba(184, 146, 42, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+.ts-feature-card__title {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+.ts-feature-card__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.65;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* ── Syllabus grid ── */
+.ts-syllabus-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .ts-syllabus-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .ts-syllabus-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ts-syllabus-card {
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.ts-syllabus-card__num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  flex-shrink: 0;
+  line-height: 1;
+  padding-top: 2px;
+}
+
+.ts-syllabus-card__subject {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0 0 4px;
+  font-family: var(--font-body);
+}
+
+.ts-syllabus-card__topics {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* ── Plans grid ── */
+.ts-plans-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .ts-plans-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.ts-plan-card {
+  background: #fff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+}
+
+.ts-plan-card--featured {
+  border-color: var(--color-navy);
+  box-shadow: 0 8px 32px rgba(27, 42, 74, 0.12);
+}
+
+.ts-plan-card__tag {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-navy);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 99px;
+  white-space: nowrap;
+}
+
+.ts-plan-card__name {
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--color-navy);
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+.ts-plan-card__desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ts-plan-card__price {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+}
+
+.ts-plan-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.ts-plan-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+.ts-plan-card__list li svg {
+  color: #2D7A4F;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.ts-plan-card__btn {
+  display: block;
+  text-align: center;
+  padding: 11px 20px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-navy);
+  color: var(--color-navy);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ts-plan-card__btn:hover,
+.ts-plan-card__btn--primary {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+/* ── Weekly schedule table ── */
+.ts-schedule-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: #fff;
+}
+
+.ts-schedule-row {
+  display: grid;
+  grid-template-columns: 130px 1fr auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.15s ease;
+}
+
+.ts-schedule-row:last-child { border-bottom: none; }
+
+.ts-schedule-row--highlight {
+  background: rgba(27, 42, 74, 0.03);
+}
+
+.ts-schedule-row__day {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-navy);
+  font-family: var(--font-body);
+}
+
+.ts-schedule-row__topic {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-family: var(--font-body);
+}
+
+.ts-schedule-row__type {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ts-schedule-row__type--static  { background: rgba(27,42,74,0.08);   color: var(--color-navy); }
+.ts-schedule-row__type--ca      { background: rgba(184,146,42,0.1);  color: #9A7520; }
+.ts-schedule-row__type--mixed   { background: rgba(45,122,79,0.1);   color: #276749; }
+
+/* ── Enroll CTA card ── */
+.ts-enroll-card {
+  background: var(--color-navy);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10) var(--space-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.ts-enroll-card__text h2 {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-body);
+}
+
+.ts-enroll-card__text p {
+  font-size: var(--text-sm);
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  max-width: 480px;
+  line-height: 1.65;
+}
+
+.ts-enroll-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: var(--color-gold);
+  color: #fff;
+  font-size: var(--text-base);
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  font-family: var(--font-body);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+.ts-enroll-card__btn:hover { opacity: 0.88; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .ts-features-grid { grid-template-columns: 1fr; }
+
+  .ts-schedule-row {
+    grid-template-columns: 100px 1fr;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .ts-schedule-row__type { display: none; }
+
+  .ts-enroll-card {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-7) var(--space-5);
+  }
+
+  .ts-plan-card { padding: var(--space-6); }
+}

@@ -617,3 +617,35 @@
 .navbar__overlay {
   display: none;
 }
+
+/* ── Nav badge (e.g. "Upcoming") ── */
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 99px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.4);
+  animation: badgePulse 2.2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 1px 4px rgba(217, 119, 6, 0.4); }
+  50%       { box-shadow: 0 1px 8px rgba(217, 119, 6, 0.7); }
+}
+
+/* Make dropdown child items flex so badge sits inline */
+.navbar__dropdown-item--child,
+.fs-menu__sub-link--child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -4,24 +4,24 @@ import './AboutNoticeSection.css';
 
 const NOTICES = {
   'Central Jobs': [
-    { date: '2025-05-10', title: 'UPSC CSE 2025 — Notification Released', tag: 'UPSC' },
-    { date: '2025-05-05', title: 'SSC CGL 2025 — Application Window Open', tag: 'SSC' },
-    { date: '2025-04-28', title: 'IBPS PO 2025 — Official Notification Out', tag: 'Banking' },
-    { date: '2025-04-20', title: 'Railway NTPC 2025 — New Vacancy Announced', tag: 'Railway' },
-    { date: '2025-04-12', title: 'NDA 2025 — UPSC Notification Published', tag: 'Defence' },
-    { date: '2025-04-01', title: 'SSC CHSL 2025 — Exam Date Announced', tag: 'SSC' },
-    { date: '2025-03-22', title: 'IBPS Clerk 2025 — Registration Started', tag: 'Banking' },
-    { date: '2025-03-10', title: 'UPSC CAPF 2025 — Notification Out', tag: 'UPSC' },
+    { date: '2025-05-10', title: 'UPSC CSE 2025 - Notification Released', tag: 'UPSC' },
+    { date: '2025-05-05', title: 'SSC CGL 2025 - Application Window Open', tag: 'SSC' },
+    { date: '2025-04-28', title: 'IBPS PO 2025 - Official Notification Out', tag: 'Banking' },
+    { date: '2025-04-20', title: 'Railway NTPC 2025 - New Vacancy Announced', tag: 'Railway' },
+    { date: '2025-04-12', title: 'NDA 2025 - UPSC Notification Published', tag: 'Defence' },
+    { date: '2025-04-01', title: 'SSC CHSL 2025 - Exam Date Announced', tag: 'SSC' },
+    { date: '2025-03-22', title: 'IBPS Clerk 2025 - Registration Started', tag: 'Banking' },
+    { date: '2025-03-10', title: 'UPSC CAPF 2025 - Notification Out', tag: 'UPSC' },
   ],
   'State Jobs': [
-    { date: '2025-05-08', title: 'APSC CCE 2025 — Notification Released', tag: 'APSC' },
-    { date: '2025-05-01', title: 'ADRE Grade III 2025 — Apply Now', tag: 'ADRE' },
-    { date: '2025-04-25', title: 'Assam Police SI 2025 — Vacancy Announced', tag: 'Police' },
-    { date: '2025-04-15', title: 'APSC ACS 2025 — Prelims Date Declared', tag: 'APSC' },
-    { date: '2025-04-05', title: 'ADRE Grade IV 2025 — Registration Open', tag: 'ADRE' },
-    { date: '2025-03-28', title: 'Assam TET 2025 — Notification Published', tag: 'TET' },
-    { date: '2025-03-18', title: 'APSC Fishery 2025 — New Posts Notified', tag: 'APSC' },
-    { date: '2025-03-05', title: 'Assam Rifles 2025 — Technical Vacancy Out', tag: 'Defence' },
+    { date: '2025-05-08', title: 'APSC CCE 2025 - Notification Released', tag: 'APSC' },
+    { date: '2025-05-01', title: 'ADRE Grade III 2025 - Apply Now', tag: 'ADRE' },
+    { date: '2025-04-25', title: 'Assam Police SI 2025 - Vacancy Announced', tag: 'Police' },
+    { date: '2025-04-15', title: 'APSC ACS 2025 - Prelims Date Declared', tag: 'APSC' },
+    { date: '2025-04-05', title: 'ADRE Grade IV 2025 - Registration Open', tag: 'ADRE' },
+    { date: '2025-03-28', title: 'Assam TET 2025 - Notification Published', tag: 'TET' },
+    { date: '2025-03-18', title: 'APSC Fishery 2025 - New Posts Notified', tag: 'APSC' },
+    { date: '2025-03-05', title: 'Assam Rifles 2025 - Technical Vacancy Out', tag: 'Defence' },
   ],
 };
 
@@ -44,7 +44,7 @@ export default function AboutNoticeSection() {
     <section className="about-notice section">
       <div className="container about-notice__grid">
 
-        {/* ── LEFT — About ── */}
+        {/* ── LEFT - About ── */}
         <div className="about-notice__left">
           <span className="section-label">Who We Are</span>
           <h2 className="about-notice__title">
@@ -65,7 +65,7 @@ export default function AboutNoticeSection() {
 
         </div>
 
-        {/* ── RIGHT — Notice Board ── */}
+        {/* ── RIGHT - Notice Board ── */}
         <div className="about-notice__right">
           <div className="notice-board">
 

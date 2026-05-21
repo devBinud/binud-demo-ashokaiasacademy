@@ -25,6 +25,17 @@ import FAQ from '../pages/FAQ/FAQ';
 import AssamSection from '../pages/AssamSection/AssamSection';
 import Gallery from '../pages/Gallery/Gallery';
 import CoursesAll from '../pages/CoursesAll/CoursesAll';
+import ScholarshipTest from '../pages/ScholarshipTest/ScholarshipTest';
+import BeginnersRoadMap from '../pages/BeginnersRoadMap/BeginnersRoadMap';
+import OnlineAdmission from '../pages/OnlineAdmission/OnlineAdmission';
+import OfflineAdmission from '../pages/OfflineAdmission/OfflineAdmission';
+import PYQ from '../pages/StudyMaterial/PYQ/PYQ';
+import DailyCurrentAffairs from '../pages/StudyMaterial/DailyCurrentAffairs/DailyCurrentAffairs';
+import PrelimsNotes from '../pages/StudyMaterial/PrelimsNotes/PrelimsNotes';
+import MainsNotes from '../pages/StudyMaterial/MainsNotes/MainsNotes';
+import OnlineNotes from '../pages/StudyMaterial/OnlineNotes/OnlineNotes';
+import DailyPracticePaper from '../pages/StudyMaterial/DailyPracticePaper/DailyPracticePaper';
+import APSCTestSeries from '../pages/StudyMaterial/APSCTestSeries/APSCTestSeries';
 
 const router = createBrowserRouter([
   {
@@ -46,8 +57,20 @@ const router = createBrowserRouter([
       { path: 'results', element: <Results /> },
       { path: 'faq', element: <FAQ /> },
       { path: 'assam-section', element: <AssamSection /> },
+      { path: 'scholarship-test', element: <ScholarshipTest /> },
+      { path: 'scholarship-test/:testType', element: <ScholarshipTest /> },
+      { path: 'beginners-road-map', element: <BeginnersRoadMap /> },
+      { path: 'online-application', element: <OnlineAdmission /> },
+      { path: 'offline-admission', element: <OfflineAdmission /> },
       { path: 'gallery', element: <Gallery /> },
       { path: 'courses-all', element: <CoursesAll /> },
+      { path: 'pyq', element: <PYQ /> },
+      { path: 'daily-current-affairs-analysis', element: <DailyCurrentAffairs /> },
+      { path: 'prelims-notes', element: <PrelimsNotes /> },
+      { path: 'mains-notes', element: <MainsNotes /> },
+      { path: 'online-notes', element: <OnlineNotes /> },
+      { path: 'beginner', element: <DailyPracticePaper /> },
+      { path: 'intermediate', element: <APSCTestSeries /> },
       { path: '*', element: <NotFound /> },
     ],
   },

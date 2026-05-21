@@ -4,16 +4,16 @@
 
 .float-btn {
   position: fixed;
-  bottom: 24px;
-  width: 58px;
-  height: 58px;
+  bottom: 30px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   z-index: 9999;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, bottom 0.2s ease;
 }
 
 .float-btn:hover {
@@ -23,8 +23,8 @@
 /* Notification badge */
 .float-btn__badge {
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 1px;
+  right: 1px;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -77,9 +77,9 @@
 
 @media (min-width: 768px) {
   .float-btn {
-    width: 60px;
-    height: 60px;
-    bottom: 20px;
+    width: 58px;
+    height: 58px;
+    bottom: 36px;
   }
   
   .float-btn--call { left: 24px; }
@@ -88,8 +88,8 @@
 
 @media (max-width: 768px) {
    .float-btn {
-    width: 47px;
-    height: 47px;
-    bottom: 13px;
+    width: 48px;
+    height: 48px;
+    bottom: 24px;
   }
 }

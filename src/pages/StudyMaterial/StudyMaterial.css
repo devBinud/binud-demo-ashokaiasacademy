@@ -1,0 +1,204 @@
+/* ============================================================
+   STUDY MATERIAL PAGES — shared styles
+   ============================================================ */
+.study-material-page {
+  background: #f7f8fc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero ── */
+.sm-hero {
+  background: var(--color-navy);
+  padding: 60px 0 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sm-hero__pattern {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sm-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,146,42,0.2) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sm-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,146,42,0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sm-hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+.sm-hero__content .section-label {
+  color: var(--color-gold);
+  opacity: 0.9;
+}
+
+.sm-hero__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 12px 0 20px;
+  font-family: var(--font-body);
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .sm-hero { padding: 80px 0 65px; }
+  .sm-hero__title { font-size: 2.6rem; }
+}
+
+/* Breadcrumb */
+.sm-hero__breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 99px;
+  padding: 7px 18px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sm-hero__bc-link {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+.sm-hero__bc-link:hover { color: var(--color-gold); }
+.sm-hero__breadcrumb svg { color: rgba(255,255,255,0.3); flex-shrink: 0; }
+.sm-hero__bc-current {
+  font-size: 0.75rem;
+  color: var(--color-gold);
+  font-weight: 700;
+}
+
+/* ── Coming soon body ── */
+.sm-coming-soon {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 70px 20px;
+}
+
+.sm-coming-soon__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  max-width: 480px;
+  margin-inline: auto;
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 50px 40px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  width: 100%;
+}
+
+.sm-coming-soon__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(184,146,42,0.07);
+  border: 2px solid rgba(184,146,42,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold);
+  flex-shrink: 0;
+}
+
+/* Upcoming badge */
+.sm-coming-soon__badge {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  border-radius: 99px;
+}
+
+/* Heading */
+.sm-coming-soon__inner h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* Body text */
+.sm-coming-soon__inner p {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.7;
+  margin: 0;
+  font-family: var(--font-body);
+}
+
+/* Divider */
+.sm-coming-soon__inner::before {
+  display: none;
+}
+
+/* Back button */
+.sm-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 10px;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: background 0.15s ease;
+  margin-top: 4px;
+}
+.sm-back-btn:hover { background: #333; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .sm-hero { padding: 48px 0 40px; }
+  .sm-hero__title { font-size: 1.5rem; }
+  .sm-coming-soon { padding: 40px 16px; }
+  .sm-coming-soon__inner { padding: 36px 24px; }
+  .sm-coming-soon__icon { width: 68px; height: 68px; }
+  .sm-coming-soon__inner h2 { font-size: 1.25rem; }
+}

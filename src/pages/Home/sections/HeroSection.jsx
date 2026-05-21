@@ -91,11 +91,11 @@ export default function HeroSection() {
           <h1 className="hero__title">
             Premier Coaching for<br />
             <span className="hero__title-gold">UPSC, APSC</span><br />
-            other Allied Exams(SSC, BANKING, NDA & CDS)
+            other Allied Exams(SSC, Banking, NDA & CDS)
           </h1>
 
           <p className="hero__desc">
-            Join Ashoka IAS Academy — a trusted coaching institution dedicated to nurturing
+            Join Ashoka IAS Academy - a trusted coaching institution dedicated to nurturing
             future civil servants through structured programs, expert mentorship, and
             result-oriented preparation.
           </p>

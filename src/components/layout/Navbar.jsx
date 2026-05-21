@@ -10,11 +10,19 @@ const NAV_LINKS = [
     label: 'Classroom Courses',
     to: null,
     dropdown: [
-      { label: 'Integrated Program — Class 11 & 12', to: '/courses-all', state: { courseId: 'integrated-class-11-12' } },
+      { label: 'Integrated Program - Class 11 & 12', to: '/courses-all', state: { courseId: 'integrated-class-11-12' } },
       { label: 'One Year Foundation Course', to: '/courses-all', state: { courseId: 'one-year-foundation' } },
       { label: '6-Month Pre-Foundation Course', to: '/courses-all', state: { courseId: 'pre-foundation' } },
       { label: 'Crash Course Programme', to: '/courses-all', state: { courseId: 'crash-course' } },
       { label: 'Integrated Degree + Competitive Exam Coaching Programme', to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
+      {
+        label: 'Upcoming Batch',
+        to: null,
+        children: [
+          { label: 'Foundation', to: '/foundation' },
+          { label: 'Crash Course', to: '/crash-course' },
+        ],
+      },
     ],
   },
   {
@@ -37,37 +45,22 @@ const NAV_LINKS = [
         to: null,
         children: [
           { label: 'Daily Practice Paper (DPP)', to: '/beginner' },
-          { label: 'APSC Test Series', to: '/intermediate' },
+          { label: 'APSC Test Series', to: '/intermediate', badge: 'Upcoming' },
         ],
       },
       { label: 'Assam Section', to: '/assam-section' },
-      {
-        label: 'Upcomming Batch',
-        to: null,
-        children: [
-          { label: 'Foundation', to: '/beginner' },
-          { label: 'Crash Course', to: '/intermediate' },
-        ],
-      },
       { label: 'Scholarship Test', to: '/scholarship-test' },
-      {
-        label: 'Beginners Road Map',
-        to: null,
-        children: [
-          { label: 'Strategy booklet for different exam ', to: '/strategy-booklet' },
-          { label: 'NCERT booklist ', to: '/ncert-booklist' },
-          { label: 'Study time table ', to: '/study-time-table' },
-        ],
-      },
+      { label: 'Beginners Road Map', to: '/beginners-road-map' },
     ],
   },
-    { label: 'Gallery', to: '/gallery' },
+  { label: 'Gallery', to: '/gallery' },
   {
     label: 'Admissions',
     to: null,
     dropdown: [
       {
         label: 'Offline Admissions',
+        to: '/offline-admission',
       },
       { label: 'Online Admission', to: '/online-application' },
     ],
@@ -160,6 +153,9 @@ export default function Navbar() {
                           {item.children.map((child) => (
                             <Link key={child.label} to={child.to} className="navbar__dropdown-item navbar__dropdown-item--child" onClick={closeAll}>
                               {child.label}
+                              {child.badge && (
+                                <span className="nav-badge">{child.badge}</span>
+                              )}
                             </Link>
                           ))}
                         </div>
@@ -226,6 +222,9 @@ export default function Navbar() {
                             <Link key={child.label} to={child.to} className="fs-menu__sub-link fs-menu__sub-link--child" onClick={closeAll}>
                               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
                               {child.label}
+                              {child.badge && (
+                                <span className="nav-badge">{child.badge}</span>
+                              )}
                             </Link>
                           ))}
                         </div>
