@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import './App.css';
 
 function App() {
+  /* Temporarily disabled right-click and copy shortcuts for development
   useEffect(() => {
     // Disable right-click context menu
     const handleContextMenu = (e) => e.preventDefault();
@@ -25,6 +26,7 @@ function App() {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
+  */
 
   return <RouterProvider router={router} />;
 }

@@ -16,21 +16,10 @@ export default function HeroSection() {
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState(null);
   const [direction, setDirection] = useState('next'); // 'next' | 'prev'
-  const [progress, setProgress] = useState(0);
   const intervalRef = useRef(null);
-  const progressRef = useRef(null);
 
   const startTimer = () => {
     clearInterval(intervalRef.current);
-    clearInterval(progressRef.current);
-    setProgress(0);
-
-    let elapsed = 0;
-    progressRef.current = setInterval(() => {
-      elapsed += 50;
-      setProgress((elapsed / SLIDE_DURATION) * 100);
-    }, 50);
-
     intervalRef.current = setInterval(() => {
       navigate('next');
     }, SLIDE_DURATION);
@@ -52,18 +41,9 @@ export default function HeroSection() {
     startTimer();
     return () => {
       clearInterval(intervalRef.current);
-      clearInterval(progressRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
-
-  const handlePrev = () => {
-    navigate('prev');
-  };
-
-  const handleNext = () => {
-    navigate('next');
-  };
 
   const handleDot = (index) => {
     if (index === current) return;
@@ -128,56 +108,27 @@ export default function HeroSection() {
           </Link>
         </div>
 
-        {/* RIGHT — Modern Slider */}
-        <div className="hero__slider">
+        {/* RIGHT — Basic Clean Slider with Dot Indicators */}
+        <div className="hero__slider-container">
+          <div className="hero__slider">
 
-          {/* Slides */}
-          <div className="hero__slides-track">
-            {heroSlides.map((slide, index) => {
-              let cls = 'hero__slide';
-              if (index === current) cls += ' hero__slide--active';
-              else if (index === prev) cls += direction === 'next' ? ' hero__slide--exit-left' : ' hero__slide--exit-right';
-              return (
-                <div key={slide.id} className={cls}>
-                  <img src={slide.image} alt={slide.alt} className="hero__image" />
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Glassmorphism overlay controls */}
-          <div className="hero__controls">
-            {/* Counter */}
-            <span className="hero__counter">
-              <strong>{String(current + 1).padStart(2, '0')}</strong>
-              <span className="hero__counter-sep" />
-              {String(heroSlides.length).padStart(2, '0')}
-            </span>
-
-            {/* Progress bar */}
-            <div className="hero__progress-bar">
-              <div
-                className="hero__progress-fill"
-                style={{ width: `${progress}%` }}
-              />
+            {/* Slides */}
+            <div className="hero__slides-track">
+              {heroSlides.map((slide, index) => {
+                let cls = 'hero__slide';
+                if (index === current) cls += ' hero__slide--active';
+                else if (index === prev) cls += direction === 'next' ? ' hero__slide--exit-left' : ' hero__slide--exit-right';
+                return (
+                  <div key={slide.id} className={cls}>
+                    <img src={slide.image} alt={slide.alt} className="hero__image" />
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Arrows */}
-            <div className="hero__arrows">
-              <button className="hero__arrow" onClick={handlePrev} aria-label="Previous slide">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M19 12H5M12 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button className="hero__arrow" onClick={handleNext} aria-label="Next slide">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
           </div>
 
-          {/* Dot indicators */}
+          {/* Two Rounded indicators at the bottom outside */}
           <div className="hero__dots">
             {heroSlides.map((_, index) => (
               <button
@@ -188,8 +139,8 @@ export default function HeroSection() {
               />
             ))}
           </div>
-
         </div>
+
       </div>
     </section>
   );

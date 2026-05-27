@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import CustomSelect from '../../components/ui/CustomSelect';
@@ -66,17 +67,27 @@ export default function Contact() {
     <div className="contact-page">
 
       {/* Hero */}
-      <section className="page-hero">
-        <div className="container">
-          <span className="section-label">Get In Touch</span>
-          <h1 className="page-hero__title">
-            Contact <span className="text-gold">Us</span>
-          </h1>
-          <div className="divider-gold" />
-          <p className="page-hero__desc">
-            Have questions about our courses? Ready to apply? We're here to help you
-            take the next step in your civil services journey.
-          </p>
+      <section className="contact-hero">
+        <div className="container contact-hero__inner">
+          <div className="contact-hero__content">
+            <span className="section-label">Get In Touch</span>
+            <h1 className="contact-hero__title">
+              Contact <span className="text-gold">Us</span>
+            </h1>
+            <p className="contact-hero__desc">
+              Have questions about our courses? Ready to apply? We're here to help you
+              take the next step in your civil services journey.
+            </p>
+            
+            {/* Premium Breadcrumbs */}
+            <div className="contact-hero__breadcrumb">
+              <Link to="/" className="contact-hero__bc-link">Home</Link>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="breadcrumb-separator-svg">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+              <span className="contact-hero__bc-current">Contact Us</span>
+            </div>
+          </div>
         </div>
       </section>
 

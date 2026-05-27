@@ -30,8 +30,8 @@ export default function About() {
           <div className="about-hero__content">
             <span className="section-label">About Us</span>
             <h1 className="about-hero__title">
-              Building Future Civil Servants<br />
-              <span className="text-gold">& Leaders</span>
+              Building Future Civil Servants
+              & Leaders
             </h1>
             <p className="about-hero__desc">
               Ashoka IAS Academy is a premier institute dedicated to shaping the next generation
@@ -40,7 +40,6 @@ export default function About() {
             </p>
             <div className="about-hero__actions">
               <Link to="/contact" className="btn btn-gold">Apply Now →</Link>
-              <Link to="/courses" className="btn btn-outline-gold">View Courses</Link>
             </div>
           </div>
           {/* Stats */}

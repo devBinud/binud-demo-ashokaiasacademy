@@ -75,6 +75,10 @@ export default function TestimonialsSection() {
 
   return (
     <section className="testimonials section">
+      {/* Premium glow blobs */}
+      <div className="testimonials__glow-left" />
+      <div className="testimonials__glow-right" />
+
       <div className="container">
 
         {/* Header */}
@@ -113,19 +117,29 @@ export default function TestimonialsSection() {
                 <div key={t.id}
                   className={`testimonial-card${active === i ? ' testimonial-card--active' : ''}`}
                   onClick={() => setActive(i)}>
-                  <div className="testimonial-card__quote">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                    </svg>
+                  
+                  {/* Card Header: Rating & Quote Icon */}
+                  <div className="testimonial-card__top">
+                    <div className="testimonial-card__rating">
+                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
+                    <div className="testimonial-card__quote">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                      </svg>
+                    </div>
                   </div>
-                  <p className="testimonial-card__text">{t.text}</p>
+
+                  <p className="testimonial-card__text">"{t.text}"</p>
+
                   <div className="testimonial-card__author">
                     <div className="testimonial-card__avatar">{t.initials}</div>
-                    <div>
+                    <div className="testimonial-card__author-info">
                       <strong className="testimonial-card__name">{t.name}</strong>
                       <span className="testimonial-card__role">{t.role}</span>
                     </div>
                   </div>
+
                 </div>
               ))}
             </div>

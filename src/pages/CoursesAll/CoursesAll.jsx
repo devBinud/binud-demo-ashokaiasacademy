@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import crossLine from '../../assets/images/cross-line.png';
 import './CoursesAll.css';
 
 const COURSES = [
@@ -189,14 +188,13 @@ export default function CoursesAll() {
 
       {/* Hero */}
       <section className="courses-all-hero">
-        <div className="courses-all-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container courses-all-hero__content">
           <span className="section-label">Our Programs</span>
           <h1 className="courses-all-hero__title">
             Our <span className="text-gold">Courses</span>
           </h1>
           <p className="courses-all-hero__desc">
-            Structured programs for every stage of your civil services journey — from foundation to final selection.
+            Structured programs for every stage of your civil services journey - from foundation to final selection.
           </p>
           <div className="courses-all-hero__breadcrumb">
             <Link to="/" className="courses-all-hero__bc-link">Home</Link>

@@ -1,6 +1,13 @@
 /* ============================================================
    NAVBAR
    ============================================================ */
+.navbar,
+.navbar *,
+.fs-menu,
+.fs-menu * {
+  font-family: var(--font-navbar) !important;
+}
+
 .navbar {
   position: fixed;
   top: 36px;

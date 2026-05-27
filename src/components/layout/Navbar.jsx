@@ -16,6 +16,14 @@ const NAV_LINKS = [
       { label: 'Crash Course Programme', to: '/courses-all', state: { courseId: 'crash-course' } },
       { label: 'Integrated Degree + Competitive Exam Coaching Programme', to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
       {
+        label: 'Ongoing Batch',
+        to: null,
+        children: [
+          { label: 'Foundation', to: '/ongoing-foundation' },
+          { label: 'Crash Course', to: '/ongoing-crash-course' },
+        ],
+      },
+      {
         label: 'Upcoming Batch',
         to: null,
         children: [

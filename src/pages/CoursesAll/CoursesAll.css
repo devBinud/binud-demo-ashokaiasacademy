@@ -8,35 +8,17 @@
 
 /* ── Hero ── */
 .courses-all-hero {
-  background: var(--color-navy);
+  background-color: var(--color-navy);
+  /* Premium vector grid lines matching the site theme, rendered in crisp semi-transparent white for an elegant subtle look */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
   padding-block: var(--space-14) var(--space-12);
-  text-align: center;
   position: relative;
   overflow: hidden;
-}
-
-.courses-all-hero__pattern {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat;
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.courses-all-hero::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(184, 146, 42, 0.15) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  z-index: 1; /* Stacking context */
 }
 
 @media (min-width: 768px) {
@@ -45,18 +27,73 @@
   }
 }
 
+/* Beautiful pulsing gradient glow blobs behind the courses hero (gold + blue mix) */
+.courses-all-hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 146, 42, 0.18) 0%, rgba(47, 103, 184, 0.08) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: coursesGlowPulse 6s ease-in-out infinite alternate;
+}
+
+.courses-all-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -80px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 103, 184, 0.2) 0%, rgba(184, 146, 42, 0.08) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: coursesGlowPulse 6s ease-in-out infinite alternate;
+  animation-delay: -3s; /* offset phase so the two blobs pulse dynamically out-of-sync */
+}
+
+@keyframes coursesGlowPulse {
+  0% {
+    transform: scale(0.92) translate(0, 0);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.08) translate(10px, 10px);
+    opacity: 1;
+  }
+}
+
 .courses-all-hero__content {
   position: relative;
-  z-index: 1;
-  padding: 40px 0;
+  z-index: 2;
+  padding: 40px var(--space-4); /* Prevents the text from touching the screen borders on mobile */
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .courses-all-hero__content {
+    padding: 50px var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .courses-all-hero__content {
+    padding: 60px 37px; /* Align perfectly with About and Contact page grids */
+  }
 }
 
 .courses-all-hero__title {
   font-size: var(--text-3xl);
   font-weight: 800;
-  color: #fff;
+  color: var(--color-white);
   margin-bottom: var(--space-4);
   margin-top: var(--space-3);
+  font-family: var(--font-heading);
 }
 
 @media (min-width: 768px) {
@@ -72,6 +109,8 @@
   margin-inline: auto;
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-6);
+  font-style: italic;
+  font-family: var(--font-heading);
 }
 
 .courses-all-hero__breadcrumb {
@@ -90,6 +129,7 @@
   text-decoration: none;
   font-weight: var(--font-medium);
   transition: color 0.15s ease;
+  font-family: var(--font-navbar);
 }
 
 .courses-all-hero__bc-link:hover {
@@ -104,7 +144,8 @@
 .courses-all-hero__bc-current {
   font-size: var(--text-xs);
   color: var(--color-gold);
-  font-weight: var(--font-semibold);
+  font-weight: 700;
+  font-family: var(--font-navbar);
 }
 
 /* ── Main Layout ── */
