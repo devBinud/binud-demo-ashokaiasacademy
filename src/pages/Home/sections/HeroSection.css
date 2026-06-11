@@ -443,14 +443,14 @@
 }
 
 .hero__dot--active {
-  border-color: var(--color-gold);
-  /* active outline turns bright gold */
-  background: rgba(42, 92, 184, 0.04);
+  border-color: var(--color-navy);
+  /* active outline turns navy */
+  background: rgba(39, 60, 104, 0.08);
 }
 
 .hero__dot--active::after {
-  background: var(--color-gold);
-  /* active inner dot turns solid gold */
+  background: var(--color-navy);
+  /* active inner dot turns solid navy */
   transform: scale(1.2);
 }
 
