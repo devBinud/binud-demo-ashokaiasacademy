@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import { MapPin, Clock, Phone, Mail, FileText, ArrowRight, Download, CheckCircle, Smartphone } from 'lucide-react';
+import { MapPin, Clock, Phone, Mail, FileText, Download, CheckCircle } from 'lucide-react';
 import './OfflineAdmission.css';
 import offlineBrochurePdf from '../../assets/images/offline_admission_brochure.pdf';
 import admissionBg from '../../assets/images/4.jpg'; // high-quality classroom context image
@@ -61,7 +61,7 @@ export default function OfflineAdmission() {
 
       setDownloadSuccess(true);
       setPhone('');
-      
+
       // Auto-clear success banner after a few seconds
       setTimeout(() => {
         setDownloadSuccess(false);
@@ -97,14 +97,14 @@ export default function OfflineAdmission() {
       </div>
 
       <div className="offline-container">
-        
+
         {/* LEFT COLUMN: Clean Brand Banner Image (Flawless split panel) */}
         <div className="offline-banner" style={{ backgroundImage: `url(${admissionBg})` }} />
 
         {/* RIGHT COLUMN: Interactive Brochure Form & Campus Guide */}
         <div className="offline-content-wrapper">
           <div className="offline-content__card">
-            
+
             <div className="offline-content__header">
               <h2 className="offline-content__title">Offline Admission</h2>
               <p className="offline-content__subtitle">
@@ -118,17 +118,28 @@ export default function OfflineAdmission() {
                 <FileText className="download-box-icon" size={20} />
                 <span>Brochure & Registration Form Download</span>
               </div>
-              
+
               <form className="download-phone-form" onSubmit={handleDownload} noValidate>
                 <p className="download-instruction">
                   Enter your mobile number to unlock and immediately download the printable PDF admission package.
                 </p>
-                
+
                 <div className="download-input-group">
                   <div className={`offline-phone-wrapper ${error ? 'offline-phone-wrapper--invalid' : ''}`}>
                     <span className="offline-prefix">
-                      <Smartphone size={14} style={{ marginRight: '6px', flexShrink: 0, opacity: 0.8 }} />
-                      +91
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="22" height="15" style={{borderRadius:'2px', boxShadow:'0 1px 3px rgba(0,0,0,0.18)', flexShrink:0}}>
+                        <rect width="900" height="200" fill="#FF9933"/>
+                        <rect y="200" width="900" height="200" fill="#FFFFFF"/>
+                        <rect y="400" width="900" height="200" fill="#138808"/>
+                        <circle cx="450" cy="300" r="90" fill="none" stroke="#000080" strokeWidth="9"/>
+                        {[...Array(24)].map((_,i)=>{
+                          const a=(i/24)*2*Math.PI;
+                          return <line key={i} x1={450+70*Math.cos(a)} y1={300+70*Math.sin(a)} x2={450+90*Math.cos(a)} y2={300+90*Math.sin(a)} stroke="#000080" strokeWidth="4"/>;
+                        })}
+                        <circle cx="450" cy="300" r="18" fill="#000080"/>
+                      </svg>
+                      <span className="offline-prefix__divider">|</span>
+                      <span className="offline-prefix__code">+91</span>
                     </span>
                     <input
                       type="tel"
@@ -140,7 +151,7 @@ export default function OfflineAdmission() {
                       disabled={isSubmitting}
                     />
                   </div>
-                  
+
                   <button
                     type="submit"
                     className={`btn-download-brochure ${isSubmitting ? 'btn-download-brochure--loading' : ''}`}
@@ -177,12 +188,11 @@ export default function OfflineAdmission() {
             {/* DIRECT WALK-IN REGISTRATION TIMELINE */}
             <div className="walkin-guide-section">
               <h3 className="section-title">
-                <ArrowRight size={18} className="title-arrow" />
                 Offline Admission Walk-in Steps
               </h3>
-              
+
               <div className="walkin-timeline">
-                
+
                 <div className="timeline-item">
                   <div className="timeline-badge">1</div>
                   <div className="timeline-content">
@@ -212,7 +222,7 @@ export default function OfflineAdmission() {
 
             {/* BRANCH SPECIFICATIONS */}
             <div className="branches-grid">
-              
+
               <div className="branch-card">
                 <div className="branch-card__header">
                   <MapPin size={16} className="branch-icon" style={{ flexShrink: 0 }} />

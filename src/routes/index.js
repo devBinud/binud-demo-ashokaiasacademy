@@ -14,6 +14,7 @@ import AdminDashboard from '../admin/pages/AdminDashboard';
 import AdminEnquiries from '../admin/pages/AdminEnquiries';
 import AdminTestimonials from '../admin/pages/AdminTestimonials';
 import AdminQueries from '../admin/pages/AdminQueries';
+import AdminDPP from '../admin/pages/AdminDPP';
 import AdminGuard from '../admin/guards/AdminGuard';
 import FoundationOne from '../pages/Courses/FoundationOne/FoundationOne';
 import FoundationTwo from '../pages/Courses/FoundationTwo/FoundationTwo';
@@ -87,6 +88,7 @@ const router = createBrowserRouter([
       { path: 'enquiries',    element: <AdminEnquiries /> },
       { path: 'queries',      element: <AdminQueries /> },
       { path: 'testimonials', element: <AdminTestimonials /> },
+      { path: 'dpp',          element: <AdminDPP /> },
     ],
   },
 ]);
