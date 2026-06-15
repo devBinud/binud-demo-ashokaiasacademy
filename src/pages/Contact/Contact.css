@@ -193,7 +193,7 @@
   height: 44px;
   border-radius: var(--radius-md);
   background: var(--color-cream);
-  border: 1px solid rgba(184, 146, 42, 0.2);
+  border: 1px solid rgba(39, 60, 104, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -292,16 +292,17 @@
 .contact-phone-input-wrap {
   display: flex;
   align-items: stretch;
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid transparent;
   border-radius: var(--radius-md);
   overflow: hidden;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  background: var(--color-bg-white);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  background: #f1f5f9;
 }
 
 .contact-phone-input-wrap:focus-within {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px rgba(184, 146, 42, 0.15);
+  border-color: var(--color-navy);
+  background: #ffffff;
+  box-shadow: none !important;
 }
 
 .contact-phone-prefix {
@@ -309,8 +310,8 @@
   align-items: center;
   gap: 5px;
   padding: 0 var(--space-3);
-  background: var(--color-cream);
-  border-right: 1.5px solid var(--color-border);
+  background: #e2e8f0;
+  border-right: 1.5px solid transparent;
   font-size: var(--text-sm);
   font-weight: var(--font-semibold);
   color: var(--color-navy);

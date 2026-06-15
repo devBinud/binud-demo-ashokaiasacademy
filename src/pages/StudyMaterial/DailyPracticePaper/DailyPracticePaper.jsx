@@ -364,11 +364,14 @@ export default function DailyPracticePaper() {
                   <label>Mobile Number *</label>
                   <div className="dpp-phone-input-wrapper">
                     <div className="dpp-phone-prefix">
-                      <svg width="16" height="12" viewBox="0 0 3 2" className="dpp-flag-icon">
-                        <rect width="3" height="2" fill="#008A00" />
-                        <rect width="3" height="1.333" fill="#FFF" />
-                        <rect width="3" height="0.667" fill="#FF9933" />
-                        <circle cx="1.5" cy="1" r="0.18" fill="#000080" />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="16" height="11" style={{ borderRadius: '1px', boxShadow: '0 1px 2px rgba(0,0,0,0.18)', flexShrink: 0 }}>
+                        <rect width="3" height="0.667" fill="#FF9933"/>
+                        <rect y="0.667" width="3" height="0.667" fill="#ffffff"/>
+                        <rect y="1.333" width="3" height="0.667" fill="#138808"/>
+                        <circle cx="1.5" cy="1" r="0.2" fill="#000080"/>
+                        <circle cx="1.5" cy="1" r="0.15" fill="#ffffff"/>
+                        <circle cx="1.5" cy="1" r="0.05" fill="#000080"/>
+                        <path d="M1.5 0.8v0.4M1.3 1h0.4M1.36 0.86l0.28 0.28M1.36 1.14l0.28-0.28" stroke="#000080" strokeWidth="0.02" />
                       </svg>
                       <span className="dpp-phone-country-code">+91</span>
                       <span className="dpp-phone-divider">|</span>

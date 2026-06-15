@@ -345,7 +345,7 @@ export default function OnlineAdmission() {
                     value={formData.course}
                     onChange={handleChange}
                   >
-                    <option value="">-- Choose your coaching program --</option>
+                    <option value="">Select a coaching program</option>
                     <option value="one-year-foundation">One Year Foundation Course (UPSC/APSC)</option>
                     <option value="two-year-integrated">Integrated Program - Class 11 & 12 (UPSC/APSC)</option>
                     <option value="pre-foundation">6-Month Pre-Foundation Course</option>

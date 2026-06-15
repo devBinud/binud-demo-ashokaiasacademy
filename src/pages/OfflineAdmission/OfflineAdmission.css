@@ -133,7 +133,7 @@
 /* ── Brochure download box ── */
 .brochure-download-box {
   background: #faf8f5;
-  border: 1px dashed rgba(184, 146, 42, 0.2);
+  border: 1px dashed rgba(13, 27, 53, 0.15);
   border-radius: 12px;
   padding: 1.25rem;
   margin-bottom: 2rem;
@@ -191,7 +191,7 @@
 }
 
 .offline-phone-wrapper:focus-within {
-  border-color: var(--color-gold);
+  border-color: var(--color-navy);
   background: #fff;
   box-shadow: 0 2px 12px rgba(13, 27, 53, 0.07);
 }

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import heroBg from '../../../assets/images/hero-section-image-bg.png';
 import heroImage1 from '../../../assets/images/hero/1.jpeg';
-import heroImage2 from '../../../assets/images/hero/2.jpg';
+import heroImage2 from '../../../assets/images/hero/2.png';
 import './HeroSection.css';
 
 const heroSlides = [

@@ -264,7 +264,7 @@
   background: linear-gradient(135deg, rgba(184, 146, 42, 0.08) 0%, rgba(184, 146, 42, 0.03) 100%);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  border: 1px solid rgba(184, 146, 42, 0.2);
+  border: 1px solid rgba(39, 60, 104, 0.15);
 }
 
 @media (min-width: 560px) {

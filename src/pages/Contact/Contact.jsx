@@ -201,7 +201,15 @@ export default function Contact() {
                   <label htmlFor="phone">Phone Number </label>
                   <div className={`contact-phone-input-wrap${errors.phone ? ' input-wrap--error' : ''}`}>
                     <div className="contact-phone-prefix">
-                      <Phone size={13} strokeWidth={2} />
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="16" height="11" style={{ borderRadius: '1px', boxShadow: '0 1px 2px rgba(0,0,0,0.18)', flexShrink: 0 }}>
+                        <rect width="3" height="0.667" fill="#FF9933"/>
+                        <rect y="0.667" width="3" height="0.667" fill="#ffffff"/>
+                        <rect y="1.333" width="3" height="0.667" fill="#138808"/>
+                        <circle cx="1.5" cy="1" r="0.2" fill="#000080"/>
+                        <circle cx="1.5" cy="1" r="0.15" fill="#ffffff"/>
+                        <circle cx="1.5" cy="1" r="0.05" fill="#000080"/>
+                        <path d="M1.5 0.8v0.4M1.3 1h0.4M1.36 0.86l0.28 0.28M1.36 1.14l0.28-0.28" stroke="#000080" strokeWidth="0.02" />
+                      </svg>
                       <span>+91</span>
                     </div>
                     <input id="phone" name="phone" type="tel" inputMode="numeric"
@@ -221,7 +229,7 @@ export default function Contact() {
               <div className="contact-form__field">
                 <label htmlFor="course">Select Course <span style={{color:'red'}}>*</span> </label>
                 <CustomSelect id="course" name="course" value={form.course}
-                  onChange={handleChange} options={COURSES} placeholder="— Select a Course —" />
+                  onChange={handleChange} options={COURSES} placeholder="Select a Course" />
                 {errors.course && <span className="form-error">{errors.course}</span>}
               </div>
 

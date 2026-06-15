@@ -37,38 +37,7 @@
   gap: var(--space-5);
 }
 
-/* Beautiful pulsing golden gradient glow blob behind the left-side text content */
-.hero__content::before {
-  content: '';
-  position: absolute;
-  top: 40%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(
-    circle, 
-    rgba(184, 146, 42, 0.26) 0%,     /* beautiful golden glow core */
-    rgba(184, 146, 42, 0.08) 50%,     /* soft gold mid-glow */
-    transparent 75%
-  );
-  filter: blur(45px);
-  z-index: -1; /* sits behind the text content */
-  pointer-events: none;
-  border-radius: 50%;
-  animation: glowPulseLeft 7s ease-in-out infinite alternate;
-}
 
-@keyframes glowPulseLeft {
-  0% {
-    transform: translate(-50%, -50%) scale(0.9);
-    opacity: 0.75;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.1);
-    opacity: 1.15;
-  }
-}
 
 /* Tag */
 .hero__tag {
@@ -267,68 +236,7 @@
   align-items: center;
 }
 
-/* Beautiful modern gradient glow blob behind the top-right of the slider card */
-.hero__slider-container::before {
-  content: '';
-  position: absolute;
-  top: -40px;
-  /* shift to the top-right corner */
-  right: -40px;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle,
-      rgba(184, 146, 42, 0.75) 0%,
-      /* dense golden core */
-      rgba(0, 59, 145, 0.5) 45%,
-      /* rich navy blue glow */
-      transparent 70%);
-  filter: blur(25px);
-  /* reduced blur to concentrate light and make it highly visible on bright screens */
-  z-index: 1;
-  /* sits on layer 1 */
-  pointer-events: none;
-  border-radius: 50%;
-  animation: glowPulse 5s ease-in-out infinite alternate;
-}
 
-/* Beautiful modern gradient glow blob behind the bottom-left of the slider card */
-.hero__slider-container::after {
-  content: '';
-  position: absolute;
-  bottom: -40px;
-  /* shift to the bottom-left corner */
-  left: -40px;
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle,
-      rgba(184, 146, 42, 0.85) 0%,
-      /* very strong golden core */
-      rgba(184, 146, 42, 0.5) 45%,
-      /* rich gold mid-glow */
-      rgba(0, 59, 145, 0.15) 65%,
-      /* very soft navy edge */
-      transparent 80%);
-  filter: blur(25px);
-  z-index: 1;
-  /* sits on layer 1 */
-  pointer-events: none;
-  border-radius: 50%;
-  animation: glowPulse 5s ease-in-out infinite alternate;
-  animation-delay: -2.5s;
-  /* offset phase so the two blobs pulse dynamically out-of-sync */
-}
-
-@keyframes glowPulse {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: scale(1.1);
-    opacity: 1.15;
-  }
-}
 
 .hero__slider {
   position: relative;

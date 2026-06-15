@@ -26,7 +26,7 @@ const NOTICES = {
 };
 
 const TAG_COLORS = {
-  UPSC: { bg: 'rgba(27,42,74,0.1)', color: '#1B2A4A' },
+  UPSC: { bg: 'rgba(45,55,72,0.1)', color: '#2D3748' },
   APSC: { bg: 'rgba(184,146,42,0.12)', color: '#B8922A' },
   ADRE: { bg: 'rgba(99,102,241,0.12)', color: '#6366f1' },
   SSC: { bg: 'rgba(249,115,22,0.12)', color: '#ea580c' },

@@ -204,7 +204,7 @@ export default function AdminQueries() {
             <div className="enq-modal__header">
               <div>
                 <h2>{viewItem.name}</h2>
-                <span className="admin-source-badge" style={{ color: '#1B2A4A', background: 'rgba(27,42,74,0.08)' }}>
+                <span className="admin-source-badge" style={{ color: '#2D3748', background: 'rgba(45,55,72,0.08)' }}>
                   Student Query
                 </span>
               </div>

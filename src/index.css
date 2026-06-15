@@ -17,7 +17,7 @@
   --color-navy-light: #2C3E6B;
   /* Lighter navy for cards / sections */
 
-  --color-gold: #B8922A;
+  --color-gold: #d3a62c;
   /* Primary accent — rich gold */
   --color-gold-light: #D4A843;
   /* Lighter gold for highlights */
@@ -33,7 +33,7 @@
   --color-black: #0A0A0A;
 
   /* --- Text Colors --- */
-  --color-text-primary: #1B2A4A;
+  --color-text-primary: #2D3748;
   /* Navy — main headings & body */
   --color-text-secondary: #4A5568;
   /* Muted slate for subtext */
@@ -71,7 +71,7 @@
   --color-info: #2C3E6B;
 
   /* --- Typography --- */
-  --font-heading: 'Sumana', Georgia, serif;
+  --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-navbar: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
@@ -483,21 +483,22 @@ p {
 .input {
   width: 100%;
   padding: var(--space-3) var(--space-4);
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid transparent;
   border-radius: var(--radius-md);
   font-family: var(--font-body);
   font-size: var(--text-base);
   color: var(--color-text-primary);
-  background: var(--color-bg-white);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  background: #f1f5f9;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
   outline: none;
   appearance: none;
   -webkit-appearance: none;
 }
 
 .input:focus {
-  border-color: var(--color-gold);
-  box-shadow: 0 0 0 3px rgba(184, 146, 42, 0.15);
+  border-color: var(--color-navy);
+  background: #ffffff;
+  box-shadow: none !important;
 }
 
 .input::placeholder {
@@ -600,4 +601,26 @@ select:focus-visible {
   font-size: var(--text-xs);
   color: var(--color-error);
   margin-top: var(--space-1);
+}
+
+/* ------------------------------------------------------------
+   3. GLOBAL FONT WEIGHT OVERRIDE (800 -> 700)
+   ------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6,
+strong,
+[class*="__title"],
+[class*="--title"],
+.hero__stat strong,
+.stats-strip__num {
+  font-weight: 700 !important;
+}
+
+/* Enforce consistent 3xl size for all major section titles */
+.stands-out__title,
+.testimonials__title,
+.popular-courses__title,
+.about-notice__title,
+section h2,
+.section h2 {
+  font-size: var(--text-3xl) !important;
 }

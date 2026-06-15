@@ -64,6 +64,7 @@ export default function AdminLogin() {
 
   return (
     <div className="admin-login">
+      <div className="admin-login__blob" aria-hidden="true" />
       <div className="admin-login__card">
         <div className="admin-login__logo">
           <img src={logo} alt="Ashoka IAS Academy" />

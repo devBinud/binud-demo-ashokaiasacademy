@@ -9,7 +9,7 @@ const STATUS_OPTIONS = ['new', 'contacted', 'enrolled', 'closed'];
 const PAGE_SIZE = 10;
 
 const SOURCE_LABEL = {
-  'hero-form':    { label: 'Homepage',     color: '#1B2A4A', bg: 'rgba(27,42,74,0.08)' },
+  'hero-form':    { label: 'Homepage',     color: '#2D3748', bg: 'rgba(45,55,72,0.08)' },
   'contact-page': { label: 'Contact Page', color: '#B8922A', bg: 'rgba(184,146,42,0.1)' },
 };
 

@@ -224,7 +224,7 @@ export default function FAQ() {
         </div>
       </section>
 
-      {/* ── FAQ Grid ── */}
+      {/* ── FAQ 2-Column Grid ── */}
       <section className="section faq-content">
         <div className="container">
           <div className="faq-section-header">
@@ -235,12 +235,11 @@ export default function FAQ() {
           <div className="faq-grid">
             {FAQ_ITEMS.map((item, idx) => (
               <div key={idx} className="faq-card">
-                <div className="faq-card__row">
+                <div className="faq-card__header">
                   <span className="faq-card__badge faq-card__badge--q">Q</span>
                   <h3 className="faq-card__question">{item.q}</h3>
                 </div>
-                {/* <div className="faq-card__divider" /> */}
-                <div className="faq-card__row">
+                <div className="faq-card__body">
                   <span className="faq-card__badge faq-card__badge--a">A</span>
                   <p className="faq-card__answer">{item.a}</p>
                 </div>

@@ -75,6 +75,13 @@ export default function TestimonialsSection() {
 
   return (
     <section className="testimonials section">
+      {/* Curved top divider */}
+      <div className="testimonials__curve testimonials__curve--top">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,0 L1440,0 L1440,80 C1080,80 1080,0 720,0 C360,0 360,80 0,80 Z" />
+        </svg>
+      </div>
+
       {/* Premium glow blobs */}
       <div className="testimonials__glow-left" />
       <div className="testimonials__glow-right" />
@@ -171,6 +178,13 @@ export default function TestimonialsSection() {
           </div>
         )}
 
+      </div>
+
+      {/* Curved bottom divider */}
+      <div className="testimonials__curve testimonials__curve--bottom">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,0 C360,0 360,80 720,80 C1080,80 1080,0 1440,0 L1440,80 L0,80 Z" />
+        </svg>
       </div>
     </section>
   );

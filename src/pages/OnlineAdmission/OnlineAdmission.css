@@ -189,7 +189,7 @@
 
 .admission-form__input:focus,
 .admission-form__select:focus {
-  border-color: var(--color-gold);
+  border-color: var(--color-navy);
   background: #fff;
   box-shadow: 0 2px 12px rgba(13, 27, 53, 0.07);
 }
@@ -217,7 +217,7 @@
 }
 
 .admission-form__phone-wrapper:focus-within {
-  border-color: var(--color-gold);
+  border-color: var(--color-navy);
   background: #fff;
   box-shadow: 0 2px 12px rgba(13, 27, 53, 0.07);
 }
@@ -282,8 +282,8 @@
 
 /* ── Upload zone ── */
 .admission-upload-zone {
-  border: 2px dashed rgba(184, 146, 42, 0.3);
-  background: rgba(184, 146, 42, 0.02);
+  border: 2px dashed rgba(13, 27, 53, 0.15);
+  background: rgba(13, 27, 53, 0.01);
   border-radius: 12px;
   padding: 1.5rem 1rem;
   text-align: center;
@@ -295,8 +295,8 @@
 }
 
 .admission-upload-zone:hover {
-  border-color: var(--color-gold);
-  background: rgba(184, 146, 42, 0.05);
+  border-color: var(--color-navy);
+  background: rgba(13, 27, 53, 0.03);
 }
 
 .admission-upload-zone--invalid {
@@ -381,7 +381,7 @@
 /* ── Policy alert ── */
 .admission-policy-alert {
   background: #faf8f5;
-  border: 1px solid rgba(184, 146, 42, 0.25);
+  border: 1px solid rgba(13, 27, 53, 0.15);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   display: flex;
@@ -445,12 +445,12 @@
 }
 
 .checkbox-container:hover input~.checkmark {
-  border-color: var(--color-gold);
+  border-color: var(--color-navy);
 }
 
 .checkbox-container input:checked~.checkmark {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
+  background: var(--color-navy);
+  border-color: var(--color-navy);
 }
 
 .checkmark:after {

@@ -19,12 +19,14 @@
 }
 
 @media (min-width: 768px) {
-  .popular-courses__title { font-size: var(--text-4xl); }
+  .popular-courses__title {
+    font-size: var(--text-4xl);
+  }
 }
 
 .popular-courses__sub {
   font-size: var(--text-base);
-  color: var(--color-text-muted);
+  color: #2D3748;
 }
 
 /* Grid */
