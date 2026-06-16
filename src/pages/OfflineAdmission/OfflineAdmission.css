@@ -5,7 +5,6 @@
   background: #f7f8fc;
   min-height: 100vh;
   /* padding-top: 2rem; */
-  padding-bottom: 4rem;
   border-top: 1px dashed #f5f5f5;
   font-family: var(--font-body);
 }
@@ -62,7 +61,7 @@
   grid-template-columns: 1fr;
   max-width: 1160px;
   width: 92%;
-  margin: 0 auto;
+  margin: 0 auto var(--space-12) auto;
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07);
@@ -552,7 +551,6 @@
 @media (max-width: 768px) {
   .offline-admission-page {
     padding-top: 1rem;
-    padding-bottom: 2.5rem;
   }
 
   .offline-admission-page .admission-breadcrumbs {

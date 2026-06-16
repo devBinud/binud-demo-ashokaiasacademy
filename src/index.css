@@ -606,7 +606,12 @@ select:focus-visible {
 /* ------------------------------------------------------------
    3. GLOBAL FONT WEIGHT OVERRIDE (800 -> 700)
    ------------------------------------------------------------ */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 strong,
 [class*="__title"],
 [class*="--title"],
@@ -622,5 +627,5 @@ strong,
 .about-notice__title,
 section h2,
 .section h2 {
-  font-size: var(--text-3xl) !important;
+  font-size: var(--text-2xl) !important;
 }

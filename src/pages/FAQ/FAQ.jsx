@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import faqBg from '../../assets/images/faq_bg.jpg';
+import crossLine from '../../assets/images/cross-line.png';
 import './FAQ.css';
 import CtaSection from '../Home/sections/CtaSection';
+
+
 
 const FAQ_ITEMS = [
   {
@@ -204,7 +206,8 @@ export default function FAQ() {
     <div className="faq-page">
 
       {/* ── Hero ── */}
-      <section className="faq-hero" style={{ backgroundImage: `url(${faqBg})` }}>
+      <section className="faq-hero">
+        <div className="faq-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container faq-hero__content">
           <span className="section-label">Help Center</span>
           <h1 className="faq-hero__title">

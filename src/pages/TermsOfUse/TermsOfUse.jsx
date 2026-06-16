@@ -7,7 +7,7 @@ export default function TermsOfUse() {
       <section className="legal-hero">
         <div className="container">
           <h1 className="legal-hero__title">Terms of Use</h1>
-          <p className="legal-hero__subtitle">Last updated: January 2025</p>
+          <p className="legal-hero__subtitle">Last updated: June 15, 2026</p>
         </div>
       </section>
 

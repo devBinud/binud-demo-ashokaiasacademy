@@ -323,6 +323,18 @@
   color: rgba(255, 255, 255, 0.35);
 }
 
+.footer__developer a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  transition: all var(--transition-fast);
+}
+
+.footer__developer a:hover {
+  color: var(--color-gold-light);
+  text-shadow: 0 0 8px rgba(212, 168, 67, 0.3);
+}
+
 .footer__bottom-links {
   display: flex;
   gap: var(--space-4);

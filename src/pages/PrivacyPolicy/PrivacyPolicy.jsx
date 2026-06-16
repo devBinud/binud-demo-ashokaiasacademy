@@ -7,14 +7,14 @@ export default function PrivacyPolicy() {
       <section className="legal-hero">
         <div className="container">
           <h1 className="legal-hero__title">Privacy Policy</h1>
-          <p className="legal-hero__subtitle">Last updated: January 2025</p>
+          <p className="legal-hero__subtitle">Last updated: June 15, 2026</p>
         </div>
       </section>
 
       {/* Content */}
       <section className="legal-content">
         <div className="container legal-content__inner">
-          
+
           <div className="legal-section">
             <h2>1. Introduction</h2>
             <p>
@@ -141,11 +141,11 @@ export default function PrivacyPolicy() {
               <p>Email: <a href="mailto:ashokaiasacademy123@gmail.com">ashokaiasacademy123@gmail.com</a></p>
               <p>Phone: +91 88228 23003 | +91 91814 11843</p>
               <p><strong>Guwahati Office:</strong><br />
-              1st Floor, Nath Complex, Opp. Aruna Memorial Hospital,<br />
-              Rajgarh Road, Bhangagarh, Guwahati – 781005</p>
+                1st Floor, Nath Complex, Opp. Aruna Memorial Hospital,<br />
+                Rajgarh Road, Bhangagarh, Guwahati – 781005</p>
               <p><strong>Nagaon Office:</strong><br />
-              Sankar Mission, Panigaon Chari Ali, Opp. Reliance Trends,<br />
-              Nagaon – 782001</p>
+                Sankar Mission, Panigaon Chari Ali, Opp. Reliance Trends,<br />
+                Nagaon – 782001</p>
             </div>
           </div>
 

@@ -8,6 +8,8 @@
 
 /* ── Hero ── */
 .faq-hero {
+  background: linear-gradient(135deg, rgba(13, 27, 53, 0.9) 0%, rgba(27, 42, 74, 0.85) 100%), 
+              url('../../assets/images/4.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,11 +17,59 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid var(--color-border);
+  z-index: 1; /* Stacking context */
+}
+
+/* Beautiful pulsing gradient glow blobs behind the FAQ hero (gold + blue mix) */
+.faq-hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -80px;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 146, 42, 0.18) 0%, rgba(47, 103, 184, 0.08) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: faqGlowPulse 6s ease-in-out infinite alternate;
+}
+
+.faq-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -80px;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(47, 103, 184, 0.2) 0%, rgba(184, 146, 42, 0.08) 50%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  animation: faqGlowPulse 6s ease-in-out infinite alternate;
+  animation-delay: -3s; /* offset phase so the two blobs pulse dynamically out-of-sync */
+}
+
+@keyframes faqGlowPulse {
+  0% {
+    transform: scale(0.92) translate(0, 0);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(1.08) translate(10px, 10px);
+    opacity: 1;
+  }
 }
 
 .faq-hero__pattern {
-  display: none;
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 0;
 }
 
 @media (min-width: 768px) {
@@ -30,16 +80,29 @@
 
 .faq-hero__content {
   position: relative;
-  z-index: 1;
-  padding: 30px 0;
+  z-index: 2;
+  padding: 40px var(--space-4); /* Prevents the text from touching the screen borders on mobile */
+}
+
+@media (min-width: 768px) {
+  .faq-hero__content {
+    padding: 50px var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .faq-hero__content {
+    padding: 60px 37px; /* Align perfectly with other page grids */
+  }
 }
 
 .faq-hero__title {
   font-size: var(--text-2xl);
   font-weight: 800;
-  color: var(--color-navy);
+  color: var(--color-white);
   margin-bottom: var(--space-4);
   margin-top: var(--space-3);
+  font-family: var(--font-heading);
 }
 
 @media (min-width: 768px) {
@@ -50,30 +113,32 @@
 
 .faq-hero__desc {
   font-size: var(--text-base);
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.65);
   max-width: 520px;
   margin-inline: auto;
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-6);
-  font-weight: 500;
+  font-style: italic;
+  font-family: var(--font-heading);
 }
 
 .faq-hero__breadcrumb {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  background: rgba(39, 60, 104, 0.05);
-  border: 1px solid rgba(39, 60, 104, 0.1);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-full);
   padding: 6px var(--space-4);
 }
 
 .faq-hero__bc-link {
   font-size: var(--text-xs);
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   text-decoration: none;
   font-weight: var(--font-medium);
   transition: color 0.15s ease;
+  font-family: var(--font-navbar);
 }
 
 .faq-hero__bc-link:hover {
@@ -81,14 +146,15 @@
 }
 
 .faq-hero__breadcrumb svg {
-  color: rgba(39, 60, 104, 0.4);
+  color: rgba(255, 255, 255, 0.3);
   flex-shrink: 0;
 }
 
 .faq-hero__bc-current {
   font-size: var(--text-xs);
   color: var(--color-gold);
-  font-weight: var(--font-semibold);
+  font-weight: 700;
+  font-family: var(--font-navbar);
 }
 
 /* ── Content ── */

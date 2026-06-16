@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './OnlineAdmission.css';
 import admissionBg from '../../assets/images/4.jpg';
+import CtaSection from '../Home/sections/CtaSection';
+
 
 export default function OnlineAdmission() {
   const [formData, setFormData] = useState({
@@ -305,16 +307,16 @@ export default function OnlineAdmission() {
                   <label className="admission-form__label" htmlFor="phone">Contact Number <span className="text-danger">*</span></label>
                   <div className="admission-form__phone-wrapper">
                     <span className="phone-prefix">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="22" height="15" style={{borderRadius:'2px', boxShadow:'0 1px 3px rgba(0,0,0,0.18)', flexShrink:0}}>
-                        <rect width="900" height="200" fill="#FF9933"/>
-                        <rect y="200" width="900" height="200" fill="#FFFFFF"/>
-                        <rect y="400" width="900" height="200" fill="#138808"/>
-                        <circle cx="450" cy="300" r="90" fill="none" stroke="#000080" strokeWidth="9"/>
-                        {[...Array(24)].map((_,i)=>{
-                          const a=(i/24)*2*Math.PI;
-                          return <line key={i} x1={450+70*Math.cos(a)} y1={300+70*Math.sin(a)} x2={450+90*Math.cos(a)} y2={300+90*Math.sin(a)} stroke="#000080" strokeWidth="4"/>;
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="22" height="15" style={{ borderRadius: '2px', boxShadow: '0 1px 3px rgba(0,0,0,0.18)', flexShrink: 0 }}>
+                        <rect width="900" height="200" fill="#FF9933" />
+                        <rect y="200" width="900" height="200" fill="#FFFFFF" />
+                        <rect y="400" width="900" height="200" fill="#138808" />
+                        <circle cx="450" cy="300" r="90" fill="none" stroke="#000080" strokeWidth="9" />
+                        {[...Array(24)].map((_, i) => {
+                          const a = (i / 24) * 2 * Math.PI;
+                          return <line key={i} x1={450 + 70 * Math.cos(a)} y1={300 + 70 * Math.sin(a)} x2={450 + 90 * Math.cos(a)} y2={300 + 90 * Math.sin(a)} stroke="#000080" strokeWidth="4" />;
                         })}
-                        <circle cx="450" cy="300" r="18" fill="#000080"/>
+                        <circle cx="450" cy="300" r="18" fill="#000080" />
                       </svg>
                       <span className="phone-prefix__divider">|</span>
                       <span className="phone-prefix__code">+91</span>
@@ -455,7 +457,7 @@ export default function OnlineAdmission() {
                   </>
                 ) : (
                   <>
-                    Submit Admission Application
+                    Submit Admission Application, Adde
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />
@@ -469,6 +471,10 @@ export default function OnlineAdmission() {
         </div>
 
       </div>
+
+      {/* Common CTA Section  */}
+      <CtaSection />
+
     </div>
   );
 }

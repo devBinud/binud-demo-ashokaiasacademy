@@ -25,18 +25,6 @@ const NOTICES = {
   ],
 };
 
-const TAG_COLORS = {
-  UPSC: { bg: 'rgba(45,55,72,0.1)', color: '#2D3748' },
-  APSC: { bg: 'rgba(184,146,42,0.12)', color: '#B8922A' },
-  ADRE: { bg: 'rgba(99,102,241,0.12)', color: '#6366f1' },
-  SSC: { bg: 'rgba(249,115,22,0.12)', color: '#ea580c' },
-  Banking: { bg: 'rgba(20,184,166,0.12)', color: '#0d9488' },
-  Railway: { bg: 'rgba(59,130,246,0.12)', color: '#2563eb' },
-  Defence: { bg: 'rgba(239,68,68,0.12)', color: '#dc2626' },
-  Police: { bg: 'rgba(168,85,247,0.12)', color: '#9333ea' },
-  TET: { bg: 'rgba(34,197,94,0.12)', color: '#16a34a' },
-};
-
 export default function AboutNoticeSection() {
   const [activeTab, setActiveTab] = useState('Central Jobs');
 
@@ -71,8 +59,11 @@ export default function AboutNoticeSection() {
 
             {/* Header */}
             <div className="notice-board__header">
-              <span className="notice-board__header-dot" />
-              <span className="notice-board__header-title">Job Notifications</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="notice-board__header-icon">
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span className="notice-board__header-title">Latest Notices</span>
             </div>
 
             {/* Tabs */}
@@ -93,23 +84,16 @@ export default function AboutNoticeSection() {
               <div className="notice-board__marquee">
                 {/* Duplicate items for seamless loop */}
                 {[...NOTICES[activeTab], ...NOTICES[activeTab]].map((item, i) => {
-                  const tagStyle = TAG_COLORS[item.tag] || TAG_COLORS['New'];
                   return (
                     <div key={i} className="notice-item">
-                      <div className="notice-item__left">
-                        <span className="notice-item__arrow">›</span>
-                      </div>
                       <div className="notice-item__body">
                         <div className="notice-item__meta">
                           <span className="notice-item__date">{item.date}</span>
-                          <span
-                            className="notice-item__tag"
-                            style={{ background: tagStyle.bg, color: tagStyle.color }}
-                          >
-                            {item.tag}
-                          </span>
                         </div>
-                        <p className="notice-item__title">{item.title}</p>
+                        <p className="notice-item__title">
+                          {item.title}
+                          <span className="notice-item__badge-new">NEW</span>
+                        </p>
                       </div>
                     </div>
                   );

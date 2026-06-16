@@ -6,6 +6,8 @@ import { MapPin, Clock, Phone, Mail, FileText, Download, CheckCircle } from 'luc
 import './OfflineAdmission.css';
 import offlineBrochurePdf from '../../assets/images/offline_admission_brochure.pdf';
 import admissionBg from '../../assets/images/4.jpg'; // high-quality classroom context image
+import CtaSection from '../Home/sections/CtaSection';
+
 
 export default function OfflineAdmission() {
   const [phone, setPhone] = useState('');
@@ -276,6 +278,7 @@ export default function OfflineAdmission() {
         </div>
 
       </div>
+      <CtaSection />
     </div>
   );
 }
