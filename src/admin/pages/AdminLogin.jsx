@@ -82,7 +82,7 @@ export default function AdminLogin() {
                 <label htmlFor="email">Email</label>
                 <input
                   id="email" name="email" type="email"
-                  placeholder="admin@ashokaias.com"
+                  placeholder="username"
                   value={form.email} onChange={handleChange}
                   required autoFocus
                 />
