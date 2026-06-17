@@ -131,7 +131,7 @@ export default function Footer() {
         <div className="container footer__bottom-inner">
           <p>© {new Date().getFullYear()} Ashoka IAS Academy. All rights reserved.</p>
           <p className="footer__developer">
-            Designed & Developed by <a href="https://binudsoftwaresolutions.vercel.app/" target="_blank" rel="noopener noreferrer">Binud Software Solutions</a>
+            Developed & Maintained by <a href="https://binudsoftwaresolutions.vercel.app/" target="_blank" rel="noopener noreferrer">Binud Software Solutions</a>
           </p>
           <div className="footer__bottom-links">
             <Link to="/privacy-policy">Privacy Policy</Link>
