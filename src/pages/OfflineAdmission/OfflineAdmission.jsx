@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import { MapPin, Clock, Phone, Mail, FileText, Download, CheckCircle } from 'lucide-react';
+import SEO from '../../components/common/SEO';
 import './OfflineAdmission.css';
 import offlineBrochurePdf from '../../assets/images/offline_admission_brochure.pdf';
 import admissionBg from '../../assets/images/4.jpg'; // high-quality classroom context image
@@ -87,6 +88,10 @@ export default function OfflineAdmission() {
 
   return (
     <div className="offline-admission-page">
+      <SEO 
+        title="Offline Admission & Brochure"
+        description="Download the offline enrollment package, application form, and brochure, or find guidelines for direct walk-in admission at our campuses."
+      />
       {/* Premium Breadcrumbs Navigation Strip */}
       <div className="admission-breadcrumbs">
         <div className="breadcrumbs-inner">
@@ -108,7 +113,7 @@ export default function OfflineAdmission() {
           <div className="offline-content__card">
 
             <div className="offline-content__header">
-              <h2 className="offline-content__title">Offline Admission</h2>
+              <h1 className="offline-content__title">Offline Admission</h1>
               <p className="offline-content__subtitle">
                 Download the offline enrollment brochure & registration form, or explore direct walk-in guidelines.
               </p>

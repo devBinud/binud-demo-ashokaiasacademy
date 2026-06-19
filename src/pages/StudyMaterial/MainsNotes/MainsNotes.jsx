@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import crossLine from '../../../assets/images/cross-line.png';
+import SEO from '../../../components/common/SEO';
 import '../StudyMaterial.css';
 
 export default function MainsNotes() {
   return (
     <div className="study-material-page">
+      <SEO 
+        title="APSC & UPSC Mains Study Material"
+        description="Access structured study materials, value-added topics, and answer templates for General Studies and optional papers in Civil Services Mains."
+      />
       <section className="sm-hero">
         <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container sm-hero__content">

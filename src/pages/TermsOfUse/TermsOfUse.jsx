@@ -1,8 +1,13 @@
+import SEO from '../../components/common/SEO';
 import './TermsOfUse.css';
 
 export default function TermsOfUse() {
   return (
     <div className="legal-page">
+      <SEO 
+        title="Terms of Use"
+        description="Review the terms of use and conditions governing the access and usage of the Ashoka IAS Academy website and services."
+      />
       {/* Hero */}
       <section className="legal-hero">
         <div className="container">

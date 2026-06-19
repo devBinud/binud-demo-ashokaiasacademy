@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import crossLine from '../../../assets/images/cross-line.png';
+import SEO from '../../../components/common/SEO';
 import '../StudyMaterial.css';
 
 export default function APSCTestSeries() {
   return (
     <div className="study-material-page">
+      <SEO 
+        title="APSC CCE Mock Test Series"
+        description="Dedicated APSC CCE Prelims and Mains mock test program aligned with the latest Assam Public Service Commission exam trends."
+      />
       <section className="sm-hero">
         <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container sm-hero__content">

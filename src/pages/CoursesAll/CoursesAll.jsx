@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
 import './CoursesAll.css';
 
 const COURSES = [
@@ -185,6 +186,10 @@ export default function CoursesAll() {
 
   return (
     <div className="courses-all-page">
+      <SEO 
+        title="All UPSC, APSC & Allied Courses"
+        description="Browse our full directory of courses: Foundation program, NCERT basics, Test Series, and allied exams preparation coaching."
+      />
 
       {/* Hero */}
       <section className="courses-all-hero">

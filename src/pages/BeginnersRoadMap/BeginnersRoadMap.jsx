@@ -9,6 +9,7 @@ import {
   CheckCircle2 
 } from 'lucide-react';
 import crossLine from '../../assets/images/cross-line.png';
+import SEO from '../../components/common/SEO';
 import './BeginnersRoadMap.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -81,6 +82,10 @@ export default function BeginnersRoadMap() {
 
   return (
     <div className="roadmap-page">
+      <SEO 
+        title="Civil Services Beginners Road Map"
+        description="New to UPSC/APSC preparation? Read our comprehensive step-by-step roadmap outlining syllabus, strategy, booklist, and preparation stages."
+      />
       {/* Hero */}
       <section className="roadmap-hero">
         <div className="roadmap-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
 import './OnlineAdmission.css';
 import admissionBg from '../../assets/images/4.jpg';
 import CtaSection from '../Home/sections/CtaSection';
@@ -243,6 +244,10 @@ export default function OnlineAdmission() {
 
   return (
     <div className="online-admission-page">
+      <SEO 
+        title="Online Admission Form"
+        description="Reserve your seat in our upcoming batches online. Fill out the provisional admission form for UPSC and APSC coaching programs."
+      />
       {/* Premium Breadcrumbs Navigation Strip */}
       <div className="admission-breadcrumbs">
         <div className="breadcrumbs-inner">
@@ -264,7 +269,7 @@ export default function OnlineAdmission() {
           <div className="admission-form__card">
 
             <div className="admission-form__header">
-              <h2 className="admission-form__title">Online Admission</h2>
+              <h1 className="admission-form__title">Online Admission</h1>
               <p className="admission-form__subtitle">
                 Complete our simplified form below to reserve your coaching seat.
               </p>

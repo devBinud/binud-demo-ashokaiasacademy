@@ -13,6 +13,7 @@ import {
   AlertCircle
 } from 'lucide-react';
 import crossLine from '../../assets/images/cross-line.png';
+import SEO from '../../components/common/SEO';
 import './ScholarshipTest.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -135,6 +136,10 @@ export default function ScholarshipTest() {
 
   return (
     <div className="scholarship-page">
+      <SEO 
+        title="Scholarship Admission Test"
+        description="Register for the Ashoka IAS Academy Scholarship Test. Secure up to 100% tuition fee waivers for our UPSC & APSC coaching batches."
+      />
       {/* Hero */}
       <section className="scholarship-hero">
         <div className="scholarship-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />

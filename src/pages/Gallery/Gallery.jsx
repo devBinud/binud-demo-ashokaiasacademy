@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import crossLine from '../../assets/images/cross-line.png';
+import SEO from '../../components/common/SEO';
 import './Gallery.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -333,6 +334,10 @@ export default function Gallery() {
 
   return (
     <div className="gallery-page">
+      <SEO 
+        title="Photo & Event Gallery"
+        description="View photos of our classroom sessions, seminars, topper talk events, scholarship distributions, and academy highlights."
+      />
 
       {/* ── Hero ── */}
       <section className="gallery-hero">

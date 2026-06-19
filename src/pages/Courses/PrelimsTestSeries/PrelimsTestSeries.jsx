@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ClipboardCheck, Clock, Monitor, GraduationCap, BarChart2, CheckCircle } from 'lucide-react';
+import SEO from '../../../components/common/SEO';
 import '../CoursePage.css';
 
 const SIDEBAR_ITEMS = [
@@ -19,6 +20,10 @@ export default function PrelimsTestSeries() {
 
   return (
     <div className="course-page">
+      <SEO 
+        title="UPSC & APSC Prelims Test Series"
+        description="Practice with high-yield mock tests modeled on the latest UPSC and APSC prelims patterns. Features detailed discussions and performance analytics."
+      />
       <div className="course-breadcrumb">
         <div className="container course-breadcrumb__inner">
           <Link to="/" className="course-breadcrumb__link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</Link>

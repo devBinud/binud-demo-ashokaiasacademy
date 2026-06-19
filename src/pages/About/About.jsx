@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
 import './About.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -23,6 +24,10 @@ const STATS = [
 export default function About() {
   return (
     <div className="about-page">
+      <SEO 
+        title="About Us | Mission, Vision & Profile"
+        description="Learn about the mission, vision, values, and institutional profile of Ashoka IAS Academy. Established in 2021, we are dedicated to helping UPSC & APSC aspirants achieve success."
+      />
 
       {/* ── Hero ── */}
       <section className="about-hero">

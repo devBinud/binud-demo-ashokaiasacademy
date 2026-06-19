@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Pencil, Globe, GraduationCap, BookOpen, CheckCircle } from 'lucide-react';
+import SEO from '../../../components/common/SEO';
 import '../CoursePage.css';
 
 const SIDEBAR_ITEMS = [
@@ -19,6 +20,10 @@ export default function AnswerWriting() {
 
   return (
     <div className="course-page">
+      <SEO 
+        title="Mains Answer Writing Practice Program"
+        description="Master the art of answer writing for UPSC & APSC Mains. Daily answer checking, personalized feedback, and GS/optional subject-focused strategies."
+      />
       <div className="course-breadcrumb">
         <div className="container course-breadcrumb__inner">
           <Link to="/" className="course-breadcrumb__link"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</Link>

@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import crossLine from '../../../assets/images/cross-line.png';
+import SEO from '../../../components/common/SEO';
 import '../StudyMaterial.css';
 
 export default function OnlineNotes() {
   return (
     <div className="study-material-page">
+      <SEO 
+        title="Online Study Notes & E-Books"
+        description="Explore our online digital library of civil services preparation notes, booklets, and recommended standard reference resources."
+      />
       <section className="sm-hero">
         <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container sm-hero__content">

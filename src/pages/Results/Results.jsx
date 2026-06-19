@@ -1,3 +1,4 @@
+import SEO from '../../components/common/SEO';
 import './Results.css';
 
 const RESULTS = [
@@ -12,6 +13,10 @@ const RESULTS = [
 export default function Results() {
   return (
     <div className="results-page">
+      <SEO 
+        title="Selections & Exam Results"
+        description="Meet our successful candidates who cleared the UPSC and APSC civil services exams. View our outstanding achievements and topper testimonials."
+      />
 
       {/* Hero */}
       <section className="page-hero">

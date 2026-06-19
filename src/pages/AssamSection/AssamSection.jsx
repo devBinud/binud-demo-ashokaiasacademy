@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import crossLine from '../../assets/images/cross-line.png';
 import logoImg from '../../assets/images/logo.png';
+import SEO from '../../components/common/SEO';
 import './AssamSection.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -324,6 +325,10 @@ export default function AssamSection() {
 
   return (
     <div className="assam-page">
+      <SEO 
+        title="Assam GK & APSC Special Section"
+        description="Get study materials, notes, and resources dedicated to Assam History, Geography, Polity, and Culture for APSC CCE and State Allied exams."
+      />
       {/* Hero */}
       <section className="assam-hero">
         <div className="assam-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />

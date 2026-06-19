@@ -6,6 +6,7 @@ import { Search, Lock, X, Eye, FileText } from 'lucide-react';
 import Loader from '../../../components/ui/Loader';
 import logo from '../../../assets/images/logo.png';
 import crossLine from '../../../assets/images/cross-line.png';
+import SEO from '../../../components/common/SEO';
 
 // Local PDF imports
 import pdf08May from '../../../assets/pdf/dpp/08_may_DPP.pdf';
@@ -221,6 +222,10 @@ export default function DailyPracticePaper() {
 
   return (
     <div className="study-material-page">
+      <SEO 
+        title="Daily Practice Paper (DPP)"
+        description="Solve our daily MCQ-based practice sheets (DPP) for UPSC & APSC Prelims to test your knowledge of static subjects and current affairs."
+      />
       {/* Hero Header */}
       <section className="sm-hero">
         <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />

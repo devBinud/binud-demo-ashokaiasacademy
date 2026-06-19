@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import crossLine from '../../../assets/images/cross-line.png';
+import SEO from '../../../components/common/SEO';
 import '../StudyMaterial.css';
 
 export default function PrelimsNotes() {
   return (
     <div className="study-material-page">
+      <SEO 
+        title="UPSC & APSC Prelims Study Material"
+        description="Get revision notes, subject summaries, and study material designed specifically to clear General Studies papers in UPSC/APSC Prelims."
+      />
       <section className="sm-hero">
         <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container sm-hero__content">

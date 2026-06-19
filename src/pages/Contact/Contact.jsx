@@ -4,6 +4,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import CustomSelect from '../../components/ui/CustomSelect';
 import { MapPin, Clock, Phone, Mail, MessageCircle, CheckCircle } from 'lucide-react';
+import SEO from '../../components/common/SEO';
 import './Contact.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -65,6 +66,10 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
+      <SEO 
+        title="Admissions & Enquiries | Contact Us"
+        description="Get in touch with Ashoka IAS Academy for admissions, course queries, and career counseling. Contact our Guwahati and Nagaon centers today."
+      />
 
       {/* Hero */}
       <section className="contact-hero">
@@ -72,7 +77,7 @@ export default function Contact() {
           <div className="contact-hero__content">
             <span className="section-label">Get In Touch</span>
             <h1 className="contact-hero__title">
-              Contact <span className="text-gold">Us</span>
+              Admissions & <span className="text-gold">Enquiries</span>
             </h1>
             <p className="contact-hero__desc">
               Have questions about our courses? Ready to apply? We're here to help you

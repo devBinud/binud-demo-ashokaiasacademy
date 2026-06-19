@@ -1,8 +1,13 @@
+import SEO from '../../components/common/SEO';
 import './PrivacyPolicy.css';
 
 export default function PrivacyPolicy() {
   return (
     <div className="legal-page">
+      <SEO 
+        title="Privacy Policy"
+        description="Read the privacy policy of Ashoka IAS Academy regarding data collection, storage, and user information safety."
+      />
       {/* Hero */}
       <section className="legal-hero">
         <div className="container">

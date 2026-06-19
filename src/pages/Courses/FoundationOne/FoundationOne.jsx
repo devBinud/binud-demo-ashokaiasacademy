@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Users, Globe, GraduationCap, BookOpen, CheckCircle } from 'lucide-react';
+import SEO from '../../../components/common/SEO';
 import '../CoursePage.css';
 
 const SIDEBAR_ITEMS = [
@@ -19,6 +20,10 @@ export default function FoundationOne() {
 
   return (
     <div className="course-page">
+      <SEO 
+        title="1-Year UPSC & APSC Foundation Course"
+        description="Our flagship 1-Year integrated foundation program for UPSC and APSC exams. Features complete syllabus coverage, weekly tests, and personal mentorship."
+      />
 
       {/* Breadcrumb */}
       <div className="course-breadcrumb">

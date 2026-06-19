@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import SEO from '../../components/common/SEO';
 import './Courses.css';
 
 const CATEGORIES = [
@@ -108,13 +109,17 @@ export default function Courses() {
 
   return (
     <div className="courses-page">
+      <SEO 
+        title="UPSC & APSC Coaching Programs"
+        description="Explore our result-oriented UPSC and APSC coaching programs including integrated 1-Year and 2-Year foundation courses, concept building, and test series."
+      />
 
       {/* Hero */}
       <section className="page-hero">
         <div className="container">
           <span className="section-label">Our Programs</span>
           <h1 className="page-hero__title">
-            Choose Your Path to <span className="text-gold">Success</span>
+            UPSC & APSC <span className="text-gold">Coaching Programs</span>
           </h1>
           <div className="divider-gold" />
           <p className="page-hero__desc">

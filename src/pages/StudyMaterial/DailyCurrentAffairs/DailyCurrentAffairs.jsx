@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
 import crossLine from '../../../assets/images/cross-line.png';
+import SEO from '../../../components/common/SEO';
 import '../StudyMaterial.css';
 
 export default function DailyCurrentAffairs() {
   return (
     <div className="study-material-page">
+      <SEO 
+        title="Daily Current Affairs Analysis"
+        description="Stay updated with our daily UPSC & APSC current affairs analysis, editor's notes, and key newspaper summaries for civil services."
+      />
       <section className="sm-hero">
         <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
         <div className="container sm-hero__content">

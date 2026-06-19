@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import crossLine from '../../assets/images/cross-line.png';
+import SEO from '../../components/common/SEO';
 import './FAQ.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -204,6 +205,10 @@ function AskForm() {
 export default function FAQ() {
   return (
     <div className="faq-page">
+      <SEO 
+        title="Frequently Asked Questions (FAQs)"
+        description="Find answers to common questions about UPSC/APSC preparation, eligibility, course schedules, batch sizes, fees, and centers."
+      />
 
       {/* ── Hero ── */}
       <section className="faq-hero">
