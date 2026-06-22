@@ -1,28 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AboutNoticeSection.css';
+import sbiPo2026Pdf from './notices_pdf/sbi_po_2026.pdf';
 
 const NOTICES = {
   'Central Jobs': [
-    { date: '2025-05-10', title: 'UPSC CSE 2025 - Notification Released', tag: 'UPSC' },
-    { date: '2025-05-05', title: 'SSC CGL 2025 - Application Window Open', tag: 'SSC' },
-    { date: '2025-04-28', title: 'IBPS PO 2025 - Official Notification Out', tag: 'Banking' },
-    { date: '2025-04-20', title: 'Railway NTPC 2025 - New Vacancy Announced', tag: 'Railway' },
-    { date: '2025-04-12', title: 'NDA 2025 - UPSC Notification Published', tag: 'Defence' },
-    { date: '2025-04-01', title: 'SSC CHSL 2025 - Exam Date Announced', tag: 'SSC' },
-    { date: '2025-03-22', title: 'IBPS Clerk 2025 - Registration Started', tag: 'Banking' },
-    { date: '2025-03-10', title: 'UPSC CAPF 2025 - Notification Out', tag: 'UPSC' },
+    { date: '2026-06-19', title: 'Advertisement for Recruitment of Assistant Branch Manager/ Assistant Manager-2026 - Offline Application start date 19-06-2026', pdf: sbiPo2026Pdf },
+    { date: '2026-06-20', title: 'Download Admit Cards for recruitment of Assistants-2026', pdf: sbiPo2026Pdf },
+    { date: '2026-06-21', title: 'Structure of Written Examination for Recruitment of Assistant', pdf: sbiPo2026Pdf },
+    { date: '2026-06-22', title: 'Center wise list of Candidates applied', pdf: sbiPo2026Pdf }
   ],
   'State Jobs': [
-    { date: '2025-05-08', title: 'APSC CCE 2025 - Notification Released', tag: 'APSC' },
-    { date: '2025-05-01', title: 'ADRE Grade III 2025 - Apply Now', tag: 'ADRE' },
-    { date: '2025-04-25', title: 'Assam Police SI 2025 - Vacancy Announced', tag: 'Police' },
-    { date: '2025-04-15', title: 'APSC ACS 2025 - Prelims Date Declared', tag: 'APSC' },
-    { date: '2025-04-05', title: 'ADRE Grade IV 2025 - Registration Open', tag: 'ADRE' },
-    { date: '2025-03-28', title: 'Assam TET 2025 - Notification Published', tag: 'TET' },
-    { date: '2025-03-18', title: 'APSC Fishery 2025 - New Posts Notified', tag: 'APSC' },
-    { date: '2025-03-05', title: 'Assam Rifles 2025 - Technical Vacancy Out', tag: 'Defence' },
-  ],
+    { date: '2026-06-19', title: 'Advertisement for Recruitment of Assistant Branch Manager/ Assistant Manager-2026 - Offline Application start date 19-06-2026', pdf: sbiPo2026Pdf },
+    { date: '2026-06-20', title: 'Download Admit Cards for recruitment of Assistants-2026', pdf: sbiPo2026Pdf },
+    { date: '2026-06-21', title: 'Structure of Written Examination for Recruitment of Assistant', pdf: sbiPo2026Pdf },
+    { date: '2026-06-22', title: 'Center wise list of Candidates applied', pdf: sbiPo2026Pdf }
+  ]
 };
 
 export default function AboutNoticeSection() {
@@ -63,7 +56,7 @@ export default function AboutNoticeSection() {
                 <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
                 <path d="M13.73 21a2 2 0 0 1-3.46 0" />
               </svg>
-              <span className="notice-board__header-title">Latest Notices</span>
+              <span className="notice-board__header-title">Notifications</span>
             </div>
 
             {/* Tabs */}
@@ -84,18 +77,36 @@ export default function AboutNoticeSection() {
               <div className="notice-board__marquee">
                 {/* Duplicate items for seamless loop */}
                 {[...NOTICES[activeTab], ...NOTICES[activeTab]].map((item, i) => {
+                  const isLink = !!item.pdf;
+                  const Element = isLink ? 'a' : 'div';
                   return (
-                    <div key={i} className="notice-item">
+                    <Element
+                      key={i}
+                      href={isLink ? item.pdf : undefined}
+                      target={isLink ? '_blank' : undefined}
+                      rel={isLink ? 'noopener noreferrer' : undefined}
+                      className="notice-item"
+                      style={isLink ? { textDecoration: 'none', color: 'inherit' } : undefined}
+                    >
                       <div className="notice-item__body">
                         <div className="notice-item__meta">
                           <span className="notice-item__date">{item.date}</span>
                         </div>
                         <p className="notice-item__title">
                           {item.title}
+                          {isLink && (
+                            <span className="notice-item__badge-pdf">
+                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '3px', verticalAlign: 'middle', display: 'inline-block' }}>
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                              </svg>
+                              PDF
+                            </span>
+                          )}
                           <span className="notice-item__badge-new">NEW</span>
                         </p>
                       </div>
-                    </div>
+                    </Element>
                   );
                 })}
               </div>
