@@ -54,7 +54,7 @@ export default function WelcomePopup() {
             <span className="wp-title--gold">Journey Today</span>
           </h2>
           <p className="wp-desc">
-            Join Ashoka IAS Academy — Assam & North-East's trusted coaching institution for
+            Join Ashoka IAS Academy - Assam & North-East's trusted coaching institution for
             <strong> UPSC, APSC</strong> and other government competitive examinations.
           </p>
 
@@ -66,7 +66,7 @@ export default function WelcomePopup() {
             </div>
             <div className="wp-stat-sep" />
             <div className="wp-stat">
-              <strong>50+</strong>
+              <strong>150+</strong>
               <span>Selections</span>
             </div>
             <div className="wp-stat-sep" />

@@ -91,7 +91,7 @@ export default function HeroSection() {
               <span>Students Enrolled</span>
             </div>
             <div className="hero__stat">
-              <strong>50+</strong>
+              <strong>150+</strong>
               <span>Selections</span>
             </div>
             <div className="hero__stat">
