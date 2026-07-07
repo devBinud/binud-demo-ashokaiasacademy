@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ServiceSuspended.css';
 
 function ServiceSuspended() {
+  useEffect(() => {
+    const handleContextMenu = (e) => e.preventDefault();
+
+    const handleKeyDown = (e) => {
+      // Disable F12
+      if (e.keyCode === 123 || e.key === 'F12') {
+        e.preventDefault();
+      }
+      // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+      if (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+      // Disable Ctrl+U (View Source) and Ctrl+S (Save)
+      if (e.ctrlKey && ['u', 's'].includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <div className="suspended-container">
       <div className="suspended-card">
