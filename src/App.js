@@ -2,6 +2,8 @@
 import { RouterProvider } from 'react-router-dom';
 import router from './routes';
 import './App.css';
+import { SITE_CONFIG } from './config';
+import ServiceSuspended from './components/ui/ServiceSuspended';
 
 function App() {
   /* Temporarily disabled right-click and copy shortcuts for development
@@ -27,6 +29,10 @@ function App() {
     };
   }, []);
   */
+
+  if (SITE_CONFIG.isSuspended) {
+    return <ServiceSuspended />;
+  }
 
   return <RouterProvider router={router} />;
 }
