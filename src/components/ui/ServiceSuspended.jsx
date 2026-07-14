@@ -3,18 +3,15 @@ import './ServiceSuspended.css';
 
 function ServiceSuspended() {
   useEffect(() => {
+    // Disable right click and view source shortcuts for a clean presentation
     const handleContextMenu = (e) => e.preventDefault();
-
     const handleKeyDown = (e) => {
-      // Disable F12
       if (e.keyCode === 123 || e.key === 'F12') {
         e.preventDefault();
       }
-      // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
       if (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase())) {
         e.preventDefault();
       }
-      // Disable Ctrl+U (View Source) and Ctrl+S (Save)
       if (e.ctrlKey && ['u', 's'].includes(e.key.toLowerCase())) {
         e.preventDefault();
       }
@@ -30,61 +27,59 @@ function ServiceSuspended() {
   }, []);
 
   return (
-    <div className="suspended-container">
-      <div className="suspended-card">
-        <div className="suspended-icon-wrapper">
+    <div className="maintenance-container">
+      <div className="maintenance-stars"></div>
+      <div className="maintenance-glow-1"></div>
+      <div className="maintenance-glow-2"></div>
+
+      <div className="maintenance-card">
+        <div className="maintenance-icon-wrapper">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="2"
+            strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="suspended-icon"
+            className="maintenance-icon"
           >
-            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
-            <line x1="12" y1="9" x2="12" y2="13" />
-            <line x1="12" y1="17" x2="12.01" y2="17" />
+            <g className="gear-main">
+              <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+              <circle cx="12" cy="12" r="3" />
+            </g>
+            <path className="wrench-icon" d="M14.7 14.7 20 20" />
           </svg>
         </div>
 
-        <h1 className="suspended-title">Service Overdue Notice</h1>
-        <div className="suspended-status">Account Suspended</div>
+        <h1 className="maintenance-title">Under Maintenance</h1>
 
-        <p className="suspended-message">
-          Due to unpaid server overdue charges, the website has been temporarily not served or working properly.
-          Kindly pay to make it work. Please contact the administrator/service provider immediately to clear the outstanding dues.
+        <p className="maintenance-message">
+          We are upgrading our systems to provide a faster, more secure, and enriched learning experience.
+          The Ashoka IAS Academy platform will be back online shortly. Thank you for your patience!
         </p>
 
-        <div className="suspended-details">
-          <div className="suspended-details-row">
-            <span className="suspended-details-label">Domain:</span>
-            <a 
-              href="https://ashokaiasacademy.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="suspended-details-link"
+        <div className="maintenance-details">
+          <div className="maintenance-details-row">
+            <span className="maintenance-details-label">Domain:</span>
+            <a
+              href="https://ashokaiasacademy.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="maintenance-details-link"
             >
               ashokaiasacademy.com
             </a>
           </div>
-          <div className="suspended-details-row">
-            <span className="suspended-details-label">Status Code:</span>
-            <span className="suspended-details-value">ERR_SERVER_SUSPENDED_BILLING</span>
+          <div className="maintenance-details-row">
+            <span className="maintenance-details-label">Status:</span>
+            <span className="maintenance-details-value status-upgrading">Updating Platform</span>
           </div>
-          <div className="suspended-details-row">
-            <span className="suspended-details-label">Restriction:</span>
-            <span className="suspended-details-value">Access Blocked</span>
+          <div className="maintenance-details-row">
+            <span className="maintenance-details-label">Expected Back:</span>
+            <span className="maintenance-details-value highlight-value">Very Soon</span>
           </div>
         </div>
-
-        <a 
-          href="tel:9706393924"
-          className="suspended-contact-btn"
-        >
-          Contact Developer
-        </a>
       </div>
     </div>
   );

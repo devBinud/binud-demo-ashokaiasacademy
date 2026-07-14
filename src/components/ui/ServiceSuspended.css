@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
-.suspended-container {
+.maintenance-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,9 +8,9 @@
   width: 100%;
   margin: 0;
   padding: 20px;
-  background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+  background: radial-gradient(circle at 50% 50%, #0b0f19 0%, #030712 100%);
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #f8fafc;
+  color: #f3f4f6;
   box-sizing: border-box;
   overflow: hidden;
   position: fixed;
@@ -19,216 +19,227 @@
   z-index: 999999;
 }
 
-.suspended-card {
-  max-width: 540px;
+/* Star Background Effect */
+.maintenance-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  background: rgba(15, 23, 42, 0.45);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: none;
-  border-radius: 24px;
+  height: 100%;
+  display: block;
+  background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"%3E%3Cg fill="%23a5b4fc" fill-opacity="0.04"%3E%3Cpath d="M0 0h1v1H0zm40 40h1v1h-1z"/%3E%3C/g%3E%3C/svg%3E');
+  z-index: 1;
+}
+
+/* Ambient glow blobs */
+.maintenance-glow-1 {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(99, 102, 241, 0) 70%);
+  z-index: 2;
+  filter: blur(60px);
+  animation: floatGlow 15s ease-in-out infinite alternate;
+}
+
+.maintenance-glow-2 {
+  position: absolute;
+  bottom: 15%;
+  right: 20%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0) 70%);
+  z-index: 2;
+  filter: blur(70px);
+  animation: floatGlow 18s ease-in-out infinite alternate-reverse;
+}
+
+.maintenance-card {
+  position: relative;
+  z-index: 10;
+  max-width: 500px;
+  width: 100%;
+  background: rgba(17, 24, 39, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
   padding: 48px 40px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-    0 0 40px rgba(239, 68, 68, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(99, 102, 241, 0.06);
   text-align: center;
-  animation: suspendedFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
-    suspendedGlowPulse 4s ease-in-out infinite alternate;
+  animation: cardFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   box-sizing: border-box;
 }
 
-.suspended-icon-wrapper {
+.maintenance-icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(239, 68, 68, 0.1);
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.15);
   margin-bottom: 28px;
+  position: relative;
+  box-shadow: inset 0 0 12px rgba(99, 102, 241, 0.08);
 }
 
-.suspended-icon {
-  width: 40px;
-  height: 40px;
-  color: #ef4444;
+.maintenance-icon {
+  width: 44px;
+  height: 44px;
+  color: #818cf8;
 }
 
-.suspended-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0 0 16px 0;
-  letter-spacing: -0.025em;
-  color: #ffffff;
+/* SVG Animations */
+.gear-main {
+  transform-origin: 12px 12px;
+  animation: rotateGear 16s linear infinite;
 }
 
-.suspended-status {
+.wrench-icon {
+  animation: wiggleWrench 5s ease-in-out infinite;
+  transform-origin: 12px 12px;
+}
+
+.maintenance-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(239, 68, 68, 0.1);
-  color: #f87171;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
   padding: 6px 16px;
   border-radius: 100px;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 24px;
 }
 
-.suspended-status::before {
-  content: '';
-  display: inline-block;
+.maintenance-badge-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #ef4444;
+  background-color: #6366f1;
+  box-shadow: 0 0 8px #6366f1;
+  animation: pulseDot 2s infinite;
 }
 
-.suspended-message {
+.maintenance-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 40%, #c7d2fe 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.maintenance-message {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: #94a3b8;
+  color: #9ca3af;
   margin: 0 0 32px 0;
   font-weight: 300;
 }
 
-.suspended-details {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  padding: 16px;
-  font-family: monospace;
-  font-size: 0.85rem;
-  color: #64748b;
-  margin-bottom: 32px;
+.maintenance-details {
+  background: rgba(3, 7, 18, 0.4);
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-bottom: 0;
   border: 1px solid rgba(255, 255, 255, 0.05);
   text-align: left;
 }
 
-.suspended-details-row {
+.maintenance-details-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-bottom: 12px;
 }
 
-.suspended-details-row:last-child {
+.maintenance-details-row:last-child {
   margin-bottom: 0;
 }
 
-.suspended-details-label {
-  color: #475569;
-}
-
-.suspended-details-value {
-  color: #94a3b8;
-}
-
-.suspended-details-link {
-  color: #ef4444;
-  text-decoration: none;
+.maintenance-details-label {
+  color: #6b7280;
   font-weight: 500;
+}
+
+.maintenance-details-value {
+  color: #e5e7eb;
+  font-weight: 500;
+}
+
+.status-upgrading {
+  color: #38bdf8;
+}
+
+.highlight-value {
+  background: linear-gradient(90deg, #818cf8, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.maintenance-details-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 600;
   transition: all 0.2s ease;
 }
 
-.suspended-details-link:hover {
-  color: #f87171;
+.maintenance-details-link:hover {
+  color: #818cf8;
   text-decoration: underline;
 }
 
-.suspended-contact-btn {
+.maintenance-contact-btn {
   display: inline-block;
   width: 100%;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   box-sizing: border-box;
   text-align: center;
 }
 
-.suspended-contact-btn:hover {
+.maintenance-contact-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.35);
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
 }
 
-.suspended-contact-btn:active {
+.maintenance-contact-btn:active {
   transform: translateY(0);
 }
 
-.suspended-footer {
-  font-size: 0.8rem;
-  color: #475569;
-  margin-top: 24px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 580px) {
-  .suspended-container {
-    padding: 16px;
-    align-items: flex-start;
-    overflow-y: auto;
-  }
-
-  .suspended-card {
-    padding: 32px 24px;
-    margin: 20px auto;
-    border-radius: 16px;
-  }
-
-  .suspended-title {
-    font-size: 1.75rem;
-  }
-
-  .suspended-message {
-    font-size: 0.95rem;
-    margin-bottom: 24px;
-  }
-
-  .suspended-details {
-    padding: 14px;
-    font-size: 0.8rem;
-    margin-bottom: 24px;
-  }
-
-  .suspended-contact-btn {
-    padding: 14px 20px;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .suspended-card {
-    padding: 24px 16px;
-  }
-
-  .suspended-title {
-    font-size: 1.5rem;
-  }
-
-  .suspended-details-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .suspended-details-link,
-  .suspended-details-value {
-    text-align: left;
-  }
-}
-
-/* Animations */
-@keyframes suspendedFadeIn {
+/* Animations Keyframes */
+@keyframes cardFadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
 
   to {
@@ -237,43 +248,87 @@
   }
 }
 
-@keyframes suspendedGlowPulse {
+@keyframes floatGlow {
   from {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-      0 0 20px rgba(239, 68, 68, 0.02);
+    transform: translate(0, 0) scale(1);
   }
 
   to {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
-      0 0 40px rgba(239, 68, 68, 0.08);
+    transform: translate(20px, -15px) scale(1.05);
   }
 }
 
-@keyframes suspendedIconFloat {
+@keyframes rotateGear {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wiggleWrench {
 
   0%,
   100% {
-    transform: translateY(0);
+    transform: rotate(0deg);
   }
 
   50% {
-    transform: translateY(-6px);
+    transform: rotate(12deg);
   }
 }
 
-@keyframes suspendedDotPulse {
+@keyframes pulseDot {
   0% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
   }
 
-  70% {
-    transform: scale(1);
-    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 0 0 8px rgba(99, 102, 241, 0);
   }
 
   100% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 580px) {
+  .maintenance-container {
+    padding: 16px;
+    align-items: center;
+  }
+
+  .maintenance-card {
+    padding: 36px 24px;
+    border-radius: 20px;
+  }
+
+  .maintenance-title {
+    font-size: 1.85rem;
+  }
+
+  .maintenance-message {
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+  }
+
+  .maintenance-details {
+    padding: 16px;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .maintenance-contact-btn {
+    padding: 14px 20px;
+    font-size: 0.95rem;
   }
 }
