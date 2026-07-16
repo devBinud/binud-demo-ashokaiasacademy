@@ -336,6 +336,7 @@ h6 {
 }
 
 p {
+  font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
   color: var(--color-text-secondary);
 }

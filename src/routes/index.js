@@ -37,6 +37,7 @@ import MainsNotes from '../pages/StudyMaterial/MainsNotes/MainsNotes';
 import OnlineNotes from '../pages/StudyMaterial/OnlineNotes/OnlineNotes';
 import DailyPracticePaper from '../pages/StudyMaterial/DailyPracticePaper/DailyPracticePaper';
 import APSCTestSeries from '../pages/StudyMaterial/APSCTestSeries/APSCTestSeries';
+import UPSCGuide from '../pages/UPSCGuide/UPSCGuide';
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
       { path: 'online-notes', element: <OnlineNotes /> },
       { path: 'beginner', element: <DailyPracticePaper /> },
       { path: 'intermediate', element: <APSCTestSeries /> },
+      { path: 'upsc-guide', element: <UPSCGuide /> },
       { path: '*', element: <NotFound /> },
     ],
   },

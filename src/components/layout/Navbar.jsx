@@ -15,6 +15,7 @@ const NAV_LINKS = [
       { label: '6-Month Pre-Foundation Course', to: '/courses-all', state: { courseId: 'pre-foundation' } },
       { label: 'Crash Course Programme', to: '/courses-all', state: { courseId: 'crash-course' } },
       { label: 'Integrated Degree + Competitive Exam Coaching Programme', to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
+      { label: 'UPSC Guide', to: '/upsc-guide' },
       {
         label: 'Ongoing Batch',
         to: null,

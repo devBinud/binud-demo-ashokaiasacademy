@@ -217,7 +217,7 @@
 }
 
 .course-tab-content p {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: var(--color-text-secondary);
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-4);

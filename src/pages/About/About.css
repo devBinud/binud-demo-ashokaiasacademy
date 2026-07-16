@@ -164,7 +164,7 @@
 }
 
 .about-content__left p {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: #555;
   line-height: 1.75;
   margin: 0;
@@ -324,7 +324,7 @@
 }
 
 .about-founder__content p {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: #555;
   line-height: 1.75;
   margin: 0;
@@ -463,7 +463,7 @@
 }
 
 .about-cta-strip__inner p {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.6);
   margin: 0;
 }
