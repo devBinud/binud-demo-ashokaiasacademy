@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import heroBg from '../../../assets/images/hero-section-image-bg.png';
 import heroImage1 from '../../../assets/images/hero/1.jpeg';
 import heroImage2 from '../../../assets/images/hero/2.png';
+import heroImage3 from '../../../assets/images/hero/3.png';
 import './HeroSection.css';
 
 const heroSlides = [
   { id: 1, image: heroImage1, alt: 'Ashoka IAS Academy - Toppers' },
   { id: 2, image: heroImage2, alt: 'Ashoka IAS Academy - Results' },
+  { id: 3, image: heroImage3, alt: 'Ashoka IAS Academy - Highlights' },
 ];
 
 const SLIDE_DURATION = 4000;
