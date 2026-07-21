@@ -15,7 +15,7 @@ const NAV_LINKS = [
     ],
   },
   {
-    label: 'Classroom Courses',
+    label: 'Courses',
     to: null,
     dropdown: [
       {
