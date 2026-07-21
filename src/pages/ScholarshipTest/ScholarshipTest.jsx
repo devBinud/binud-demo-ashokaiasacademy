@@ -12,8 +12,8 @@ import {
   BookOpenCheck,
   AlertCircle
 } from 'lucide-react';
-import crossLine from '../../assets/images/cross-line.png';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './ScholarshipTest.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -140,24 +140,15 @@ export default function ScholarshipTest() {
         title="Scholarship Admission Test"
         description="Register for the Ashoka IAS Academy Scholarship Test. Secure up to 100% tuition fee waivers for our UPSC & APSC coaching batches."
       />
-      {/* Hero */}
-      <section className="scholarship-hero">
-        <div className="scholarship-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container scholarship-hero__content">
-          <span className="section-label">Aspirant Support Program</span>
-          <h1 className="scholarship-hero__title">
-            Scholarship <span className="text-gold">Tests</span>
-          </h1>
-          <p className="scholarship-hero__desc">
-            Identify your strengths, unlock financial assistance, and kickstart your dream career with Ashoka IAS Academy's comprehensive test modules.
-          </p>
-          <div className="scholarship-hero__breadcrumb">
-            <Link to="/" className="scholarship-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
-            <span className="scholarship-hero__bc-current">Scholarship Test</span>
-          </div>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Scholarship Admission Test"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Student Zone' },
+          { label: 'Scholarship Test' }
+        ]}
+      />
 
       {/* Cards Selection Section */}
       {!selectedTest && (

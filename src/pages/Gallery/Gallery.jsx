@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import crossLine from '../../assets/images/cross-line.png';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './Gallery.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -339,26 +338,14 @@ export default function Gallery() {
         description="View photos of our classroom sessions, seminars, topper talk events, scholarship distributions, and academy highlights."
       />
 
-      {/* ── Hero ── */}
-      <section className="gallery-hero">
-        <div className="gallery-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container gallery-hero__content">
-          <span className="section-label">Our Gallery</span>
-          <h1 className="gallery-hero__title">
-            Photo &amp; Video <span className="text-gold">Gallery</span>
-          </h1>
-          <p className="gallery-hero__desc">
-            Moments from our classrooms, achievements, events, media coverage, and video sessions.
-          </p>
-          <div className="gallery-hero__breadcrumb">
-            <Link to="/" className="gallery-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-            <span className="gallery-hero__bc-current">Gallery</span>
-          </div>
-        </div>
-      </section>
+      {/* ── Page Header ── */}
+      <PageHeader 
+        title="Photo & Video Gallery"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Gallery' }
+        ]}
+      />
 
       {/* ── Gallery Section ── */}
       <section className="section gallery-main">

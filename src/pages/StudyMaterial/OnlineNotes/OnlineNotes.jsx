@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import crossLine from '../../../assets/images/cross-line.png';
 import SEO from '../../../components/common/SEO';
+import PageHeader from '../../../components/common/PageHeader';
 import '../StudyMaterial.css';
 
 export default function OnlineNotes() {
@@ -10,20 +10,14 @@ export default function OnlineNotes() {
         title="Online Study Notes & E-Books"
         description="Explore our online digital library of civil services preparation notes, booklets, and recommended standard reference resources."
       />
-      <section className="sm-hero">
-        <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container sm-hero__content">
-          <span className="section-label">Free Study Material</span>
-          <h1 className="sm-hero__title">Online <span className="text-gold">Notes</span></h1>
-          <div className="sm-hero__breadcrumb">
-            <Link to="/" className="sm-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
-            <Link to="/student-zone" className="sm-hero__bc-link">Student Zone</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
-            <span className="sm-hero__bc-current">Online Notes</span>
-          </div>
-        </div>
-      </section>
+      <PageHeader 
+        title="Online Notes & Digital Library"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Student Zone' },
+          { label: 'Online Notes' }
+        ]}
+      />
       <section className="sm-coming-soon">
         <div className="container sm-coming-soon__inner">
           <div className="sm-coming-soon__icon">

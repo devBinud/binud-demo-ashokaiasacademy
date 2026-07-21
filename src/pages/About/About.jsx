@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './About.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -14,14 +16,21 @@ const WHY_POINTS = [
   { num: '08', title: 'Affordable Fee Structure', desc: 'Premium coaching at a cost that remains accessible for all aspirants.' },
 ];
 
-const STATS = [
-  { value: '120+', label: 'Officers Produced' },
-  { value: '500+', label: 'Students Enrolled' },
-  { value: 'ACS 9', label: 'Top Rank' },
-  { value: '2021', label: 'Est. Year' },
-];
-
 export default function About() {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#founders-vision') {
+      const el = document.getElementById('founders-vision');
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location]);
   return (
     <div className="about-page">
       <SEO 
@@ -29,152 +38,106 @@ export default function About() {
         description="Learn about the mission, vision, values, and institutional profile of Ashoka IAS Academy. Established in 2021, we are dedicated to helping UPSC & APSC aspirants achieve success."
       />
 
-      {/* ── Hero ── */}
-      <section className="about-hero">
-        <div className="container about-hero__inner">
-          <div className="about-hero__content">
-            <span className="section-label">About Us</span>
-            <h1 className="about-hero__title">
-              Building Future Civil Servants
-              & Leaders
-            </h1>
-            <p className="about-hero__desc">
-              Ashoka IAS Academy is a premier institute dedicated to shaping the next generation
-              of civil servants and professionals. Founded on the principles of quality education,
-              discipline, and mentorship.
-            </p>
-            <div className="about-hero__actions">
-              <Link to="/contact" className="btn btn-gold">Apply Now →</Link>
-            </div>
-          </div>
-          {/* Stats */}
-          <div className="about-hero__stats">
-            {STATS.map((s) => (
-              <div key={s.label} className="about-hero__stat">
-                <strong>{s.value}</strong>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Page Header ── */}
+      <PageHeader 
+        title="About Us"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'About Us' }
+        ]}
+      />
 
-      {/* ── About Content ── */}
+      {/* ── Main Content Section ── */}
       <section className="section about-content">
-        <div className="container about-content__grid">
+        <div className="container">
+          <div className="about-grid">
 
-          {/* Left */}
-          <div className="about-content__left">
-            <span className="section-label">Who We Are</span>
-            <h2 className="about-content__title">Ashoka IAS Academy</h2>
-            <div className="divider-gold" />
-            <p>
-              Ashoka IAS Academy is a premier institute dedicated to shaping the next generation of civil servants
-              and professionals. Founded on the principles of quality education, discipline, and mentorship, the
-              academy has emerged as a trusted destination for aspirants preparing for <strong>UPSC, APSC, SSC,
-                Banking, and Defence</strong> examinations.
-            </p>
-            <p>
-              At Ashoka IAS Academy, learning goes beyond conventional classroom coaching. The institute focuses on
-              building strong conceptual clarity, consistent answer-writing practice, current affairs mastery, and
-              personality development to prepare students for every stage of competitive examinations.
-            </p>
-            <p>
-              With a student-centric approach, structured programs, and continuous mentorship, the academy ensures
-              that every aspirant receives the right guidance at the right time.
-            </p>
-            <p>
-              Since its inception in 2021, Ashoka IAS Academy has delivered remarkable results — producing successful
-              candidates in various competitive examinations. In its very first year, the academy achieved outstanding
-              success with <strong>ACS Rank 9 and APS Rank 3</strong>, followed by ACS Rank 24 and Rank 54 in
-              subsequent years. With more than <strong>120+ officers produced</strong> across different fields, the
-              academy continues to inspire and empower aspirants to achieve excellence.
-            </p>
-            <p>
-              At Ashoka IAS Academy, the mission is not just to teach subjects, but to build confidence, leadership,
-              discipline, and a purpose-driven mindset that leads students toward success and service to the nation.
-            </p>
-          </div>
+            {/* Left Column: Core Overview Card */}
+            <div className="about-text-card">
+              <span className="about-sublabel">WHO WE ARE</span>
+              <h2 className="about-heading">Ashoka IAS Academy</h2>
+              <div className="about-accent-line" />
 
-          {/* Right — Quote + Stats */}
-          <div className="about-content__right">
-            <div className="about-quote">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--color-gold)', opacity: 0.4 }}>
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <p>Transforming your dreams into reality</p>
-              <span>— Ashoka IAS Academy</span>
-            </div>
-
-            <div className="about-results">
-              <h4 className="about-results__title">Our Results</h4>
-              <div className="about-results__list">
-                <div className="about-result-item">
-                  <span className="about-result-item__rank">APS Rank 3</span>
-                  <span className="about-result-item__year">1st Year</span>
-                </div>
-
-                <div className="about-result-item">
-                  <span className="about-result-item__rank">ACS Rank 9</span>
-                  <span className="about-result-item__year">1st Year</span>
-                </div>
-
-                <div className="about-result-item">
-                  <span className="about-result-item__rank">ACS Rank 24</span>
-                  <span className="about-result-item__year">Subsequent Year</span>
-                </div>
-                <div className="about-result-item">
-                  <span className="about-result-item__rank">ACS Rank 54</span>
-                  <span className="about-result-item__year">Subsequent Year</span>
-                </div>
+              <div className="about-paragraphs">
+                <p>
+                  Ashoka IAS Academy is a premier institute dedicated to shaping the next generation of civil servants and professionals. Founded on the principles of quality education, discipline, and mentorship, the academy has emerged as a trusted destination for aspirants preparing for <strong>UPSC, APSC, SSC, Banking, and Defence</strong> examinations.
+                </p>
+                <p>
+                  At Ashoka IAS Academy, learning goes beyond conventional classroom coaching. The institute focuses on building strong conceptual clarity, consistent answer-writing practice, current affairs mastery, and personality development to prepare students for every stage of competitive examinations.
+                </p>
+                <p>
+                  With a student-centric approach, structured programs, and continuous mentorship, the academy ensures that every aspirant receives the right guidance at the right time.
+                </p>
+                <p>
+                  Since its inception in 2021, Ashoka IAS Academy has delivered remarkable results — producing successful candidates in various competitive examinations. In its very first year, the academy achieved outstanding success with <strong>ACS Rank 9 and APS Rank 3</strong>, followed by <strong>ACS Rank 24 and Rank 54</strong> in subsequent years. With over <strong>120+ officers produced</strong> across different fields, the academy continues to inspire and empower aspirants to achieve excellence.
+                </p>
+                <p>
+                  At Ashoka IAS Academy, the mission is not just to teach subjects, but to build confidence, leadership, discipline, and a purpose-driven mindset that leads students toward success and service to the nation.
+                </p>
               </div>
             </div>
-          </div>
 
-        </div>
-      </section>
+            {/* Right Column: Quote + Results Card Showcase */}
+            <div className="about-side-panel">
+              
+              {/* Highlight Quote Box */}
+              <div className="about-quote-box">
+                <div className="about-quote-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                <p>"Transforming your dreams into reality."</p>
+                <span>— Ashoka IAS Academy</span>
+              </div>
 
-      {/* ── Founder's Vision ── */}
-      <section className="section about-founder">
-        <div className="container about-founder__grid">
+              {/* Outstanding Results Card */}
+              <div className="about-results-card">
+                <div className="about-results-header">
+                  <h3>Our Key Milestones & Ranks</h3>
+                  <p>Inception Year & Recent Achievements</p>
+                </div>
+                <div className="about-results-list">
+                  <div className="about-result-row">
+                    <div className="result-badge-col">
+                      <span className="result-rank-badge">APS Rank 3</span>
+                    </div>
+                    <span className="result-year-label">1st Year</span>
+                  </div>
 
-          <div className="about-founder__badge">
-            <div className="about-founder__badge-inner">
-              <span className="about-founder__badge-label">Founder's</span>
-              <span className="about-founder__badge-word">Vision</span>
+                  <div className="about-result-row">
+                    <div className="result-badge-col">
+                      <span className="result-rank-badge">ACS Rank 9</span>
+                    </div>
+                    <span className="result-year-label">1st Year</span>
+                  </div>
+
+                  <div className="about-result-row">
+                    <div className="result-badge-col">
+                      <span className="result-rank-badge">ACS Rank 24</span>
+                    </div>
+                    <span className="result-year-label">Subsequent Year</span>
+                  </div>
+
+                  <div className="about-result-row">
+                    <div className="result-badge-col">
+                      <span className="result-rank-badge">ACS Rank 54</span>
+                    </div>
+                    <span className="result-year-label">Subsequent Year</span>
+                  </div>
+
+                  <div className="about-result-row total-officers-row">
+                    <div className="result-badge-col">
+                      <span className="result-rank-badge gold-badge">120+ Officers</span>
+                    </div>
+                    <span className="result-year-label">Across Various Services</span>
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </div>
 
-          <div className="about-founder__content">
-            <span className="section-label">Our Foundation</span>
-            <h2 className="about-founder__title">Founder's Vision</h2>
-            <div className="divider-gold" />
-            <p>
-              Ashoka IAS Academy was born from a simple yet powerful vision — to bridge the gap between
-              aspiration and opportunity for students, especially from regions where access to quality
-              guidance has traditionally been limited.
-            </p>
-            <p>
-              The founder envisioned an institution that would not only prepare students for exams but also
-              empower them with the confidence, awareness, and skills required to succeed in life. Having
-              closely observed the struggles of aspirants — lack of direction, inconsistency, and limited
-              mentorship — the idea was to create a platform that offers clarity, structure, and continuous support.
-            </p>
-            <p>
-              Starting with a small setup and a big dream, Ashoka IAS Academy has grown through dedication,
-              trust, and consistent results. Today, the academy stands as more than just a coaching institute —
-              it is a movement towards empowering youth, nurturing leadership, and contributing to nation-building.
-            </p>
-            <blockquote className="about-founder__quote">
-              "Every student deserves the right guidance to succeed."
-            </blockquote>
-            <p>
-              The vision ahead is clear: To build a comprehensive learning ecosystem that integrates coaching,
-              higher education, skill development, and personality transformation — creating not just successful
-              candidates, but responsible citizens and future leaders.
-            </p>
           </div>
-
         </div>
       </section>
 
@@ -182,10 +145,9 @@ export default function About() {
       <section className="section about-why">
         <div className="container">
           <div className="about-why__header">
-            <span className="section-label">Why Choose Us</span>
-            <h2 className="about-why__title">
-              Why Ashoka IAS Academy?
-            </h2>
+            <span className="about-sublabel">WHY CHOOSE US</span>
+            <h2 className="about-heading" style={{ textAlign: 'center' }}>Why Ashoka IAS Academy?</h2>
+            <div className="about-accent-line" style={{ margin: '0 auto 1.5rem auto' }} />
             <p className="about-why__sub">Your Success is Our Commitment</p>
           </div>
 

@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import {
   HelpCircle,
   CheckCircle2,
@@ -11,9 +10,9 @@ import {
   Sparkles,
   FileSpreadsheet
 } from 'lucide-react';
-import crossLine from '../../assets/images/cross-line.png';
 import logoImg from '../../assets/images/logo.png';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './AssamSection.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -329,24 +328,15 @@ export default function AssamSection() {
         title="Assam GK & APSC Special Section"
         description="Get study materials, notes, and resources dedicated to Assam History, Geography, Polity, and Culture for APSC CCE and State Allied exams."
       />
-      {/* Hero */}
-      <section className="assam-hero">
-        <div className="assam-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container assam-hero__content">
-          <span className="section-label">Study Material</span>
-          <h1 className="assam-hero__title">
-            Assam <span className="text-gold">Section</span>
-          </h1>
-          <p className="assam-hero__desc">
-            Comprehensive study material on Assam for UPSC, APSC and other competitive examinations.
-          </p>
-          <div className="assam-hero__breadcrumb">
-            <Link to="/" className="assam-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-            <span className="assam-hero__bc-current">Assam Section</span>
-          </div>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Assam Section & APSC Special"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Student Zone' },
+          { label: 'Assam Section' }
+        ]}
+      />
 
       {/* Section Selector Tab Bar */}
       <div className="assam-section-selector-container">

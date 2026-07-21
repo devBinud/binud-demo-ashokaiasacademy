@@ -38,6 +38,8 @@ import OnlineNotes from '../pages/StudyMaterial/OnlineNotes/OnlineNotes';
 import DailyPracticePaper from '../pages/StudyMaterial/DailyPracticePaper/DailyPracticePaper';
 import APSCTestSeries from '../pages/StudyMaterial/APSCTestSeries/APSCTestSeries';
 import UPSCGuide from '../pages/UPSCGuide/UPSCGuide';
+import FoundersVision from '../pages/FoundersVision/FoundersVision';
+import YouTubeLectures from '../pages/YouTubeLectures/YouTubeLectures';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'about', element: <About /> },
+      { path: 'founders-vision', element: <FoundersVision /> },
+      { path: 'youtube-lectures', element: <YouTubeLectures /> },
       { path: 'courses', element: <Courses /> },
       { path: 'foundation-1-year', element: <FoundationOne /> },
       { path: 'foundation-2-year', element: <FoundationTwo /> },

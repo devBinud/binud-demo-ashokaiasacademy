@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './CoursesAll.css';
 
 const COURSES = [
@@ -191,23 +192,14 @@ export default function CoursesAll() {
         description="Browse our full directory of courses: Foundation program, NCERT basics, Test Series, and allied exams preparation coaching."
       />
 
-      {/* Hero */}
-      <section className="courses-all-hero">
-        <div className="container courses-all-hero__content">
-          <span className="section-label">Our Programs</span>
-          <h1 className="courses-all-hero__title">
-            Our <span className="text-gold">Courses</span>
-          </h1>
-          <p className="courses-all-hero__desc">
-            Structured programs for every stage of your civil services journey - from foundation to final selection.
-          </p>
-          <div className="courses-all-hero__breadcrumb">
-            <Link to="/" className="courses-all-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-            <span className="courses-all-hero__bc-current">Courses</span>
-          </div>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Classroom Courses & Programs"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Classroom Courses' }
+        ]}
+      />
 
       {/* Main */}
       <section className="section courses-all-main">

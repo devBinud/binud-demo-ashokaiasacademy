@@ -1,0 +1,64 @@
+/* ============================================================
+   PAGE HEADER / HERO BANNER (REUSABLE COMPONENT)
+   ============================================================ */
+.page-banner {
+  background: linear-gradient(135deg, #0e3b5e 0%, #164e63 50%, #0f766e 100%);
+  color: #ffffff;
+  position: relative;
+}
+
+.page-banner__main {
+  padding: 55px 0 40px 0;
+  text-align: center;
+}
+
+.page-banner__title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 768px) {
+  .page-banner__title {
+    font-size: 2.4rem;
+  }
+}
+
+/* ── Separate Breadcrumb Bar with dark accent background ── */
+.page-breadcrumb-bar {
+  background: rgba(13, 27, 53, 0.45);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 0;
+}
+
+.page-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.page-breadcrumb__link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.page-breadcrumb__link:hover {
+  color: var(--color-gold, #fbbf24);
+}
+
+.page-breadcrumb__sep {
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+
+.page-breadcrumb__current {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}

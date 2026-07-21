@@ -1,0 +1,376 @@
+/* ============================================================
+   YOUTUBE LECTURES & SECTION PAGE
+   ============================================================ */
+.yt-page {
+  background: #f8fafc;
+}
+
+.yt-content {
+  padding-block: var(--space-12, 3rem) var(--space-16, 4rem);
+}
+
+/* ── Hero Announcement Card ── */
+.yt-hero-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 2.5rem 3rem;
+  box-shadow: 0 10px 36px rgba(13, 27, 53, 0.05);
+  border: 1px solid #f1f5f9;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 992px) {
+  .yt-hero-card {
+    grid-template-columns: 1fr 340px;
+  }
+}
+
+@media (max-width: 768px) {
+  .yt-hero-card {
+    padding: 1.75rem;
+  }
+}
+
+.yt-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e6f4f1;
+  color: #0f766e;
+  border: 1px solid rgba(15, 118, 110, 0.25);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.yt-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0f766e;
+  box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.4);
+  animation: pulseTeal 2s infinite;
+}
+
+@keyframes pulseTeal {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(15, 118, 110, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0);
+  }
+}
+
+.yt-hero-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 1rem 0;
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .yt-hero-title {
+    font-size: 2.3rem;
+  }
+}
+
+.yt-hero-desc {
+  font-size: 13px;
+  line-height: 1.75;
+  color: #475569;
+  margin: 0 0 1.75rem 0;
+}
+
+.yt-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.btn-yt-subscribe {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #cc0000 0%, #b30000 100%);
+  color: #ffffff !important;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(204, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-yt-subscribe:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(204, 0, 0, 0.35);
+}
+
+.yt-notify-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* Graphic Box */
+.yt-hero-graphic {
+  background: linear-gradient(135deg, #0d1b35 0%, #1b2a4a 100%);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(13, 27, 53, 0.12);
+}
+
+.yt-play-circle-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+}
+
+.yt-play-icon {
+  color: #ff0000;
+  filter: drop-shadow(0 4px 12px rgba(255, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.yt-hero-graphic:hover .yt-play-icon {
+  transform: scale(1.1);
+}
+
+.yt-graphic-text {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #fbbf24;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── Section Header ── */
+.yt-section-header {
+  margin-bottom: 2.5rem;
+}
+
+.yt-sublabel {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0f766e;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.yt-heading {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+}
+
+@media (min-width: 768px) {
+  .yt-heading {
+    font-size: 2.2rem;
+  }
+}
+
+.yt-accent-line {
+  width: 50px;
+  height: 3px;
+  background: #0f766e;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.yt-subdesc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+/* ── Upcoming Series Grid ── */
+.yt-series-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+  .yt-series-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.yt-series-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.75rem;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.yt-series-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.07);
+}
+
+.yt-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.yt-card-badge {
+  background: #e6f4f1;
+  color: #0f766e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+.yt-card-category {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.yt-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 10px 0;
+  line-height: 1.35;
+}
+
+.yt-card-desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #475569;
+  margin: 0 0 1.25rem 0;
+}
+
+.yt-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.yt-card-schedule {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.yt-status-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #d97706;
+  background: #fef3c7;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+/* ── Why Subscribe Features Card ── */
+.yt-features-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.25rem 2.5rem;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.yt-features-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.yt-sparkle-icon {
+  color: #0f766e;
+}
+
+.yt-features-header h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+}
+
+.yt-features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .yt-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.yt-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.yt-check-icon {
+  color: #0f766e;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.yt-feature-item h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.yt-feature-item p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #64748b;
+  margin: 0;
+}

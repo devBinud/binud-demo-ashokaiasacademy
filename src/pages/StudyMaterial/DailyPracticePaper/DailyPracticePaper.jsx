@@ -1,12 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
 import { Search, Lock, X, Eye, FileText } from 'lucide-react';
 import Loader from '../../../components/ui/Loader';
 import logo from '../../../assets/images/logo.png';
-import crossLine from '../../../assets/images/cross-line.png';
 import SEO from '../../../components/common/SEO';
+import PageHeader from '../../../components/common/PageHeader';
 
 // Local PDF imports
 import pdf08May from '../../../assets/pdf/dpp/08_may_DPP.pdf';
@@ -226,21 +225,15 @@ export default function DailyPracticePaper() {
         title="Daily Practice Paper (DPP)"
         description="Solve our daily MCQ-based practice sheets (DPP) for UPSC & APSC Prelims to test your knowledge of static subjects and current affairs."
       />
-      {/* Hero Header */}
-      <section className="sm-hero">
-        <div className="sm-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container sm-hero__content">
-          <span className="section-label">Test Series</span>
-          <h1 className="sm-hero__title">Daily Practice <span className="text-gold">Paper (DPP)</span></h1>
-          <div className="sm-hero__breadcrumb">
-            <Link to="/" className="sm-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-            <Link to="/" className="sm-hero__bc-link">Student Zone</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-            <span className="sm-hero__bc-current">Daily Practice Paper</span>
-          </div>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Daily Practice Paper (DPP)"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Student Zone' },
+          { label: 'Daily Practice Paper' }
+        ]}
+      />
 
       {/* Main Listing Section */}
       <section className="dpp-container">

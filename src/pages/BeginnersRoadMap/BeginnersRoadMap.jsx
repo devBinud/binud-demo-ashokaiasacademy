@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { 
   Award, 
   BookOpen, 
@@ -8,8 +7,8 @@ import {
   BookOpenCheck, 
   CheckCircle2 
 } from 'lucide-react';
-import crossLine from '../../assets/images/cross-line.png';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './BeginnersRoadMap.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -86,24 +85,15 @@ export default function BeginnersRoadMap() {
         title="Civil Services Beginners Road Map"
         description="New to UPSC/APSC preparation? Read our comprehensive step-by-step roadmap outlining syllabus, strategy, booklist, and preparation stages."
       />
-      {/* Hero */}
-      <section className="roadmap-hero">
-        <div className="roadmap-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container roadmap-hero__content">
-          <span className="section-label">Aspirant Resource Center</span>
-          <h1 className="roadmap-hero__title">
-            Beginners <span className="text-gold">Road Map</span>
-          </h1>
-          <p className="roadmap-hero__desc">
-            A comprehensive, step-by-step master plan tailored for UPSC, APSC, and state exam aspirants to navigate their preparation journey confidently.
-          </p>
-          <div className="roadmap-hero__breadcrumb">
-            <Link to="/" className="roadmap-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
-            <span className="roadmap-hero__bc-current">Beginners Road Map</span>
-          </div>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Beginners Road Map"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Student Zone' },
+          { label: 'Beginners Road Map' }
+        ]}
+      />
 
       {/* Main Roadmap Content Container */}
       <div className="roadmap-article-container">

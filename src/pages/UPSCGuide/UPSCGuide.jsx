@@ -81,6 +81,9 @@ export default function UPSCGuide() {
 
       {/* Sidebar Body */}
       <div className="sidebar-body">
+        <div className="sidebar-upcoming-tag">
+          <span className="pulse-dot" /> UPCOMING SOON
+        </div>
         <h4 className="sidebar-body__title">UPSC GS Prelims cum Mains Foundation Batch 2027</h4>
         <p className="sidebar-body__author">By UPSC GUIDE | Institute for IAS Exam</p>
 
@@ -120,6 +123,12 @@ export default function UPSCGuide() {
               </Link>
               <span className="breadcrumb-sep"><ChevronRight size={12} /></span>
               <span className="breadcrumb-current">UPSC Guide</span>
+            </div>
+
+            {/* Upcoming Soon Badge Highlight */}
+            <div className="upcoming-soon-badge">
+              <span className="pulse-dot" />
+              <span>UPCOMING BATCH • ADMISSIONS OPENING SOON</span>
             </div>
 
             {/* Course H1 Title */}

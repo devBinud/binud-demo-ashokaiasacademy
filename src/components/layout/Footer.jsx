@@ -6,6 +6,8 @@ const EXAM_LINKS = ['UPSC', 'APSC', 'ADRE', 'SSC', 'Banking', 'NDA'];
 const QUICK_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'About Us', to: '/about' },
+  { label: "Founder's Desk", to: '/founders-vision' },
+  { label: 'YouTube Section', to: '/youtube-lectures' },
   { label: 'Courses', to: '/courses' },
   { label: 'Contact', to: '/contact' },
 ];

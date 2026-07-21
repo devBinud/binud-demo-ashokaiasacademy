@@ -5,31 +5,37 @@ import './Navbar.css';
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'About Us', to: '/about' },
+  {
+    label: 'About Us',
+    to: null,
+    dropdown: [
+      { label: 'About Academy', to: '/about' },
+      { label: "Founder's Desk", to: '/founders-vision' },
+      { label: 'YouTube Section', to: '/youtube-lectures' },
+    ],
+  },
   {
     label: 'Classroom Courses',
     to: null,
     dropdown: [
-      { label: 'Integrated Program - Class 11 & 12', to: '/courses-all', state: { courseId: 'integrated-class-11-12' } },
-      { label: 'One Year Foundation Course', to: '/courses-all', state: { courseId: 'one-year-foundation' } },
-      { label: '6-Month Pre-Foundation Course', to: '/courses-all', state: { courseId: 'pre-foundation' } },
-      { label: 'Crash Course Programme', to: '/courses-all', state: { courseId: 'crash-course' } },
-      { label: 'Integrated Degree + Competitive Exam Coaching Programme', to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
-      { label: 'UPSC Guide', to: '/upsc-guide' },
       {
         label: 'Ongoing Batch',
         to: null,
         children: [
-          { label: 'Foundation', to: '/ongoing-foundation' },
-          { label: 'Crash Course', to: '/ongoing-crash-course' },
+          { label: 'Integrated Program - Class 11 & 12', to: '/courses-all', state: { courseId: 'integrated-class-11-12' } },
+          { label: 'One Year Foundation Course', to: '/courses-all', state: { courseId: 'one-year-foundation' } },
+          { label: '6-Month Pre-Foundation Course', to: '/courses-all', state: { courseId: 'pre-foundation' } },
+          { label: 'Crash Course Programme', to: '/courses-all', state: { courseId: 'crash-course' } },
+          { label: 'Integrated Degree + Competitive Exam Coaching Programme', to: '/courses-all', state: { courseId: 'integrated-degree-Competitive-coaching-programme' } },
+          { label: 'UPSC Guide', to: '/upsc-guide' },
         ],
       },
       {
         label: 'Upcoming Batch',
         to: null,
         children: [
-          { label: 'Foundation', to: '/foundation' },
-          { label: 'Crash Course', to: '/crash-course' },
+          { label: 'Foundation', to: '/courses-all', state: { courseId: 'one-year-foundation' } },
+          { label: 'Crash Course', to: '/courses-all', state: { courseId: 'crash-course' } },
         ],
       },
     ],
@@ -160,7 +166,7 @@ export default function Navbar() {
                         </div>
                         <div className="navbar__dropdown-children">
                           {item.children.map((child) => (
-                            <Link key={child.label} to={child.to} className="navbar__dropdown-item navbar__dropdown-item--child" onClick={closeAll}>
+                            <Link key={child.label} to={child.to} state={child.state || null} className="navbar__dropdown-item navbar__dropdown-item--child" onClick={closeAll}>
                               {child.label}
                               {child.badge && (
                                 <span className="nav-badge">{child.badge}</span>
@@ -228,7 +234,7 @@ export default function Navbar() {
                             {item.label}
                           </div>
                           {item.children.map((child) => (
-                            <Link key={child.label} to={child.to} className="fs-menu__sub-link fs-menu__sub-link--child" onClick={closeAll}>
+                            <Link key={child.label} to={child.to} state={child.state || null} className="fs-menu__sub-link fs-menu__sub-link--child" onClick={closeAll}>
                               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
                               {child.label}
                               {child.badge && (

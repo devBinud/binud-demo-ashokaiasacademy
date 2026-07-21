@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 import CustomSelect from '../../components/ui/CustomSelect';
 import { MapPin, Clock, Phone, Mail, MessageCircle, CheckCircle } from 'lucide-react';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './Contact.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -71,30 +71,14 @@ export default function Contact() {
         description="Get in touch with Ashoka IAS Academy for admissions, course queries, and career counseling. Contact our Guwahati and Nagaon centers today."
       />
 
-      {/* Hero */}
-      <section className="contact-hero">
-        <div className="container contact-hero__inner">
-          <div className="contact-hero__content">
-            <span className="section-label">Get In Touch</span>
-            <h1 className="contact-hero__title">
-              Admissions & <span className="text-gold">Enquiries</span>
-            </h1>
-            <p className="contact-hero__desc">
-              Have questions about our courses? Ready to apply? We're here to help you
-              take the next step in your civil services journey.
-            </p>
-            
-            {/* Premium Breadcrumbs */}
-            <div className="contact-hero__breadcrumb">
-              <Link to="/" className="contact-hero__bc-link">Home</Link>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="breadcrumb-separator-svg">
-                <polyline points="9 18 15 12 9 6" />
-              </svg>
-              <span className="contact-hero__bc-current">Contact Us</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Page Header */}
+      <PageHeader 
+        title="Admissions & Enquiries"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Contact Us' }
+        ]}
+      />
 
       <section className="section contact-main">
         <div className="container contact-main__grid">

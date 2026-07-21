@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './OnlineAdmission.css';
 import admissionBg from '../../assets/images/4.jpg';
 import CtaSection from '../Home/sections/CtaSection';
@@ -248,16 +248,14 @@ export default function OnlineAdmission() {
         title="Online Admission Form"
         description="Reserve your seat in our upcoming batches online. Fill out the provisional admission form for UPSC and APSC coaching programs."
       />
-      {/* Premium Breadcrumbs Navigation Strip */}
-      <div className="admission-breadcrumbs">
-        <div className="breadcrumbs-inner">
-          <Link to="/" className="breadcrumb-item">Home</Link>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-item-parent">Admissions</span>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">Online Admission</span>
-        </div>
-      </div>
+      <PageHeader 
+        title="Online Admission"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'Admissions', to: '/offline-admission' },
+          { label: 'Online Admission' }
+        ]}
+      />
 
       <div className="admission-container">
 

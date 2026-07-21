@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import crossLine from '../../assets/images/cross-line.png';
 import SEO from '../../components/common/SEO';
+import PageHeader from '../../components/common/PageHeader';
 import './FAQ.css';
 import CtaSection from '../Home/sections/CtaSection';
 
@@ -210,26 +210,14 @@ export default function FAQ() {
         description="Find answers to common questions about UPSC/APSC preparation, eligibility, course schedules, batch sizes, fees, and centers."
       />
 
-      {/* ── Hero ── */}
-      <section className="faq-hero">
-        <div className="faq-hero__pattern" style={{ backgroundImage: `url(${crossLine})` }} />
-        <div className="container faq-hero__content">
-          <span className="section-label">Help Center</span>
-          <h1 className="faq-hero__title">
-            Frequently Asked <span className="text-gold">Questions</span>
-          </h1>
-          <p className="faq-hero__desc">
-            Everything you need to know about Ashoka IAS Academy, our courses, and the admission process.
-          </p>
-          <div className="faq-hero__breadcrumb">
-            <Link to="/" className="faq-hero__bc-link">Home</Link>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-            <span className="faq-hero__bc-current">FAQs</span>
-          </div>
-        </div>
-      </section>
+      {/* ── Page Header ── */}
+      <PageHeader 
+        title="Frequently Asked Questions"
+        breadcrumbs={[
+          { label: 'Home', to: '/' },
+          { label: 'FAQs' }
+        ]}
+      />
 
       {/* ── FAQ 2-Column Grid ── */}
       <section className="section faq-content">
