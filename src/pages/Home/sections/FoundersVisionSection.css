@@ -138,20 +138,37 @@
   padding: 0;
 }
 
+.founders-vision__name {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.founders-vision__subtitle {
+  font-size: 0.95rem;
+  margin: 0 0 var(--space-6, 1.5rem) 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
 .founders-vision__author {
-  font-size: var(--text-base, 1rem);
-  font-weight: 700;
+  font-weight: 500;
+  font-style: italic;
   color: var(--color-gold, #fbbf24);
-  margin: 0;
+  text-transform: none;
+}
+
+.founders-vision__sep {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .founders-vision__org {
-  font-size: var(--text-xs, 0.75rem);
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-6, 1.5rem);
-  display: block;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: none;
+  font-weight: 400;
 }
 
 .founders-vision__cta {

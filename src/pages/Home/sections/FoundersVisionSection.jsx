@@ -62,8 +62,12 @@ export default function FoundersVisionSection() {
               <blockquote className="founders-vision__quote">
                 "Every student deserves the right guidance to succeed."
               </blockquote>
-              <p className="founders-vision__author">Founder & Director</p>
-              <span className="founders-vision__org">Ashoka IAS Academy</span>
+              <h4 className="founders-vision__name">Honey Bhuyan</h4>
+              <p className="founders-vision__subtitle">
+                <span className="founders-vision__author">Founder & Director</span>
+                <span className="founders-vision__sep">, </span>
+                <span className="founders-vision__org">Ashoka IAS Academy</span>
+              </p>
               
               <div className="founders-vision__cta">
                 <Link to="/about" className="btn btn-gold">

@@ -33,10 +33,25 @@ export default function FoundersVision() {
           {/* Left Column: Founder Photo Card */}
           <div className="fv-image-col">
             <div className="fv-image-card">
-              <img src={founderImg} alt="Founder & Director - Ashoka IAS Academy" className="fv-founder-img" />
+              <div className="fv-img-container">
+                {/* Background Blobs & Ambient Lighting for transparent image */}
+                <div className="fv-bg-blob fv-bg-blob-1" />
+                <div className="fv-bg-blob fv-bg-blob-2" />
+                <div className="fv-bg-blob fv-bg-blob-3" />
+                
+                <img 
+                  src={founderImg} 
+                  alt="Honey Bhuyan - Founder & Director, Ashoka IAS Academy" 
+                  className="fv-founder-img" 
+                />
+              </div>
               <div className="fv-image-caption">
-                <h3>Founder & Director</h3>
-                <p>Ashoka IAS Academy</p>
+                <h3 className="fv-founder-name">Honey Bhuyan</h3>
+                <p className="fv-founder-subtitle">
+                  <span className="fv-founder-title">Founder & Director</span>
+                  <span className="fv-founder-sep">, </span>
+                  <span className="fv-founder-org">Ashoka IAS Academy</span>
+                </p>
               </div>
             </div>
           </div>

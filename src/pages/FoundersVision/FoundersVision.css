@@ -90,39 +90,130 @@
 /* ── Left Column Image Card ── */
 .fv-image-card {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 12px 36px rgba(13, 27, 53, 0.1);
+  box-shadow: 0 16px 40px rgba(13, 27, 53, 0.12);
   border: 1px solid rgba(13, 27, 53, 0.08);
+}
+
+/* Background gradient container behind transparent image */
+.fv-img-container {
+  position: relative;
+  width: 100%;
+  padding-top: 1.5rem;
+  background: radial-gradient(circle at 50% 30%, #152d4a 0%, #0d1b35 55%, #081124 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Glowing organic gradient blobs */
+.fv-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.fv-bg-blob-1 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, rgba(251, 191, 36, 0) 70%);
+  top: -40px;
+  right: -30px;
+  filter: blur(25px);
+  animation: fvBlobFloat1 8s ease-in-out infinite alternate;
+}
+
+.fv-bg-blob-2 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.45) 0%, rgba(13, 148, 136, 0) 70%);
+  bottom: 0px;
+  left: -40px;
+  filter: blur(30px);
+  animation: fvBlobFloat2 10s ease-in-out infinite alternate;
+}
+
+.fv-bg-blob-3 {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 70%);
+  top: 35%;
+  left: 20%;
+  filter: blur(25px);
+  animation: fvBlobFloat3 12s ease-in-out infinite alternate;
+}
+
+@keyframes fvBlobFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-15px, 20px) scale(1.1); }
+}
+
+@keyframes fvBlobFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(20px, -15px) scale(1.08); }
+}
+
+@keyframes fvBlobFloat3 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(15px, 15px) scale(0.95); }
 }
 
 .fv-founder-img {
   width: 100%;
+  max-width: 360px;
   height: auto;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
 }
 
 .fv-image-caption {
-  padding: 1.25rem 1.5rem;
-  background: linear-gradient(135deg, #0d1b35 0%, #1b2a4a 100%);
-  color: #ffffff;
+  padding: 1.5rem 1.5rem;
+  background: #ffffff;
+  color: #0f172a;
   text-align: center;
+  border-top: none;
 }
 
-.fv-image-caption h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--color-gold, #fbbf24);
-  margin: 0 0 2px 0;
+.fv-founder-name {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0d1b35;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+  text-transform: none;
 }
 
-.fv-image-caption p {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+.fv-founder-subtitle {
+  font-size: 0.95rem;
   margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.fv-founder-title {
+  font-weight: 600;
+  font-style: italic;
+  color: #d97706;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+.fv-founder-sep {
+  color: #94a3b8;
+}
+
+.fv-founder-org {
+  color: #475569;
+  text-transform: none;
+  font-weight: 500;
 }
 
 /* ── Right Column Content Card ── */
@@ -142,7 +233,7 @@
 
 .fv-sublabel {
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   font-weight: 800;
   color: #0f766e;
   letter-spacing: 0.12em;
@@ -177,13 +268,13 @@
   background: #f0fdfa;
   border-left: 4px solid #0d9488;
   border-radius: 0 12px 12px 0;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1.35rem 1.65rem;
+  margin-bottom: 1.75rem;
 }
 
 .fv-quote-box p {
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.7;
   font-weight: 500;
   font-style: italic;
   color: #0f766e;
@@ -194,17 +285,17 @@
 .fv-paragraphs {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .fv-paragraphs p {
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.75;
   color: #334155;
   margin: 0;
 }
 
 .fv-paragraphs strong {
   color: #0f766e;
-  font-weight: 500;
+  font-weight: 600;
 }
