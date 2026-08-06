@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import RootLayout from '../components/layout/RootLayout';
 import Home from '../pages/Home/Home';
 import About from '../pages/About/About';
@@ -76,7 +76,8 @@ const router = createBrowserRouter([
       { path: 'mains-notes', element: <MainsNotes /> },
       { path: 'online-notes', element: <OnlineNotes /> },
       { path: 'beginner', element: <DailyPracticePaper /> },
-      { path: 'intermediate', element: <APSCTestSeries /> },
+      { path: 'intermediate', element: <Navigate to="/apsc-test-series" replace /> },
+      { path: 'apsc-test-series', element: <APSCTestSeries /> },
       { path: 'upsc-guide', element: <UPSCGuide /> },
       { path: '*', element: <NotFound /> },
     ],

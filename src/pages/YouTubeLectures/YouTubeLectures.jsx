@@ -1,20 +1,83 @@
-import { useEffect } from 'react';
-import { PlayCircle, Bell, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Users, Building2, GraduationCap, ChevronRight } from 'lucide-react';
 import SEO from '../../components/common/SEO';
 import PageHeader from '../../components/common/PageHeader';
 import CtaSection from '../Home/sections/CtaSection';
+import ytImg from '../../assets/images/yt.jpg';
 import './YouTubeLectures.css';
 
+const LECTURE_SUBJECTS = [
+  {
+    id: 'society',
+    title: 'Indian Society',
+    bgColor: '#f1f5f9',
+    iconColor: '#273c68',
+    icon: Users,
+    classes: [
+      {
+        id: 'soc-1',
+        title: 'Indian Society | UPSC GS Paper 1 | By Akshay Kadam Sir',
+        videoUrl: 'https://www.youtube.com/watch?v=ViAEsoaB3hk',
+        embedUrl: 'https://www.youtube.com/embed/ViAEsoaB3hk?autoplay=1'
+      }
+    ]
+  },
+  {
+    id: 'polity',
+    title: 'Polity',
+    bgColor: '#f1f5f9',
+    iconColor: '#273c68',
+    icon: Building2,
+    classes: [
+      {
+        id: 'pol-1',
+        title: 'Polity Orientation by Ramesh Sir',
+        videoUrl: 'https://www.youtube.com/watch?v=ViAEsoaB3hk',
+        embedUrl: 'https://www.youtube.com/embed/ViAEsoaB3hk?autoplay=1'
+      }
+    ]
+  },
+  {
+    id: 'mentorship',
+    title: 'Strategy & Mentorship Lectures',
+    bgColor: '#f1f5f9',
+    iconColor: '#273c68',
+    icon: GraduationCap,
+    classes: [
+      {
+        id: 'men-1',
+        title: '3-Phase Strategy & Mentorship Orientation Class',
+        videoUrl: 'https://www.youtube.com/watch?v=ViAEsoaB3hk',
+        embedUrl: 'https://www.youtube.com/embed/ViAEsoaB3hk?autoplay=1'
+      }
+    ]
+  }
+];
+
 export default function YouTubeLectures() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [modalVideo, setModalVideo] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, []);
+
+  // Close modal on escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setModalVideo(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   return (
     <div className="yt-page">
       <SEO 
         title="Official YouTube Channel & Free Video Lectures | Ashoka IAS Academy"
-        description="Explore Ashoka IAS Academy's upcoming official YouTube video lecture series, daily current affairs breakdowns, APSC answer writing sessions, and topper mentorship."
+        description="Explore Ashoka IAS Academy's official YouTube video lecture series, daily current affairs breakdowns, APSC answer writing sessions, and topper mentorship."
       />
 
       <PageHeader 
@@ -29,95 +92,111 @@ export default function YouTubeLectures() {
       {/* ── Main Content Section ── */}
       <section className="section yt-content">
         <div className="container">
-          
-          {/* Hero Announcement Card */}
-          <div className="yt-hero-card">
-            <div className="yt-hero-content">
-              <div className="yt-badge-tag">
-                <span className="yt-pulse-dot" />
-                <span>UPCOMING SOON • OFFICIAL YOUTUBE CHANNEL</span>
-              </div>
-
-              <h2 className="yt-hero-title">
-                Free Video Lectures & Live Mentorship Sessions
-              </h2>
-
-              <p className="yt-hero-desc">
-                We are launching our official YouTube channel dedicated to helping civil services aspirants across Assam and Northeast India. Access high-yield video lessons, editorial breakdowns, and expert strategy guides anytime, anywhere.
-              </p>
-
-              <div className="yt-hero-actions">
-                <a 
-                  href="https://www.youtube.com/@AshokaIASAcademy" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="btn-yt-subscribe"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                  </svg>
-                  <span>Subscribe to Channel</span>
-                </a>
-                <span className="yt-notify-text">
-                  <Bell size={15} />
-                  <span>Turn on notifications for live stream alerts</span>
-                </span>
-              </div>
-            </div>
-
-            <div className="yt-hero-graphic">
-              <div className="yt-play-circle-box">
-                <PlayCircle size={64} className="yt-play-icon" />
-                <span className="yt-graphic-text">Ashoka IAS Academy Studio</span>
-              </div>
-            </div>
-          </div>
-
-
-
-          {/* ── Why Subscribe Banner ── */}
-          <div className="yt-features-card">
-            <div className="yt-features-header">
-              <h3>What to Expect from Our YouTube Channel?</h3>
-            </div>
+          <div className="yt-grid">
             
-            <div className="yt-features-grid">
-              <div className="yt-feature-item">
-                <CheckCircle2 size={18} className="yt-check-icon" />
-                <div>
-                  <h4>100% Free High-Yield Content</h4>
-                  <p>Quality civil service guidance tailored specifically for UPSC CSE and APSC CCE pattern requirements.</p>
-                </div>
-              </div>
-
-              <div className="yt-feature-item">
-                <CheckCircle2 size={18} className="yt-check-icon" />
-                <div>
-                  <h4>Interactive Live Doubts</h4>
-                  <p>Engage directly with expert faculty and mentors during live streaming Q&A sessions.</p>
-                </div>
-              </div>
-
-              <div className="yt-feature-item">
-                <CheckCircle2 size={18} className="yt-check-icon" />
-                <div>
-                  <h4>Assam Special Regional GS</h4>
-                  <p>Dedicated video modules on Assam History, Polity, Economy, and regional current events.</p>
-                </div>
-              </div>
-
-              <div className="yt-feature-item">
-                <CheckCircle2 size={18} className="yt-check-icon" />
-                <div>
-                  <h4>Model Answer Analyses</h4>
-                  <p>Step-by-step video dissections of top scorer answer sheets and exam-standard answer frames.</p>
-                </div>
+            {/* Left Column: Featured Image Card */}
+            <div className="yt-side-card">
+              <div className="yt-image-wrapper">
+                <img src={ytImg} alt="Ashoka IAS Academy YouTube Channel" className="yt-side-banner-img" />
               </div>
             </div>
-          </div>
 
+            {/* Right Column: Subject List / Classes */}
+            <div className="yt-lectures-container">
+              {selectedCategory === null ? (
+                <>
+                  <h4 className="yt-video-heading">Video</h4>
+
+                  <div className="yt-subject-list">
+                    {LECTURE_SUBJECTS.map((sub) => {
+                      const IconComponent = sub.icon;
+                      return (
+                        <div 
+                          key={sub.id} 
+                          className="yt-subject-item"
+                          onClick={() => setSelectedCategory(sub)}
+                        >
+                          <div className="yt-subject-item-left">
+                            <div className="yt-subject-icon-box" style={{ backgroundColor: sub.bgColor, color: sub.iconColor }}>
+                              <IconComponent size={20} />
+                            </div>
+                            <span className="yt-subject-item-title">{sub.title}</span>
+                          </div>
+                          <ChevronRight size={18} className="yt-subject-chevron-icon" />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <div className="yt-category-classes-wrapper">
+                  {/* Category Breadcrumb */}
+                  <div className="yt-category-breadcrumb-header">
+                    <span 
+                      className="yt-breadcrumb-back-btn" 
+                      onClick={() => setSelectedCategory(null)}
+                    >
+                      Video
+                    </span>
+                    <ChevronRight size={14} className="yt-breadcrumb-sep-icon" />
+                    <span className="yt-breadcrumb-category-title">{selectedCategory.title}</span>
+                  </div>
+
+                  {/* Classes List */}
+                  <div className="yt-class-cards-list">
+                    {selectedCategory.classes.map((cls) => (
+                      <div key={cls.id} className="yt-class-card-item">
+                        <div className="yt-class-card-left">
+                          <div className="yt-class-thumbnail-logo">
+                            <img src="/upsc_guide_logo.png" alt="UPSC GUIDE" className="yt-thumbnail-logo-img" />
+                          </div>
+                          <div className="yt-class-details">
+                            <h5 className="yt-class-title">{cls.title}</h5>
+                          </div>
+                        </div>
+                        <button 
+                          type="button"
+                          onClick={() => setModalVideo(cls.embedUrl)} 
+                          className="yt-class-watch-now-btn"
+                        >
+                          Watch Now
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+          </div>
         </div>
       </section>
+
+      {/* Video Player Modal */}
+      {modalVideo && (
+        <div className="yt-video-modal-overlay" onClick={() => setModalVideo(null)}>
+          <div className="yt-video-modal-container" onClick={(e) => e.stopPropagation()}>
+            <div className="yt-video-modal-body">
+              <iframe 
+                src={modalVideo} 
+                title="Lecture Video Player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen 
+                className="yt-video-modal-iframe"
+              />
+            </div>
+            <div className="yt-video-modal-footer">
+              <button 
+                type="button" 
+                className="yt-video-modal-close-btn"
+                onClick={() => setModalVideo(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <CtaSection />
     </div>

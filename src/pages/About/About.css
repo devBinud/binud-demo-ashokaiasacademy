@@ -204,7 +204,7 @@
 }
 
 .about-paragraphs p {
-  font-size: 13px;
+  font-size: 14.5px;
   line-height: 1.7;
   color: #334155;
   margin: 0;
@@ -225,8 +225,8 @@
 /* Highlight Quote Box */
 .about-quote-box {
   background: #f0fdfa;
-  border-left: 4px solid #0d9488;
-  border-radius: 0 16px 16px 0;
+  border-left: none;
+  border-radius: 16px;
   padding: 1.5rem 1.75rem;
   box-shadow: 0 6px 20px rgba(13, 148, 136, 0.06);
 }
@@ -238,7 +238,7 @@
 }
 
 .about-quote-box p {
-  font-size: 13px;
+  font-size: 14.5px;
   line-height: 1.65;
   font-weight: 500;
   font-style: italic;
@@ -291,7 +291,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.85rem 1.5rem;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px dashed #e2e8f0;
 }
 
 .about-result-row:last-child {

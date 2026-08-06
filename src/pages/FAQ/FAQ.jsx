@@ -230,14 +230,12 @@ export default function FAQ() {
           <div className="faq-grid">
             {FAQ_ITEMS.map((item, idx) => (
               <div key={idx} className="faq-card">
-                <div className="faq-card__header">
-                  <span className="faq-card__badge faq-card__badge--q">Q</span>
-                  <h3 className="faq-card__question">{item.q}</h3>
-                </div>
-                <div className="faq-card__body">
-                  <span className="faq-card__badge faq-card__badge--a">A</span>
-                  <p className="faq-card__answer">{item.a}</p>
-                </div>
+                <h3 className="faq-card__question">
+                  <span className="faq-prefix-q">Q.</span>{item.q}
+                </h3>
+                <p className="faq-card__answer">
+                  <span className="faq-prefix-a">A.</span>{item.a}
+                </p>
               </div>
             ))}
           </div>

@@ -60,7 +60,7 @@ const NAV_LINKS = [
         to: null,
         children: [
           { label: 'Daily Practice Paper (DPP)', to: '/beginner' },
-          { label: 'APSC Test Series', to: '/intermediate', badge: 'Upcoming' },
+          { label: 'APSC Test Series', to: '/apsc-test-series', badge: 'New' },
         ],
       },
       { label: 'Assam Section', to: '/assam-section' },

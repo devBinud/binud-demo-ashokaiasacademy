@@ -7,18 +7,18 @@
 
 /* ── Hero Banner ── */
 .fv-banner {
-  background: linear-gradient(135deg, #0e3b5e 0%, #164e63 50%, #0f766e 100%);
+  background: linear-gradient(90deg, #0e3b5e 0%, #164e63 50%, #0e3b5e 100%);
   color: #ffffff;
   position: relative;
 }
 
 .fv-banner__main {
-  padding: 55px 0 40px 0;
+  padding: 42px 0 32px 0;
   text-align: center;
 }
 
 .fv-banner__title {
-  font-size: 2.4rem;
+  font-size: 1.75rem;
   font-weight: 800;
   color: #ffffff;
   margin: 0;
@@ -27,7 +27,7 @@
 
 @media (min-width: 768px) {
   .fv-banner__title {
-    font-size: 2.4rem;
+    font-size: 1.75rem;
   }
 }
 
@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   color: rgba(255, 255, 255, 0.75);
 }
 
@@ -266,8 +266,8 @@
 /* Highlight Quote Box */
 .fv-quote-box {
   background: #f0fdfa;
-  border-left: 4px solid #0d9488;
-  border-radius: 0 12px 12px 0;
+  border-left: none;
+  border-radius: 12px;
   padding: 1.35rem 1.65rem;
   margin-bottom: 1.75rem;
 }
