@@ -44,7 +44,7 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px dashed #cbd5e1;
 }
 
 /* ── Poster Image (Compact Size) ── */
@@ -75,17 +75,16 @@
   background: #ecfdf5;
   color: #047857;
   font-weight: 700;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 9999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
+  display: inline-block;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   width: fit-content;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   border: 1px solid #a7f3d0;
+  box-shadow: 0 1px 3px rgba(4, 120, 87, 0.08);
 }
 
 /* Headline */

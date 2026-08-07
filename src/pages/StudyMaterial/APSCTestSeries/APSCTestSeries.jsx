@@ -11,7 +11,6 @@ import {
   CheckCircle2,
   X,
   Send,
-  TreePine,
   FileCheck,
   BookOpen,
   PhoneCall,
@@ -128,7 +127,7 @@ export default function APSCTestSeries() {
               {/* ── Right Text Body ── */}
               <div className="apsc-text-body">
                 <div className="apsc-badge">
-                  <TreePine size={14} /> Launching Soon
+                  Launching Soon
                 </div>
 
                 <h2 className="apsc-headline">
