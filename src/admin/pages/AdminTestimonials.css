@@ -24,11 +24,15 @@
 }
 
 @media (min-width: 640px) {
-  .admin-testimonials__grid { grid-template-columns: 1fr 1fr; }
+  .admin-testimonials__grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (min-width: 1024px) {
-  .admin-testimonials__grid { grid-template-columns: repeat(3, 1fr); }
+  .admin-testimonials__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .admin-testimonial-card {
@@ -81,7 +85,6 @@
   line-height: var(--leading-relaxed);
   font-style: italic;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

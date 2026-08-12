@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
 import SEO from '../../../components/common/SEO';
@@ -603,36 +603,6 @@ export default function PrelimsNotes() {
                     </div>
                   );
                 })}
-              </div>
-
-              {/* Prelims Test Series Callout Banner */}
-              <div className="prelims-cta-banner" style={{ marginTop: 28 }}>
-                <div className="cta-banner-text">
-                  <h3>UPSC &amp; APSC Prelims Test Series</h3>
-                  <p>Practice 50+ full-length &amp; sectional mock tests modeled on the latest UPSC &amp; APSC Prelims patterns with comprehensive solutions &amp; rank tracking.</p>
-                </div>
-                <div className="cta-banner-actions">
-                  <Link
-                    to="/prelims-test-series"
-                    style={{
-                      background: 'var(--color-gold, #b8922a)',
-                      color: '#ffffff',
-                      fontWeight: 700,
-                      fontSize: '13px',
-                      padding: '12px 24px',
-                      borderRadius: '10px',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      boxShadow: '0 4px 14px rgba(184, 146, 42, 0.35)',
-                      transition: 'all 0.2s ease',
-                      whiteSpace: 'nowrap'
-                    }}
-                  >
-                    View Prelims Test Series →
-                  </Link>
-                </div>
               </div>
             </div>
           ) : (
