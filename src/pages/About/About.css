@@ -151,11 +151,8 @@
 
 /* Left Column Card */
 .about-text-card {
-  background: #ffffff;
   border-radius: 20px;
   padding: 2.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f1f5f9;
 }
 
 @media (max-width: 768px) {

@@ -73,11 +73,10 @@
   content: '';
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 14px;
-  background: rgba(20, 33, 61, 0.2);
+  top: 0;
+  width: 0;
+  height: 100%;
+  border-right: 1px dashed rgb(135 129 129 / 65%);
 }
 
 .footer__exam-tag:last-child::after {
@@ -199,8 +198,7 @@
   text-transform: uppercase;
   color: var(--color-white);
   margin-bottom: var(--space-4);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid rgba(184, 146, 42, 0.3);
+  border-bottom: none;
 }
 
 .footer__list {

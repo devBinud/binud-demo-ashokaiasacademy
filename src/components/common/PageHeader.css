@@ -13,16 +13,18 @@
 }
 
 .page-banner__title {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
+  font-size: 1.85rem;
+  font-weight: 700;
   color: #ffffff;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 @media (min-width: 768px) {
   .page-banner__title {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
   }
 }
 
@@ -30,23 +32,30 @@
 .page-breadcrumb-bar {
   background: rgba(13, 27, 53, 0.45);
   border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 12px 0;
+  padding: 10px 16px;
+  overflow: hidden;
 }
 
 .page-breadcrumb {
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  font-size: 0.78rem;
+  gap: 8px;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.75);
+  flex-wrap: wrap;
 }
 
 .page-breadcrumb__link {
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .page-breadcrumb__link:hover {
@@ -56,9 +65,45 @@
 .page-breadcrumb__sep {
   opacity: 0.6;
   font-size: 0.8rem;
+  flex-shrink: 0;
+  user-select: none;
 }
 
 .page-breadcrumb__current {
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ── Mobile Responsive Breadcrumb UX ── */
+@media (max-width: 640px) {
+  .page-breadcrumb-bar {
+    padding: 8px 12px;
+  }
+
+  .page-breadcrumb {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    font-size: 0.72rem;
+    gap: 6px;
+  }
+
+  .page-breadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-breadcrumb__link,
+  .page-breadcrumb__current {
+    display: inline-block;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
 }

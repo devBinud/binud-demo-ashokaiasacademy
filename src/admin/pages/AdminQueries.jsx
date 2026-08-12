@@ -83,7 +83,7 @@ export default function AdminQueries() {
         <input
           type="text"
           className="admin-search"
-          placeholder="Search by name, phone or question..."
+          placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

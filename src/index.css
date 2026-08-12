@@ -74,6 +74,7 @@
   --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-navbar: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: "STIX Two Text", serif;
   --font-mono: 'Courier New', Courier, monospace;
 
   /* Font Sizes — mobile-first fluid scale */

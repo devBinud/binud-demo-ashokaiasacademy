@@ -18,16 +18,18 @@
 }
 
 .fv-banner__title {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
+  font-size: 1.85rem;
+  font-weight: 700;
   color: #ffffff;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 @media (min-width: 768px) {
   .fv-banner__title {
-    font-size: 1.75rem;
+    font-size: 1.85rem;
   }
 }
 
@@ -39,15 +41,19 @@
 }
 
 .fv-breadcrumb {
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.75);
 }
 
 .fv-breadcrumb__link {
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
   color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
   font-weight: 500;
@@ -64,6 +70,8 @@
 }
 
 .fv-breadcrumb__current {
+  font-family: "STIX Two Text", serif;
+  font-optical-sizing: auto;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
 }
@@ -82,7 +90,7 @@
 
 @media (min-width: 992px) {
   .fv-grid {
-    grid-template-columns: 420px 1fr;
+    grid-template-columns: 340px 1fr;
     gap: 2.5rem;
   }
 }
@@ -90,9 +98,9 @@
 /* ── Left Column Image Card ── */
 .fv-image-card {
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(13, 27, 53, 0.12);
+  box-shadow: 0 10px 30px rgba(13, 27, 53, 0.08);
   border: 1px solid rgba(13, 27, 53, 0.08);
 }
 
@@ -100,7 +108,7 @@
 .fv-img-container {
   position: relative;
   width: 100%;
-  padding-top: 1.5rem;
+  height: 350px;
   background: radial-gradient(circle at 50% 30%, #152d4a 0%, #0d1b35 55%, #081124 100%);
   overflow: hidden;
   display: flex;
@@ -146,33 +154,48 @@
 }
 
 @keyframes fvBlobFloat1 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(-15px, 20px) scale(1.1); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(-15px, 20px) scale(1.1);
+  }
 }
 
 @keyframes fvBlobFloat2 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(20px, -15px) scale(1.08); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(20px, -15px) scale(1.08);
+  }
 }
 
 @keyframes fvBlobFloat3 {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(15px, 15px) scale(0.95); }
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate(15px, 15px) scale(0.95);
+  }
 }
 
 .fv-founder-img {
   width: 100%;
-  max-width: 360px;
-  height: auto;
+  height: 100%;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top center;
   position: relative;
   z-index: 2;
-  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
 }
 
 .fv-image-caption {
-  padding: 1.5rem 1.5rem;
+  padding: 1.25rem 1.25rem;
   background: #ffffff;
   color: #0f172a;
   text-align: center;
@@ -180,54 +203,54 @@
 }
 
 .fv-founder-name {
-  font-size: 1.45rem;
-  font-weight: 800;
+  font-size: 1rem;
+  font-weight: 600;
   color: #0d1b35;
-  margin: 0 0 6px 0;
+  margin: 0 0 4px 0;
   letter-spacing: -0.01em;
   text-transform: none;
 }
 
 .fv-founder-subtitle {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 2px;
+  color: #475569;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .fv-founder-title {
-  font-weight: 600;
-  font-style: italic;
-  color: #d97706;
+  font-weight: 500;
+  font-style: normal;
+  color: #475569;
   text-transform: none;
-  letter-spacing: 0.01em;
+  letter-spacing: normal;
 }
 
 .fv-founder-sep {
-  color: #94a3b8;
+  color: #64748b;
 }
 
 .fv-founder-org {
   color: #475569;
   text-transform: none;
   font-weight: 500;
+  font-style: normal;
 }
 
 /* ── Right Column Content Card ── */
 .fv-text-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 2.5rem 2.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  border: 1px solid #f1f5f9;
+  padding: 0;
 }
 
 @media (max-width: 768px) {
   .fv-text-card {
-    padding: 1.5rem;
+    padding: 0;
   }
 }
 
@@ -242,7 +265,7 @@
 }
 
 .fv-heading {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 800;
   color: #0f172a;
   margin: 0 0 12px 0;
@@ -265,11 +288,11 @@
 
 /* Highlight Quote Box */
 .fv-quote-box {
-  background: #f0fdfa;
+  /* background: #f0fdfa; */
   border-left: none;
   border-radius: 12px;
-  padding: 1.35rem 1.65rem;
   margin-bottom: 1.75rem;
+  padding: 10px 0;
 }
 
 .fv-quote-box p {

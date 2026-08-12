@@ -82,7 +82,7 @@ export default function AdminEnquiries() {
       {/* Filters */}
       <div className="admin-filters">
         <input type="text" className="admin-search"
-          placeholder="Search by name, phone or course..."
+          placeholder="Search..."
           value={search} onChange={(e) => setSearch(e.target.value)} />
 
         <div className="admin-filter-tabs">
@@ -136,12 +136,8 @@ export default function AdminEnquiries() {
                     return (
                       <tr key={e.id}>
                         <td className="admin-table__num">{(page - 1) * PAGE_SIZE + i + 1}</td>
-                        <td>
-                          <span className="admin-source-badge" style={{ color: src.color, background: src.bg }}>
-                            {src.label}
-                          </span>
-                        </td>
-                        <td><strong>{e.name}</strong></td>
+                        <td>{src.label}</td>
+                        <td>{e.name}</td>
                         <td><a href={`tel:${e.phone}`} className="admin-link">{e.phone}</a></td>
                         <td>{e.course || '—'}</td>
                         <td>

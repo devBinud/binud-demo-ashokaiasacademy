@@ -425,7 +425,7 @@ export default function OnlineAdmission() {
                 </div>
                 <div className="policy-alert-content">
                   <strong>Strict Refund Policy Warning</strong>
-                  <p>THE ADMISSION FEE ONCE PAID IS STRICTLY NON-REFUNDABLE AND NON-TRANSFERABLE UNDER ANY CIRCUMSTANCES AFTER BATCH COMMENCEMENT.</p>
+                  <p>The admission fee once paid is strictly non-refundable and non-transferable under any circumstances after batch commencement.</p>
                 </div>
               </div>
 
@@ -460,7 +460,7 @@ export default function OnlineAdmission() {
                   </>
                 ) : (
                   <>
-                    Submit Admission Application, Adde
+                    Submit Admission Application
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
                       <line x1="5" y1="12" x2="19" y2="12" />
                       <polyline points="12 5 19 12 12 19" />

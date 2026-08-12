@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { LayoutDashboard, Inbox, Star, CircleUser, LogOut, Menu, MessageSquare, FileText } from 'lucide-react';
+import { LayoutDashboard, Inbox, Star, CircleUser, LogOut, Menu, MessageSquare, FileText, Download } from 'lucide-react';
 import logo from '../../assets/images/logo.png';
 import './AdminLayout.css';
 
 const NAV = [
-  { to: '/admin/dashboard', icon: <LayoutDashboard size={18} strokeWidth={1.8} />, label: 'Dashboard' },
-  { to: '/admin/enquiries', icon: <Inbox size={18} strokeWidth={1.8} />, label: 'Enquiries' },
-  { to: '/admin/queries', icon: <MessageSquare size={18} strokeWidth={1.8} />, label: 'Student Queries' },
-  { to: '/admin/testimonials', icon: <Star size={18} strokeWidth={1.8} />, label: 'Testimonials' },
-  { to: '/admin/dpp', icon: <FileText size={18} strokeWidth={1.8} />, label: 'Manage DPP' },
+  { to: '/admin/dashboard', icon: <LayoutDashboard size={16} strokeWidth={1.8} />, label: 'Dashboard' },
+  { to: '/admin/enquiries', icon: <Inbox size={16} strokeWidth={1.8} />, label: 'Enquiries' },
+  { to: '/admin/queries', icon: <MessageSquare size={16} strokeWidth={1.8} />, label: 'Student Queries' },
+  { to: '/admin/testimonials', icon: <Star size={16} strokeWidth={1.8} />, label: 'Testimonials' },
+  { to: '/admin/dpp', icon: <FileText size={16} strokeWidth={1.8} />, label: 'DPP Leads' },
+  { to: '/admin/study-material-leads', icon: <Download size={16} strokeWidth={1.8} />, label: 'Prelims Notes Leads' },
 ];
 
 export default function AdminLayout() {

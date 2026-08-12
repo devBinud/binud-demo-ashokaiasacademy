@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import { MapPin, Clock, Phone, Mail, FileText, Download, CheckCircle } from 'lucide-react';
+import { MapPin, Clock, FileText, Download, CheckCircle } from 'lucide-react';
 import SEO from '../../components/common/SEO';
 import PageHeader from '../../components/common/PageHeader';
 import './OfflineAdmission.css';
@@ -252,29 +252,6 @@ export default function OfflineAdmission() {
                 </div>
               </div>
 
-            </div>
-
-            {/* HELP LINES AND SUPPORT info */}
-            <div className="offline-help-banner">
-              <div className="help-column">
-                <div className="help-icon-container">
-                  <Phone size={16} />
-                </div>
-                <div>
-                  <span>Contact Helpline</span>
-                  <strong>+91 91814 11843</strong>
-                </div>
-              </div>
-              <div className="help-divider" />
-              <div className="help-column">
-                <div className="help-icon-container">
-                  <Mail size={16} />
-                </div>
-                <div>
-                  <span>Official Email</span>
-                  <strong>ashokaiasacademy123@gmail.com</strong>
-                </div>
-              </div>
             </div>
 
           </div>

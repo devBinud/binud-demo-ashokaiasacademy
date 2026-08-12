@@ -12,12 +12,12 @@ export default function FoundersVision() {
 
   return (
     <div className="founders-vision-page">
-      <SEO 
+      <SEO
         title="Founder's Desk | Ashoka IAS Academy"
         description="Read the Founder's message and vision for Ashoka IAS Academy. Empowering UPSC and APSC civil services aspirants with top-tier mentorship and structured guidance."
       />
 
-      <PageHeader 
+      <PageHeader
         title="Founder's Desk"
         breadcrumbs={[
           { label: 'Home', to: '/' },
@@ -29,7 +29,7 @@ export default function FoundersVision() {
       {/* ── Main Content Section ── */}
       <section className="section fv-content">
         <div className="container fv-grid">
-          
+
           {/* Left Column: Founder Photo Card */}
           <div className="fv-image-col">
             <div className="fv-image-card">
@@ -38,11 +38,11 @@ export default function FoundersVision() {
                 <div className="fv-bg-blob fv-bg-blob-1" />
                 <div className="fv-bg-blob fv-bg-blob-2" />
                 <div className="fv-bg-blob fv-bg-blob-3" />
-                
-                <img 
-                  src={founderImg} 
-                  alt="Honey Bhuyan - Founder & Director, Ashoka IAS Academy" 
-                  className="fv-founder-img" 
+
+                <img
+                  src={founderImg}
+                  alt="Honey Bhuyan - Founder & Director, Ashoka IAS Academy"
+                  className="fv-founder-img"
                 />
               </div>
               <div className="fv-image-caption">
@@ -58,13 +58,11 @@ export default function FoundersVision() {
 
           {/* Right Column: Leadership Message Card */}
           <div className="fv-text-card">
-            <span className="fv-sublabel">LEADERSHIP MESSAGE</span>
             <h2 className="fv-heading">From The Founder's Desk</h2>
-            <div className="fv-accent-line" />
 
             <div className="fv-quote-box">
               <p>
-                "At Ashoka IAS Academy, we are deeply committed to the achievement and maintenance of excellence in civil service preparation for the benefit of aspirants across the region. Our mission is to deliver world-class, structured, and compassionate mentorship using the latest learning methodologies, while nurturing a culture of discipline, clarity, and continuous improvement."
+                At Ashoka IAS Academy, we are deeply committed to the achievement and maintenance of excellence in civil service preparation for the benefit of aspirants across the region. Our mission is to deliver world-class, structured, and compassionate mentorship using the latest learning methodologies, while nurturing a culture of discipline, clarity, and continuous improvement.
               </p>
             </div>
 

@@ -24,17 +24,20 @@
   font-size: var(--text-sm);
   font-family: var(--font-body);
   outline: none;
+  flex: 1 1 280px;
+  max-width: 420px;
   min-width: 220px;
   transition: border-color var(--transition-fast);
   background: var(--color-white);
 }
 
-.admin-search:focus { border-color: var(--color-gold); }
+.admin-search:focus { border-color: var(--color-navy); }
 
 .admin-filter-tabs {
   display: flex;
   gap: var(--space-2);
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
 .admin-filter-tab {
@@ -149,8 +152,8 @@
 
 /* View button */
 .admin-action-btn--view:hover {
-  background: var(--color-gold);
-  border-color: var(--color-gold);
+  background: var(--color-navy);
+  border-color: var(--color-navy);
   color: white;
 }
 

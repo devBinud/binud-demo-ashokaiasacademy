@@ -8,6 +8,8 @@
   min-height: 100vh;
   background: #F0F4F8;
   font-family: var(--font-body);
+  --color-border: #e2e8f0;
+  --color-border-gold: #e2e8f0;
 }
 
 /* ── SIDEBAR ── */
@@ -67,50 +69,47 @@
 /* Nav */
 .admin-sidebar__nav {
   flex: 1;
-  padding: var(--space-4) var(--space-3);
+  padding: var(--space-3) var(--space-2);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .admin-sidebar__link {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-lg);
-  color: rgba(255,255,255,0.55);
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.6);
   text-decoration: none;
-  font-size: var(--text-sm);
-  font-weight: var(--font-medium);
+  font-size: 13px;
+  font-weight: 500;
   transition: all var(--transition-fast);
 }
 
-.admin-sidebar__link i {
-  width: 18px;
-  text-align: center;
-  font-size: 0.95rem;
+.admin-sidebar__link svg {
   flex-shrink: 0;
 }
 
 .admin-sidebar__link:hover {
-  background: rgba(255,255,255,0.07);
-  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.95);
 }
 
 .admin-sidebar__link--active {
-  background: var(--color-gold);
+  background: rgba(255, 255, 255, 0.14);
   color: var(--color-white);
-  font-weight: var(--font-semibold);
+  font-weight: 600;
 }
 
 .admin-sidebar__link--active:hover {
-  background: var(--color-gold-light);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 /* Footer */
 .admin-sidebar__footer {
-  padding: var(--space-3);
+  padding: var(--space-3) var(--space-2);
   border-top: 1px solid rgba(255,255,255,0.08);
   flex-shrink: 0;
 }
@@ -120,13 +119,14 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-3);
-  color: rgba(255,255,255,0.4);
-  font-size: var(--text-xs);
+  color: rgba(255,255,255,0.45);
+  font-size: 12px;
   overflow: hidden;
   margin-bottom: var(--space-1);
 }
 
-.admin-sidebar__user i { flex-shrink: 0; font-size: 1rem; }
+.admin-sidebar__user i,
+.admin-sidebar__user svg { flex-shrink: 0; }
 
 .admin-sidebar__user span {
   overflow: hidden;
@@ -137,14 +137,14 @@
 .admin-sidebar__logout {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-lg);
-  color: rgba(255,255,255,0.5);
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  color: rgba(255,255,255,0.55);
   background: none;
   border: none;
   cursor: pointer;
-  font-size: var(--text-sm);
+  font-size: 13px;
   font-family: var(--font-body);
   width: 100%;
   text-align: left;

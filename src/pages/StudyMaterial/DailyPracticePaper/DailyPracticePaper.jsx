@@ -40,7 +40,7 @@ export default function DailyPracticePaper() {
   // Modal and lead capture states
   const [showModal, setShowModal] = useState(false);
   const [selectedDpp, setSelectedDpp] = useState(null);
-  const [leadForm, setLeadForm] = useState({ name: '', phone: '', email: '', city: '' });
+  const [leadForm, setLeadForm] = useState({ name: '', phone: '', city: '' });
   const [submittingLead, setSubmittingLead] = useState(false);
 
   // Fullscreen Viewer state
@@ -171,7 +171,7 @@ export default function DailyPracticePaper() {
   const handleLeadSubmit = async (e) => {
     e.preventDefault();
 
-    if (!leadForm.name || !leadForm.phone || !leadForm.email || !leadForm.city) {
+    if (!leadForm.name || !leadForm.phone || !leadForm.city) {
       alert('Please fill out all fields.');
       return;
     }
@@ -353,7 +353,7 @@ export default function DailyPracticePaper() {
                     name="name"
                     value={leadForm.name}
                     onChange={handleInputChange}
-                    placeholder="e.g. Priyanuj Baruah"
+                    placeholder=""
                     required
                   />
                 </div>
@@ -379,22 +379,10 @@ export default function DailyPracticePaper() {
                       name="phone"
                       value={leadForm.phone}
                       onChange={handleInputChange}
-                      placeholder="98765 43210"
+                      placeholder=""
                       required
                     />
                   </div>
-                </div>
-
-                <div className="dpp-modal-field">
-                  <label>Email Address *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={leadForm.email}
-                    onChange={handleInputChange}
-                    placeholder="e.g. name@domain.com"
-                    required
-                  />
                 </div>
 
                 <div className="dpp-modal-field">
@@ -404,7 +392,7 @@ export default function DailyPracticePaper() {
                     name="city"
                     value={leadForm.city}
                     onChange={handleInputChange}
-                    placeholder="e.g. Guwahati"
+                    placeholder=""
                     required
                   />
                 </div>

@@ -15,6 +15,7 @@ import AdminEnquiries from '../admin/pages/AdminEnquiries';
 import AdminTestimonials from '../admin/pages/AdminTestimonials';
 import AdminQueries from '../admin/pages/AdminQueries';
 import AdminDPP from '../admin/pages/AdminDPP';
+import AdminStudyMaterialLeads from '../admin/pages/AdminStudyMaterialLeads';
 import AdminGuard from '../admin/guards/AdminGuard';
 import FoundationOne from '../pages/Courses/FoundationOne/FoundationOne';
 import FoundationTwo from '../pages/Courses/FoundationTwo/FoundationTwo';
@@ -73,6 +74,7 @@ const router = createBrowserRouter([
       { path: 'pyq', element: <PYQ /> },
       { path: 'daily-current-affairs-analysis', element: <DailyCurrentAffairs /> },
       { path: 'prelims-notes', element: <PrelimsNotes /> },
+      { path: 'prelims-notes/:slug', element: <PrelimsNotes /> },
       { path: 'mains-notes', element: <MainsNotes /> },
       { path: 'online-notes', element: <OnlineNotes /> },
       { path: 'beginner', element: <DailyPracticePaper /> },
@@ -96,6 +98,7 @@ const router = createBrowserRouter([
       { path: 'queries',      element: <AdminQueries /> },
       { path: 'testimonials', element: <AdminTestimonials /> },
       { path: 'dpp',          element: <AdminDPP /> },
+      { path: 'study-material-leads', element: <AdminStudyMaterialLeads /> },
     ],
   },
 ]);

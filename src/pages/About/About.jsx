@@ -33,13 +33,13 @@ export default function About() {
   }, [location]);
   return (
     <div className="about-page">
-      <SEO 
+      <SEO
         title="About Us | Mission, Vision & Profile"
         description="Learn about the mission, vision, values, and institutional profile of Ashoka IAS Academy. Established in 2021, we are dedicated to helping UPSC & APSC aspirants achieve success."
       />
 
       {/* ── Page Header ── */}
-      <PageHeader 
+      <PageHeader
         title="About Us"
         breadcrumbs={[
           { label: 'Home', to: '/' },
@@ -79,7 +79,7 @@ export default function About() {
 
             {/* Right Column: Quote + Results Card Showcase */}
             <div className="about-side-panel">
-              
+
               {/* Highlight Quote Box */}
               <div className="about-quote-box">
                 <div className="about-quote-icon">
@@ -148,7 +148,6 @@ export default function About() {
             <span className="about-sublabel">WHY CHOOSE US</span>
             <h2 className="about-heading" style={{ textAlign: 'center' }}>Why Ashoka IAS Academy?</h2>
             <div className="about-accent-line" style={{ margin: '0 auto 1.5rem auto' }} />
-            <p className="about-why__sub">Your Success is Our Commitment</p>
           </div>
 
           <div className="about-why__grid">

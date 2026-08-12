@@ -43,7 +43,7 @@ export default function WelcomePopup() {
           <img src={logo} alt="Ashoka IAS Academy" className="wp-banner__logo" />
           <div className="wp-banner__badge">
             <span className="wp-banner__dot" />
-            Admissions Open 2025–26
+            Admissions Open 2026–27
           </div>
         </div>
 

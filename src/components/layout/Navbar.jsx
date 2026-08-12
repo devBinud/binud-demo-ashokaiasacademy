@@ -228,26 +228,34 @@ export default function Navbar() {
                   <div className={`fs-menu__sub${mobileOpen === link.label ? ' fs-menu__sub--open' : ''}`}>
                     {link.dropdown.map((item) =>
                       item.children ? (
-                        <div key={item.label}>
+                        <div key={item.label} className="fs-menu__sub-group">
                           <div className="fs-menu__sub-link fs-menu__sub-link--group">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
                             {item.label}
                           </div>
                           {item.children.map((child) => (
-                            <Link key={child.label} to={child.to} state={child.state || null} className="fs-menu__sub-link fs-menu__sub-link--child" onClick={closeAll}>
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
-                              {child.label}
+                            <NavLink
+                              key={child.label}
+                              to={child.to}
+                              state={child.state || null}
+                              className={({ isActive }) => `fs-menu__sub-link fs-menu__sub-link--child${isActive ? ' fs-menu__sub-link--active' : ''}`}
+                              onClick={closeAll}
+                            >
+                              <span>{child.label}</span>
                               {child.badge && (
                                 <span className="nav-badge">{child.badge}</span>
                               )}
-                            </Link>
+                            </NavLink>
                           ))}
                         </div>
                       ) : (
-                        <Link key={item.label} to={item.to} className="fs-menu__sub-link" onClick={closeAll}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
-                          {item.label}
-                        </Link>
+                        <NavLink
+                          key={item.label}
+                          to={item.to}
+                          className={({ isActive }) => `fs-menu__sub-link${isActive ? ' fs-menu__sub-link--active' : ''}`}
+                          onClick={closeAll}
+                        >
+                          <span>{item.label}</span>
+                        </NavLink>
                       )
                     )}
                   </div>
