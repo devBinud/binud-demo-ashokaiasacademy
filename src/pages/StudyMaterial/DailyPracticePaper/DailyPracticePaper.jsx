@@ -6,6 +6,7 @@ import Loader from '../../../components/ui/Loader';
 import logo from '../../../assets/images/logo.png';
 import SEO from '../../../components/common/SEO';
 import PageHeader from '../../../components/common/PageHeader';
+import PdfViewerModal from '../../../components/common/PdfViewerModal';
 
 // Local PDF imports
 import pdf08May from '../../../assets/pdf/dpp/08_may_DPP.pdf';
@@ -221,12 +222,12 @@ export default function DailyPracticePaper() {
 
   return (
     <div className="study-material-page">
-      <SEO 
+      <SEO
         title="Daily Practice Paper (DPP)"
         description="Solve our daily MCQ-based practice sheets (DPP) for UPSC & APSC Prelims to test your knowledge of static subjects and current affairs."
       />
       {/* Page Header */}
-      <PageHeader 
+      <PageHeader
         title="Daily Practice Paper (DPP)"
         breadcrumbs={[
           { label: 'Home', to: '/' },
@@ -310,12 +311,12 @@ export default function DailyPracticePaper() {
                               {!isUnlocked ? (
                                 <>
                                   <Lock size={12} />
-                                  <span>Click here to view</span>
+                                  <span>View</span>
                                 </>
                               ) : (
                                 <>
                                   <Eye size={12} />
-                                  <span>Click here to view</span>
+                                  <span>View</span>
                                 </>
                               )}
                             </button>
@@ -363,12 +364,12 @@ export default function DailyPracticePaper() {
                   <div className="dpp-phone-input-wrapper">
                     <div className="dpp-phone-prefix">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="16" height="11" style={{ borderRadius: '1px', boxShadow: '0 1px 2px rgba(0,0,0,0.18)', flexShrink: 0 }}>
-                        <rect width="3" height="0.667" fill="#FF9933"/>
-                        <rect y="0.667" width="3" height="0.667" fill="#ffffff"/>
-                        <rect y="1.333" width="3" height="0.667" fill="#138808"/>
-                        <circle cx="1.5" cy="1" r="0.2" fill="#000080"/>
-                        <circle cx="1.5" cy="1" r="0.15" fill="#ffffff"/>
-                        <circle cx="1.5" cy="1" r="0.05" fill="#000080"/>
+                        <rect width="3" height="0.667" fill="#FF9933" />
+                        <rect y="0.667" width="3" height="0.667" fill="#ffffff" />
+                        <rect y="1.333" width="3" height="0.667" fill="#138808" />
+                        <circle cx="1.5" cy="1" r="0.2" fill="#000080" />
+                        <circle cx="1.5" cy="1" r="0.15" fill="#ffffff" />
+                        <circle cx="1.5" cy="1" r="0.05" fill="#000080" />
                         <path d="M1.5 0.8v0.4M1.3 1h0.4M1.36 0.86l0.28 0.28M1.36 1.14l0.28-0.28" stroke="#000080" strokeWidth="0.02" />
                       </svg>
                       <span className="dpp-phone-country-code">+91</span>
@@ -406,25 +407,13 @@ export default function DailyPracticePaper() {
         </div>
       )}
 
-      {/* ── Fullscreen PDF Viewer Overlay ── */}
-      {viewerUrl && (
-        <div className="dpp-viewer-overlay" onContextMenu={(e) => e.preventDefault()}>
-          <div className="dpp-viewer-header">
-            <h3>{viewerTitle} <span className="dpp-viewer-badge" style={{ display: 'inline-block' }}>Protected View</span></h3>
-            <button className="dpp-viewer-close" onClick={handleCloseViewer}>
-              <X size={14} />
-              <span>Close Document</span>
-            </button>
-          </div>
-          <div className="dpp-viewer-body">
-            <iframe
-              src={viewerUrl}
-              title={viewerTitle}
-              allow="autoplay"
-            />
-          </div>
-        </div>
-      )}
+      {/* ── Universal High-Performance PDF Viewer Modal (Mobile, Tablet & Desktop) ── */}
+      <PdfViewerModal
+        isOpen={!!viewerUrl}
+        pdfUrl={viewerUrl}
+        title={viewerTitle}
+        onClose={handleCloseViewer}
+      />
     </div>
   );
 }

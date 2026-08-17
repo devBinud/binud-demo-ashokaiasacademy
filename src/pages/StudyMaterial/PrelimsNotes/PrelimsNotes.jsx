@@ -4,6 +4,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
 import SEO from '../../../components/common/SEO';
 import PageHeader from '../../../components/common/PageHeader';
+import PdfViewerModal from '../../../components/common/PdfViewerModal';
 import logo from '../../../assets/images/logo.png';
 import {
   Lock,
@@ -674,12 +675,12 @@ export default function PrelimsNotes() {
                                   {!isUnlocked ? (
                                     <>
                                       <Lock size={12} />
-                                      <span>Click here to view</span>
+                                      <span>View</span>
                                     </>
                                   ) : (
                                     <>
                                       <Eye size={12} />
-                                      <span>Click here to view</span>
+                                      <span>View</span>
                                     </>
                                   )}
                                 </button>
@@ -787,26 +788,13 @@ export default function PrelimsNotes() {
         </div>
       )}
 
-      {/* ── Fullscreen PDF Viewer Overlay ── */}
-      {viewerUrl && (
-        <div className="dpp-viewer-overlay" onContextMenu={(e) => e.preventDefault()}>
-          <div className="dpp-viewer-header">
-            <h3>
-              {viewerTitle}{' '}
-              <span className="dpp-viewer-badge" style={{ display: 'inline-block' }}>
-                Ashoka IAS Reader
-              </span>
-            </h3>
-            <button className="dpp-viewer-close" onClick={handleCloseViewer}>
-              <X size={14} />
-              <span>Close Reader</span>
-            </button>
-          </div>
-          <div className="dpp-viewer-body">
-            <iframe src={viewerUrl} title={viewerTitle} allow="autoplay" />
-          </div>
-        </div>
-      )}
+      {/* ── Universal High-Performance PDF Viewer Modal (Mobile, Tablet & Desktop) ── */}
+      <PdfViewerModal
+        isOpen={!!viewerUrl}
+        pdfUrl={viewerUrl}
+        title={viewerTitle}
+        onClose={handleCloseViewer}
+      />
     </div>
   );
 }
