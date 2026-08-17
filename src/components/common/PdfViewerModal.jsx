@@ -1,25 +1,150 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
 import './PdfViewerModal.css';
 
 const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
 const PDFJS_WORKER_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+/**
+ * Individual Page Component
+ * Renders its own canvas via PDF.js safely with cancelable tasks and skeleton loader.
+ */
+function PdfPage({ pageNum, pdfDoc, width, ratio, onVisible }) {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const [rendered, setRendered] = useState(false);
+  const renderTaskRef = useRef(null);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const doRender = async () => {
+      if (!pdfDoc || !canvasRef.current || isCancelled) return;
+
+      // Cancel any active render on this canvas
+      if (renderTaskRef.current) {
+        try {
+          renderTaskRef.current.cancel();
+        } catch (e) {
+          // safe catch
+        }
+      }
+
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        if (isCancelled) return;
+
+        const unscaledViewport = page.getViewport({ scale: 1.0 });
+        const scale = width / unscaledViewport.width;
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2); // 2x crispness on mobile retina
+        const viewport = page.getViewport({ scale: scale * pixelRatio });
+
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${width * (unscaledViewport.height / unscaledViewport.width)}px`;
+
+        const ctx = canvas.getContext('2d', { alpha: false });
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport,
+        };
+
+        const renderTask = page.render(renderContext);
+        renderTaskRef.current = renderTask;
+
+        await renderTask.promise;
+
+        if (!isCancelled) {
+          setRendered(true);
+        }
+      } catch (err) {
+        if (err?.name !== 'RenderingCancelledException') {
+          console.error(`Page ${pageNum} render error:`, err);
+        }
+      }
+    };
+
+    // Render immediately for first 2 pages, lazy load the rest with IntersectionObserver
+    if (pageNum <= 2) {
+      doRender();
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            onVisible?.(pageNum);
+            if (!rendered) {
+              doRender();
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '800px 0px', // Pre-render 800px ahead of scroll
+        threshold: [0, 0.5],
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      isCancelled = true;
+      observer.disconnect();
+      if (renderTaskRef.current) {
+        try {
+          renderTaskRef.current.cancel();
+        } catch (e) {
+          // safe
+        }
+      }
+    };
+  }, [pdfDoc, pageNum, width, onVisible]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`pdf-page-container ${rendered ? 'pdf-page-ready' : 'pdf-page-loading'}`}
+      data-page-num={pageNum}
+      style={{
+        width: `${width}px`,
+        minHeight: `${width * ratio}px`,
+      }}
+    >
+      {!rendered && (
+        <div className="pdf-page-skeleton">
+          <div className="pdf-page-spinner" />
+          <span>Page {pageNum}</span>
+        </div>
+      )}
+      <canvas
+        ref={canvasRef}
+        className="pdf-page-canvas"
+        style={{ display: rendered ? 'block' : 'none' }}
+      />
+    </div>
+  );
+}
+
 export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
   const [pdfDoc, setPdfDoc] = useState(null);
   const [numPages, setNumPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  const [zoomLevel, setZoomLevel] = useState(1.0);
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
-  const [pageRatio, setPageRatio] = useState(1.414); // Standard A4 ratio
-  const [baseWidth, setBaseWidth] = useState(780);
+  const [pageRatio, setPageRatio] = useState(1.414);
+  const [pageWidth, setPageWidth] = useState(780);
 
   const containerRef = useRef(null);
-  const renderedPagesRef = useRef(new Set());
-  const observerRef = useRef(null);
 
-  // Lock body scroll when open
+  // Lock body scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -30,6 +155,28 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
+
+  // Compute responsive page width based on window / container
+  const updatePageWidth = useCallback(() => {
+    const screenW = window.innerWidth;
+    if (screenW < 640) {
+      // Mobile: Full width minus 16px padding
+      setPageWidth(Math.max(screenW - 16, 280));
+    } else if (screenW < 1024) {
+      // Tablet: Comfortable width
+      setPageWidth(Math.min(screenW - 48, 720));
+    } else {
+      // Desktop: Standard reading width
+      setPageWidth(820);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    updatePageWidth();
+    window.addEventListener('resize', updatePageWidth);
+    return () => window.removeEventListener('resize', updatePageWidth);
+  }, [isOpen, updatePageWidth]);
 
   // Keyboard navigation & Shortcuts
   useEffect(() => {
@@ -51,7 +198,7 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, currentPage, numPages, onClose]);
 
-  // Ensure PDF.js is available
+  // Ensure PDF.js engine is available
   const ensurePdfJs = useCallback(async () => {
     if (window.pdfjsLib) {
       window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CDN;
@@ -88,162 +235,76 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
     });
   }, []);
 
-  // Clean PDF URL
   const cleanUrl = pdfUrl ? pdfUrl.split('#')[0] : '';
   const isGoogleDrive = cleanUrl.includes('drive.google.com');
 
-  // Load PDF Document
-  useEffect(() => {
-    if (!isOpen || !cleanUrl) {
-      setPdfDoc(null);
-      setNumPages(0);
-      return;
-    }
+  // Load PDF Document with Progress
+  const loadDocument = useCallback(async () => {
+    if (!cleanUrl) return;
 
     if (isGoogleDrive) {
       setLoading(false);
       return;
     }
 
-    let isCancelled = false;
     setLoading(true);
     setError(null);
-    renderedPagesRef.current.clear();
-
-    const loadDoc = async () => {
-      try {
-        const pdfjs = await ensurePdfJs();
-        const loadingTask = pdfjs.getDocument({
-          url: cleanUrl,
-          cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
-          cMapPacked: true,
-        });
-
-        const doc = await loadingTask.promise;
-        if (isCancelled) return;
-
-        setPdfDoc(doc);
-        setNumPages(doc.numPages);
-        setCurrentPage(1);
-
-        // Get first page to calculate natural aspect ratio
-        try {
-          const firstPage = await doc.getPage(1);
-          const viewport = firstPage.getViewport({ scale: 1.0 });
-          if (viewport.width && viewport.height) {
-            setPageRatio(viewport.height / viewport.width);
-          }
-        } catch (e) {
-          // fallback ratio
-        }
-
-        // Calculate initial responsive width
-        const containerW = containerRef.current ? containerRef.current.clientWidth : window.innerWidth;
-        const targetWidth = Math.min(containerW - (window.innerWidth < 640 ? 16 : 48), 850);
-        setBaseWidth(Math.max(targetWidth, 300));
-        setLoading(false);
-      } catch (err) {
-        if (isCancelled) return;
-        console.error('Error loading PDF:', err);
-        setError('Could not display PDF. Please check your network connection.');
-        setLoading(false);
-      }
-    };
-
-    loadDoc();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [isOpen, cleanUrl, isGoogleDrive, ensurePdfJs]);
-
-  // Render a specific page onto its canvas
-  const renderPage = useCallback(async (pageNum, canvasElement) => {
-    if (!pdfDoc || !canvasElement) return;
+    setProgress(10);
 
     try {
-      const page = await pdfDoc.getPage(pageNum);
-      const computedWidth = baseWidth * zoomLevel;
-      const unscaledViewport = page.getViewport({ scale: 1.0 });
-      const scale = computedWidth / unscaledViewport.width;
-      
-      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2); // Cap at 2x for smooth mobile performance
-      const viewport = page.getViewport({ scale: scale * pixelRatio });
+      const pdfjs = await ensurePdfJs();
+      const loadingTask = pdfjs.getDocument({
+        url: cleanUrl,
+        cMapUrl: 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/cmaps/',
+        cMapPacked: true,
+      });
 
-      canvasElement.width = viewport.width;
-      canvasElement.height = viewport.height;
-      canvasElement.style.width = `${computedWidth}px`;
-      canvasElement.style.height = `${computedWidth * (unscaledViewport.height / unscaledViewport.width)}px`;
-
-      const ctx = canvasElement.getContext('2d', { alpha: false });
-      const renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
+      // Progress reporting
+      loadingTask.onProgress = ({ loaded, total }) => {
+        if (total > 0) {
+          const percent = Math.min(Math.round((loaded / total) * 90), 95);
+          setProgress(percent);
+        }
       };
 
-      await page.render(renderContext).promise;
-      renderedPagesRef.current.add(pageNum);
-    } catch (err) {
-      // Ignore cancelled render tasks
-    }
-  }, [pdfDoc, baseWidth, zoomLevel]);
+      const doc = await loadingTask.promise;
+      setPdfDoc(doc);
+      setNumPages(doc.numPages);
+      setCurrentPage(1);
 
-  // Setup Intersection Observer for lazy page rendering
-  useEffect(() => {
-    if (!pdfDoc || numPages === 0 || !containerRef.current) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const pageNum = parseInt(entry.target.getAttribute('data-page-num'), 10);
-          if (!pageNum) return;
-
-          if (entry.isIntersecting) {
-            const canvas = entry.target.querySelector('canvas');
-            if (canvas && !renderedPagesRef.current.has(pageNum)) {
-              renderPage(pageNum, canvas);
-            }
-            // Update active page number based on middle-screen position
-            if (entry.intersectionRatio > 0.4) {
-              setCurrentPage(pageNum);
-            }
-          }
-        });
-      },
-      {
-        root: containerRef.current,
-        rootMargin: '600px 0px', // Pre-render 600px before user scrolls into view
-        threshold: [0, 0.4, 0.8],
-      }
-    );
-
-    observerRef.current = observer;
-    const pageWrappers = containerRef.current.querySelectorAll('.pdf-page-container');
-    pageWrappers.forEach((el) => observer.observe(el));
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [pdfDoc, numPages, renderPage]);
-
-  // When zoom changes, invalidate rendered cache and re-render visible pages
-  useEffect(() => {
-    if (!pdfDoc || numPages === 0) return;
-    renderedPagesRef.current.clear();
-
-    if (containerRef.current) {
-      const pageWrappers = containerRef.current.querySelectorAll('.pdf-page-container');
-      pageWrappers.forEach((el) => {
-        const pageNum = parseInt(el.getAttribute('data-page-num'), 10);
-        const canvas = el.querySelector('canvas');
-        if (canvas) {
-          renderPage(pageNum, canvas);
+      // Get page 1 ratio
+      try {
+        const firstPage = await doc.getPage(1);
+        const viewport = firstPage.getViewport({ scale: 1.0 });
+        if (viewport.width && viewport.height) {
+          setPageRatio(viewport.height / viewport.width);
         }
-      });
-    }
-  }, [zoomLevel, baseWidth, pdfDoc, numPages, renderPage]);
+      } catch (e) {
+        // fallback
+      }
 
-  // Scroll smoothly to a specific page
+      setProgress(100);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error loading PDF document:', err);
+      setError('Could not load PDF document. Please check your internet connection.');
+      setLoading(false);
+    }
+  }, [cleanUrl, isGoogleDrive, ensurePdfJs]);
+
+  useEffect(() => {
+    if (isOpen && cleanUrl) {
+      loadDocument();
+    } else {
+      setPdfDoc(null);
+      setNumPages(0);
+      setLoading(true);
+      setError(null);
+      setProgress(0);
+    }
+  }, [isOpen, cleanUrl, loadDocument]);
+
+  // Scroll smoothly to a target page
   const scrollToPage = (pageNum) => {
     if (!containerRef.current) return;
     const pageEl = containerRef.current.querySelector(`[data-page-num="${pageNum}"]`);
@@ -253,20 +314,18 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
     }
   };
 
-  const handleZoomIn = () => setZoomLevel((z) => Math.min(+(z + 0.2).toFixed(1), 2.5));
-  const handleZoomOut = () => setZoomLevel((z) => Math.max(+(z - 0.2).toFixed(1), 0.6));
+  const handlePageVisible = useCallback((pageNum) => {
+    setCurrentPage(pageNum);
+  }, []);
 
   if (!isOpen) return null;
-
-  const finalPageWidth = baseWidth * zoomLevel;
-  const finalPageHeight = finalPageWidth * pageRatio;
 
   return (
     <div
       className="pdf-viewer-overlay"
       onContextMenu={(e) => e.preventDefault()}
     >
-      {/* ── Top Header ── */}
+      {/* ── Top Header (Clean: Title + Close Icon Only) ── */}
       <div className="pdf-viewer-header">
         <div className="pdf-viewer-title-wrap">
           <h3 className="pdf-viewer-title" title={title}>
@@ -275,27 +334,6 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
         </div>
 
         <div className="pdf-viewer-controls">
-          {numPages > 0 && (
-            <>
-              <button
-                className="pdf-ctrl-btn"
-                onClick={handleZoomOut}
-                title="Zoom Out"
-                aria-label="Zoom Out"
-              >
-                <ZoomOut size={16} />
-              </button>
-              <button
-                className="pdf-ctrl-btn"
-                onClick={handleZoomIn}
-                title="Zoom In"
-                aria-label="Zoom In"
-              >
-                <ZoomIn size={16} />
-              </button>
-            </>
-          )}
-
           <button
             className="pdf-close-btn"
             onClick={onClose}
@@ -311,8 +349,19 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
       <div className="pdf-viewer-body" ref={containerRef}>
         {loading && (
           <div className="pdf-loading-state">
-            <div className="pdf-loading-spinner" />
-            <p>Loading document...</p>
+            <div className="pdf-loading-spinner-wrap">
+              <div className="pdf-loading-spinner" />
+            </div>
+            <h4 className="pdf-loading-title">Loading Study Material...</h4>
+            <p className="pdf-loading-subtext">
+              {progress > 0 ? `${progress}% complete` : 'Preparing document reader'}
+            </p>
+            <div className="pdf-progress-bar-wrap">
+              <div
+                className="pdf-progress-bar-fill"
+                style={{ width: `${Math.max(progress, 15)}%` }}
+              />
+            </div>
           </div>
         )}
 
@@ -321,6 +370,9 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
             <AlertCircle size={36} />
             <h4>Document Unavailable</h4>
             <p>{error}</p>
+            <button className="pdf-retry-btn" onClick={loadDocument}>
+              Retry
+            </button>
           </div>
         )}
 
@@ -334,22 +386,19 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
           />
         )}
 
-        {/* Native HTML5 Canvas Multi-Page Rendering (Supports all 100+ pages on Mobile, Tablet & Desktop) */}
+        {/* Native HTML5 Canvas Multi-Page Rendering */}
         {!loading && !error && !isGoogleDrive && numPages > 0 && (
           Array.from({ length: numPages }, (_, index) => {
             const pageNum = index + 1;
             return (
-              <div
+              <PdfPage
                 key={pageNum}
-                className="pdf-page-container"
-                data-page-num={pageNum}
-                style={{
-                  width: `${finalPageWidth}px`,
-                  minHeight: `${finalPageHeight}px`,
-                }}
-              >
-                <canvas className="pdf-page-canvas" />
-              </div>
+                pageNum={pageNum}
+                pdfDoc={pdfDoc}
+                width={pageWidth}
+                ratio={pageRatio}
+                onVisible={handlePageVisible}
+              />
             );
           })
         )}
