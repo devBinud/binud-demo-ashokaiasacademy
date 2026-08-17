@@ -13,6 +13,7 @@ function PdfPage({ pageNum, pdfDoc, width, ratio, onVisible }) {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
   const [rendered, setRendered] = useState(false);
+  const renderedRef = useRef(false);
   const renderTaskRef = useRef(null);
 
   useEffect(() => {
@@ -59,6 +60,7 @@ function PdfPage({ pageNum, pdfDoc, width, ratio, onVisible }) {
         await renderTask.promise;
 
         if (!isCancelled) {
+          renderedRef.current = true;
           setRendered(true);
         }
       } catch (err) {
@@ -78,7 +80,7 @@ function PdfPage({ pageNum, pdfDoc, width, ratio, onVisible }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             onVisible?.(pageNum);
-            if (!rendered) {
+            if (!renderedRef.current) {
               doRender();
             }
           }
@@ -178,6 +180,16 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
     return () => window.removeEventListener('resize', updatePageWidth);
   }, [isOpen, updatePageWidth]);
 
+  // Scroll smoothly to a target page
+  const scrollToPage = useCallback((pageNum) => {
+    if (!containerRef.current) return;
+    const pageEl = containerRef.current.querySelector(`[data-page-num="${pageNum}"]`);
+    if (pageEl) {
+      pageEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setCurrentPage(pageNum);
+    }
+  }, []);
+
   // Keyboard navigation & Shortcuts
   useEffect(() => {
     if (!isOpen) return;
@@ -196,7 +208,7 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, currentPage, numPages, onClose]);
+  }, [isOpen, currentPage, numPages, onClose, scrollToPage]);
 
   // Ensure PDF.js engine is available
   const ensurePdfJs = useCallback(async () => {
@@ -303,16 +315,6 @@ export default function PdfViewerModal({ isOpen, pdfUrl, title, onClose }) {
       setProgress(0);
     }
   }, [isOpen, cleanUrl, loadDocument]);
-
-  // Scroll smoothly to a target page
-  const scrollToPage = (pageNum) => {
-    if (!containerRef.current) return;
-    const pageEl = containerRef.current.querySelector(`[data-page-num="${pageNum}"]`);
-    if (pageEl) {
-      pageEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setCurrentPage(pageNum);
-    }
-  };
 
   const handlePageVisible = useCallback((pageNum) => {
     setCurrentPage(pageNum);
