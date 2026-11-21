@@ -23,7 +23,8 @@ import ConceptBuilding from '../pages/Courses/ConceptBuilding/ConceptBuilding';
 import PrelimsTestSeries from '../pages/Courses/PrelimsTestSeries/PrelimsTestSeries';
 import MainsTestSeries from '../pages/Courses/MainsTestSeries/MainsTestSeries';
 import AnswerWriting from '../pages/Courses/AnswerWriting/AnswerWriting';
-import FAQ from '../pages/FAQ/FAQ';
+// FAQ page hidden for now (Q&A saved in Ashoka_IAS_FAQs.pdf). To restore: re-add this import + the 'faq' route.
+// import FAQ from '../pages/FAQ/FAQ';
 import AssamSection from '../pages/AssamSection/AssamSection';
 import Gallery from '../pages/Gallery/Gallery';
 import CoursesAll from '../pages/CoursesAll/CoursesAll';
@@ -41,6 +42,9 @@ import APSCTestSeries from '../pages/StudyMaterial/APSCTestSeries/APSCTestSeries
 import UPSCGuide from '../pages/UPSCGuide/UPSCGuide';
 import FoundersVision from '../pages/FoundersVision/FoundersVision';
 import YouTubeLectures from '../pages/YouTubeLectures/YouTubeLectures';
+import Auth from '../pages/Auth/Auth';
+import Blog from '../pages/Blog/Blog';
+import BlogPost from '../pages/Blog/BlogPost';
 
 const router = createBrowserRouter([
   {
@@ -62,7 +66,6 @@ const router = createBrowserRouter([
       { path: 'privacy-policy', element: <PrivacyPolicy /> },
       { path: 'terms-of-use', element: <TermsOfUse /> },
       { path: 'results', element: <Results /> },
-      { path: 'faq', element: <FAQ /> },
       { path: 'assam-section', element: <AssamSection /> },
       { path: 'scholarship-test', element: <ScholarshipTest /> },
       { path: 'scholarship-test/:testType', element: <ScholarshipTest /> },
@@ -81,6 +84,10 @@ const router = createBrowserRouter([
       { path: 'intermediate', element: <Navigate to="/apsc-test-series" replace /> },
       { path: 'apsc-test-series', element: <APSCTestSeries /> },
       { path: 'upsc-guide', element: <UPSCGuide /> },
+      { path: 'blog', element: <Blog /> },
+      { path: 'blog/:slug', element: <BlogPost /> },
+      { path: 'login', element: <Auth initialMode="login" /> },
+      { path: 'signup', element: <Auth initialMode="signup" /> },
       { path: '*', element: <NotFound /> },
     ],
   },

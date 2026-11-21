@@ -177,7 +177,7 @@
     flex-direction: column;
     gap: 2px;
     position: sticky;
-    top: calc(36px + var(--header-height-desktop) + var(--space-4));
+    top: calc(var(--header-height-desktop) + var(--space-4));
     background: #fff;
     border-radius: 10px;
     /* padding: var(--space-3); */

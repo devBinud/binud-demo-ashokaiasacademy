@@ -71,7 +71,7 @@ export default function AdminQueries() {
       <div className="admin-page-header">
         <div>
           <h1>Student Queries</h1>
-          <p>Questions submitted by students from the FAQ page</p>
+          <p>Questions submitted by students</p>
         </div>
         <div className="admin-enquiries__count">
           <span>{filtered.length} result{filtered.length !== 1 ? 's' : ''}</span>

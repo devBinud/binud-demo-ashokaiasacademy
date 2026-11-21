@@ -6,11 +6,4 @@
 
 .root-layout__main {
   flex: 1;
-  padding-top: calc(36px + var(--header-height-mobile));
-}
-
-@media (min-width: 768px) {
-  .root-layout__main {
-    padding-top: calc(36px + var(--header-height-desktop));
-  }
 }

@@ -392,7 +392,7 @@
   overflow: hidden;
   box-shadow: var(--shadow-md);
   position: sticky;
-  top: calc(38px + var(--header-height-desktop) + var(--space-6));
+  top: calc(var(--header-height-desktop) + var(--space-6));
 }
 
 .course-sidebar__head {

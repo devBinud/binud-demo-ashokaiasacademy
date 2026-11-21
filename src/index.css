@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Sumana:wght@400;700&display=swap');
 
 /* ============================================================
    ASHOKA IAS ACADEMY — Global Design Tokens & Base Styles
@@ -71,9 +70,9 @@
   --color-info: #2C3E6B;
 
   /* --- Typography --- */
-  --font-heading: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-navbar: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-navbar: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: "STIX Two Text", serif;
   --font-mono: 'Courier New', Courier, monospace;
 
@@ -174,7 +173,21 @@
   --container-2xl: 1440px;
 
   --header-height-mobile: 56px;
-  --header-height-desktop: 64px;
+  --header-height-desktop: 62px;
+
+  /* --- Header / Navbar palette --- */
+  --nav-indigo-deep: #0f0b66;
+  /* Announcement bar */
+  --nav-indigo: #16108c;
+  /* Contact strip, active link */
+  --nav-indigo-ink: #0d1642;
+  /* Dropdown top border */
+  --nav-red: #e5001e;
+  /* Underline, live dot, CTA */
+  --nav-ink: #2a2a2a;
+  /* Nav text */
+  --nav-tint: #f5f4ff;
+  /* Hover background */
 }
 
 /* ------------------------------------------------------------
@@ -205,13 +218,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  /* clip (not hidden) so the sticky navbar keeps working */
   overflow-x: hidden;
+  overflow-x: clip;
 
-  /* Disable text selection site-wide */
+  /* Text selection disable — turned off during development.
+     Re-enable before launch if you want to block copying:
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none;
+  user-select: none; */
 }
 
 /* Re-enable selection inside form inputs so users can type/paste */

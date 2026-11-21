@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { useAuth } from '../../context/AuthContext';
+import { isAdminEmail } from '../../config';
 import { auth } from '../../firebase/config';
 import './AdminLogin.css';
 import logo from '../../assets/images/logo.png';
 
 export default function AdminLogin() {
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
 
   const [form, setForm] = useState({ email: '', password: '' });
@@ -28,7 +29,13 @@ export default function AdminLogin() {
     setError('');
     setLoading(true);
     try {
-      await login(form.email.trim(), form.password);
+      const cred = await login(form.email.trim(), form.password);
+      if (!isAdminEmail(cred.user.email)) {
+        // A valid account, but not on the admin list (e.g. a student)
+        await logout();
+        setError('This account does not have admin access. Students can sign in from the Login/Sign up page.');
+        return;
+      }
       navigate('/admin/dashboard');
     } catch (err) {
       console.error(err.code, err.message);

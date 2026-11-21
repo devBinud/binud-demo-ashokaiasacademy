@@ -1,0 +1,44 @@
+// ============================================================
+// SUGGESTED Firestore security rules for Ashoka IAS Academy
+//
+// Why: students can now create accounts. Rules that only check
+// "request.auth != null" would let ANY student read enquiries,
+// leads and queries. These rules allow that only for admins.
+//
+// How to use:
+//  1. Put the SAME admin email(s) you listed in src/config.js below.
+//  2. Firebase Console → Firestore Database → Rules → paste → Publish.
+//  3. Test the public forms + admin panel afterwards.
+// ============================================================
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          // 'your-admin-email@example.com'
+        ];
+    }
+
+    // Public forms: anyone can submit, only admins can read/manage
+    match /enquiries/{id}            { allow create: if true; allow read, update, delete: if isAdmin(); }
+    match /student_queries/{id}      { allow create: if true; allow read, update, delete: if isAdmin(); }
+    match /dpp_enquiries/{id}        { allow create: if true; allow read, update, delete: if isAdmin(); }
+    match /study_material_leads/{id} { allow create: if true; allow read, update, delete: if isAdmin(); }
+
+    // Public content: anyone can read, only admins can change
+    match /testimonials/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /dpps/{id}         { allow read: if true; allow write: if isAdmin(); }
+
+    // Student profiles: each student manages only their own; admins can read all
+    match /students/{uid} {
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == uid);
+      allow create, update: if request.auth != null && request.auth.uid == uid;
+      allow delete: if isAdmin();
+    }
+
+    // Everything else: admins only
+    match /{document=**} { allow read, write: if isAdmin(); }
+  }
+}

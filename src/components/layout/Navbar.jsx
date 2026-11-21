@@ -40,6 +40,7 @@ const NAV_LINKS = [
       },
     ],
   },
+  { label: 'Current Affairs', to: '/daily-current-affairs-analysis', bold: true },
   {
     label: 'Student Zone',
     to: null,
@@ -69,6 +70,7 @@ const NAV_LINKS = [
     ],
   },
   { label: 'Gallery', to: '/gallery' },
+  { label: 'Blog', to: '/blog' },
   {
     label: 'Admissions',
     to: null,
@@ -83,14 +85,28 @@ const NAV_LINKS = [
 
 
 
-  { label: 'FAQs', to: '/faq' },
-  { label: 'Contact Us', to: '/contact' },
+  { label: 'Contact Us', to: '/contact', bold: true },
 ];
+
+const CHEVRON_DOWN = (
+  <svg className="navbar__chevron" width="12" height="12" viewBox="0 0 320 512" fill="currentColor" aria-hidden="true">
+    <path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" />
+  </svg>
+);
+
+/* True when the current route lives inside this top-level dropdown */
+const isGroupActive = (link, pathname) =>
+  !!link.dropdown &&
+  link.dropdown.some((item) =>
+    item.to === pathname || (item.children || []).some((c) => c.to === pathname)
+  );
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+  // Desktop dropdown that was just used — kept closed until the mouse leaves it
+  const [closedItem, setClosedItem] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -123,7 +139,18 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className="navbar__links" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
-            <div key={link.label} className="navbar__item">
+            <div
+              key={link.label}
+              className={`navbar__item${closedItem === link.label ? ' navbar__item--closed' : ''}`}
+              onMouseLeave={() => closedItem === link.label && setClosedItem(null)}
+              onClick={(e) => {
+                const a = e.target.closest('.navbar__dropdown a');
+                if (a) {
+                  a.blur(); // drop focus so :focus-within doesn't keep it open
+                  setClosedItem(link.label);
+                }
+              }}
+            >
 
               {/* Trigger */}
               {link.to ? (
@@ -131,24 +158,19 @@ export default function Navbar() {
                   to={link.to}
                   end={link.to === '/'}
                   className={({ isActive }) =>
-                    `navbar__link${isActive ? ' navbar__link--active' : ''}`
+                    `navbar__link${link.bold ? ' navbar__link--bold' : ''}${isActive ? ' navbar__link--active' : ''}`
                   }
                 >
-                  {link.label}
-                  {link.dropdown && (
-                    <svg className="navbar__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  )}
+                  <span className="navbar__label">{link.label}</span>
+                  {link.dropdown && CHEVRON_DOWN}
                 </NavLink>
               ) : (
-                <button className="navbar__link navbar__link--btn">
-                  {link.label}
-                  {link.dropdown && (
-                    <svg className="navbar__chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  )}
+                <button
+                  type="button"
+                  className={`navbar__link navbar__link--btn${isGroupActive(link, location.pathname) ? ' navbar__link--active' : ''}`}
+                >
+                  <span className="navbar__label">{link.label}</span>
+                  {link.dropdown && CHEVRON_DOWN}
                 </button>
               )}
 
@@ -264,7 +286,7 @@ export default function Navbar() {
                 <NavLink
                   to={link.to}
                   end={link.to === '/'}
-                  className={({ isActive }) => `fs-menu__link${isActive ? ' fs-menu__link--active' : ''}`}
+                  className={({ isActive }) => `fs-menu__link${link.bold ? ' fs-menu__link--bold' : ''}${isActive ? ' fs-menu__link--active' : ''}`}
                   onClick={closeAll}
                 >
                   <span>{link.label}</span>

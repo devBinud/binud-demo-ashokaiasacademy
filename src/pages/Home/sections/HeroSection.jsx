@@ -1,149 +1,275 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import heroBg from '../../../assets/images/hero-section-image-bg.png';
-import heroImage1 from '../../../assets/images/hero/1.jpeg';
-import heroImage2 from '../../../assets/images/hero/2.png';
-import heroImage3 from '../../../assets/images/hero/3.png';
+import toppersImg from '../../../assets/images/hero/1.jpeg';
+import collabImg from '../../../assets/images/hero/3.png';
+import kaushikImg from '../../../assets/images/hero/toppers/kaushik-kalita.png';
+import asimImg from '../../../assets/images/hero/toppers/asim-kr-mandol.png';
 import './HeroSection.css';
 
-const heroSlides = [
-  { id: 1, image: heroImage1, alt: 'Ashoka IAS Academy - Toppers' },
-  { id: 2, image: heroImage2, alt: 'Ashoka IAS Academy - Results' },
-  { id: 3, image: heroImage3, alt: 'Ashoka IAS Academy - Highlights' },
+/* ============================================================
+   SLIDES — edit text / links here
+   type 'duo'     → two people on the sides, headline in the middle
+   type 'feature' → headline on the left, image card on the right
+   ============================================================ */
+const SLIDES = [
+  {
+    id: 'determination',
+    type: 'duo',
+    kicker: 'Our Achievers',
+    titleTop: 'Where Determination',
+    titleBottom: 'Meets',
+    titleHighlight: 'Success',
+    sub: 'Structured guidance · Expert mentorship · Proven results',
+    cta: { label: 'Start Your Journey With Us', to: '/online-application' },
+    people: [
+      { name: 'Kaushik Kalita', role: 'APS', rank: 'Rank 3', image: kaushikImg },
+      { name: 'Asim Kr Mandol', role: 'Sub Registrar', rank: 'Rank 23', image: asimImg },
+    ],
+  },
+  {
+    id: 'results',
+    type: 'feature',
+    kicker: 'UPSC · APSC · Allied Exams',
+    titleTop: 'Our Toppers,',
+    titleHighlight: 'Our Pride',
+    sub: 'Trusted by 500+ aspirants across Assam and North-East India.',
+    cta: { label: 'View Our Results', to: '/results' },
+    image: toppersImg,
+    imageAlt: 'Ashoka IAS Academy toppers and rank holders',
+  },
+  {
+    id: 'collaboration',
+    type: 'feature',
+    kicker: 'In Collaboration With',
+    titleTop: 'UPSC Guide ×',
+    titleHighlight: 'Ashoka IAS',
+    sub: 'By the Achievers, for the Aspirants.',
+    cta: { label: 'Explore UPSC Guide', to: '/upsc-guide' },
+    image: collabImg,
+    imageAlt: 'UPSC Guide and Ashoka IAS Academy collaboration',
+  },
 ];
 
-const SLIDE_DURATION = 4000;
+const SLIDE_DURATION = 5000;
+
+const Arrow = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);
+
+function SlideCta({ cta }) {
+  return (
+    <Link to={cta.to} className="hs__cta">
+      <span>{cta.label}</span>
+      <Arrow />
+    </Link>
+  );
+}
+
+function Person({ person, side }) {
+  return (
+    <figure className={`hs__person hs__person--${side}`}>
+      <div className="hs__photo-ring">
+        <img src={person.image} alt={person.name} className="hs__photo" />
+        <span className="hs__rank">{person.rank}</span>
+      </div>
+      <figcaption className="hs__caption">
+        <strong>{person.name}</strong>
+        <span>{person.role}</span>
+      </figcaption>
+    </figure>
+  );
+}
+
+function Slide({ slide, index }) {
+  const eager = index === 0;
+  return (
+    <div className={`hs__slide hs__slide--${slide.type}`}>
+      {slide.type === 'duo' ? (
+        <>
+          <Person person={slide.people[0]} side="left" />
+          <div className="hs__center">
+            <span className="hs__kicker">{slide.kicker}</span>
+            <h2 className="hs__title">
+              {slide.titleTop}
+              <br />
+              {slide.titleBottom} <span className="hs__hl">{slide.titleHighlight}</span>
+            </h2>
+            <p className="hs__sub">{slide.sub}</p>
+          </div>
+          <Person person={slide.people[1]} side="right" />
+          <div className="hs__cta-row">
+            <SlideCta cta={slide.cta} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="hs__text">
+            <span className="hs__kicker">{slide.kicker}</span>
+            <h2 className="hs__title">
+              {slide.titleTop}
+              <br />
+              <span className="hs__hl">{slide.titleHighlight}</span>
+            </h2>
+            <span className="hs__rule" aria-hidden="true" />
+            <p className="hs__sub">{slide.sub}</p>
+          </div>
+          <div className="hs__media">
+            <img
+              src={slide.image}
+              alt={slide.imageAlt}
+              loading={eager ? 'eager' : 'lazy'}
+            />
+          </div>
+          <div className="hs__cta-row">
+            <SlideCta cta={slide.cta} />
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+const QUICK_LINKS = [
+  { icon: 'fa-solid fa-laptop', title: 'Online Admission', text: 'Apply from anywhere', to: '/online-application' },
+  { icon: 'fa-solid fa-school', title: 'Offline Admission', text: 'Guwahati & Nagaon centres', to: '/offline-admission' },
+  { icon: 'fa-solid fa-book-open', title: 'Free Study Material', text: 'Notes, PYQs & current affairs', to: '/prelims-notes' },
+  { icon: 'fa-solid fa-phone', title: 'Talk to a Counsellor', text: '+91 91814 11843', href: 'tel:+919181411843' },
+];
 
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState(null);
-  const [direction, setDirection] = useState('next'); // 'next' | 'prev'
-  const intervalRef = useRef(null);
+  const [paused, setPaused] = useState(false);
+  const touchX = useRef(null);
+  const count = SLIDES.length;
 
-  const startTimer = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      navigate('next');
-    }, SLIDE_DURATION);
-  };
+  const goTo = useCallback((i) => setCurrent(((i % count) + count) % count), [count]);
+  const next = useCallback(() => goTo(current + 1), [current, goTo]);
+  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-  const navigate = (dir, targetIndex = null) => {
-    setDirection(dir);
-    setPrev(current);
-    if (targetIndex !== null) {
-      setCurrent(targetIndex);
-    } else if (dir === 'next') {
-      setCurrent((c) => (c + 1) % heroSlides.length);
-    } else {
-      setCurrent((c) => (c - 1 + heroSlides.length) % heroSlides.length);
-    }
-  };
-
+  /* Autoplay — restarts after every slide change, pauses on hover/focus */
   useEffect(() => {
-    startTimer();
-    return () => {
-      clearInterval(intervalRef.current);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current]);
+    if (paused) return undefined;
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return undefined;
+    const t = setTimeout(next, SLIDE_DURATION);
+    return () => clearTimeout(t);
+  }, [current, paused, next]);
 
-  const handleDot = (index) => {
-    if (index === current) return;
-    navigate(index > current ? 'next' : 'prev', index);
+  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+    touchX.current = null;
+  };
+
+  const onKeyDown = (e) => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
   };
 
   return (
-    <section
-      className="hero"
-      style={{
-        backgroundImage: `url(${heroBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      <div className="container hero__inner">
-
-        {/* LEFT */}
-        <div className="hero__content">
-          <span className="hero__tag">
-            <span className="hero__tag-dot" />
-            Assam and North-East's Premier IAS Academy
-          </span>
-
-          <h1 className="hero__title">
-            Premier Coaching for<br />
-            <span className="hero__title-gold">UPSC, APSC</span><br />
-            other Allied Exams(SSC, Banking, NDA & CDS)
-          </h1>
-
-          <p className="hero__desc">
-            Join Ashoka IAS Academy - a trusted coaching institution dedicated to nurturing
-            future civil servants through structured programs, expert mentorship, and
-            result-oriented preparation.
-          </p>
-
-          <p className="hero__trust">
-            <strong>Trusted by 500+ aspirants across Assam and North-East India</strong>
-          </p>
-
-          {/* Stat boxes */}
-          <div className="hero__stats">
-            <div className="hero__stat">
-              <strong>500+</strong>
-              <span>Students Enrolled</span>
-            </div>
-            <div className="hero__stat">
-              <strong>150+</strong>
-              <span>Selections</span>
-            </div>
-            <div className="hero__stat">
-              <strong>24×7</strong>
-              <span>Support</span>
-            </div>
+    <>
+      {/* ── Full-width banner slider ── */}
+      <section
+        className="hs"
+        aria-roledescription="carousel"
+        aria-label="Highlights"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onKeyDown={onKeyDown}
+      >
+        <div className="hs__viewport">
+          <div className="hs__track" style={{ transform: `translateX(-${current * 100}%)` }}>
+            {SLIDES.map((slide, i) => (
+              <div
+                key={slide.id}
+                className="hs__frame"
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${count}`}
+                aria-hidden={i !== current}
+                inert={i !== current}
+              >
+                <Slide slide={slide} index={i} />
+              </div>
+            ))}
           </div>
 
-          <Link to="/contact" className="hero__cta-btn">
-            Apply Now
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
+          <button type="button" className="hs__arrow hs__arrow--prev" onClick={prev} aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M15 6l-6 6 6 6" /></svg>
+          </button>
+          <button type="button" className="hs__arrow hs__arrow--next" onClick={next} aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
 
-        {/* RIGHT — Basic Clean Slider with Dot Indicators */}
-        <div className="hero__slider-container">
-          <div className="hero__slider">
-
-            {/* Slides */}
-            <div className="hero__slides-track">
-              {heroSlides.map((slide, index) => {
-                let cls = 'hero__slide';
-                if (index === current) cls += ' hero__slide--active';
-                else if (index === prev) cls += direction === 'next' ? ' hero__slide--exit-left' : ' hero__slide--exit-right';
-                return (
-                  <div key={slide.id} className={cls}>
-                    <img src={slide.image} alt={slide.alt} className="hero__image" />
-                  </div>
-                );
-              })}
-            </div>
-
-          </div>
-
-          {/* Two Rounded indicators at the bottom outside */}
-          <div className="hero__dots">
-            {heroSlides.map((_, index) => (
+          <div className="hs__dots">
+            {SLIDES.map((s, i) => (
               <button
-                key={index}
-                className={`hero__dot ${index === current ? 'hero__dot--active' : ''}`}
-                onClick={() => handleDot(index)}
-                aria-label={`Go to slide ${index + 1}`}
+                key={s.id}
+                type="button"
+                className={`hs__dot${i === current ? ' hs__dot--active' : ''}`}
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === current}
               />
             ))}
           </div>
         </div>
+      </section>
 
-      </div>
-    </section>
+      {/* ── Intro card overlapping the slider ── */}
+      <section className="hero-intro">
+        <div className="container">
+          <div className="hero-intro__card">
+            <div className="hero-intro__content">
+              <span className="hero-intro__kicker">Ashoka IAS Academy · Guwahati &amp; Nagaon</span>
+              <h1 className="hero-intro__title">
+                Premier Coaching for UPSC, <span>APSC &amp; Allied Exams.</span>
+              </h1>
+              <p className="hero-intro__desc">
+                Join Ashoka IAS Academy, a trusted institution nurturing future civil servants
+                across Assam and North-East India through structured programmes, expert
+                mentorship and result-oriented preparation for UPSC, APSC, SSC, Banking,
+                NDA &amp; CDS.
+              </p>
+              <div className="hero-intro__actions">
+                <Link to="/online-application" className="hero-intro__btn hero-intro__btn--primary">
+                  Apply Now <Arrow />
+                </Link>
+                <Link to="/courses-all" className="hero-intro__btn hero-intro__btn--ghost">
+                  Explore Courses
+                </Link>
+              </div>
+            </div>
+
+            <div className="hero-intro__tiles">
+              {QUICK_LINKS.map((q) => {
+                const inner = (
+                  <>
+                    <span className="hero-intro__tile-icon"><i className={q.icon} aria-hidden="true" /></span>
+                    <span className="hero-intro__tile-body">
+                      <strong>{q.title}</strong>
+                      <span>{q.text}</span>
+                    </span>
+                  </>
+                );
+                return q.href ? (
+                  <a key={q.title} href={q.href} className="hero-intro__tile">{inner}</a>
+                ) : (
+                  <Link key={q.title} to={q.to} className="hero-intro__tile">{inner}</Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
