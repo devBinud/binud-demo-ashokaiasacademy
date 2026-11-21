@@ -535,7 +535,6 @@ export default function AssamSection() {
                 </div>
 
                 <h2 className="mains-article-title">{active.article.title}</h2>
-                <div className="mains-article-divider" />
 
                 <p className="mains-article-intro">{active.article.introduction}</p>
 

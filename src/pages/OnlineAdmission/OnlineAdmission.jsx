@@ -1,99 +1,81 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import SEO from '../../components/common/SEO';
 import PageHeader from '../../components/common/PageHeader';
-import './OnlineAdmission.css';
-import admissionBg from '../../assets/images/4.jpg';
 import CtaSection from '../Home/sections/CtaSection';
+import './OnlineAdmission.css';
 
+const COURSES = [
+  { value: 'one-year-foundation', label: 'One Year Foundation Course (UPSC/APSC)' },
+  { value: 'two-year-integrated', label: 'Integrated Program - Class 11 & 12 (UPSC/APSC)' },
+  { value: 'pre-foundation', label: '6-Month Pre-Foundation Course' },
+  { value: 'degree-coaching', label: 'Integrated Degree + Competitive Exam Coaching Programme' },
+  { value: 'crash-course', label: 'Crash Course Programme (APSC CCE / ADRE)' },
+];
+
+const courseLabel = (value) => COURSES.find((c) => c.value === value)?.label || value;
+
+const EMPTY_FORM = {
+  fullName: '',
+  email: '',
+  phone: '',
+  course: '',
+  parentSignature: null,
+  parentSignatureName: '',
+  declaration: false,
+};
 
 export default function OnlineAdmission() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    course: '',
-    parentSignature: null,
-    parentSignatureName: '',
-    declaration: false,
-  });
-
+  const [formData, setFormData] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [receiptData, setReceiptData] = useState(null);
 
-  // Auto-scroll to top when page mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-
-    // Clear validation error on change
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: '' }));
-    }
+    const next = name === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value;
+    setFormData((prev) => ({ ...prev, [name]: type === 'checkbox' ? checked : next }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) {
-      // Validate file size (limit to 2MB)
-      if (file.size > 2 * 1024 * 1024) {
-        setErrors((prev) => ({
-          ...prev,
-          parentSignature: 'File size must be under 2MB',
-        }));
-        return;
-      }
-
-      setFormData((prev) => ({
-        ...prev,
-        parentSignature: file,
-        parentSignatureName: file.name,
-      }));
-
-      // Clear error
-      if (errors.parentSignature) {
-        setErrors((prev) => ({ ...prev, parentSignature: '' }));
-      }
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) {
+      setErrors((prev) => ({ ...prev, parentSignature: 'File size must be under 2MB' }));
+      return;
     }
+    setFormData((prev) => ({ ...prev, parentSignature: file, parentSignatureName: file.name }));
+    if (errors.parentSignature) setErrors((prev) => ({ ...prev, parentSignature: '' }));
   };
 
   const removeFile = () => {
-    setFormData((prev) => ({
-      ...prev,
-      parentSignature: null,
-      parentSignatureName: '',
-    }));
+    setFormData((prev) => ({ ...prev, parentSignature: null, parentSignatureName: '' }));
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.fullName.trim()) newErrors.fullName = 'Full Name is required';
+    if (!formData.fullName.trim()) newErrors.fullName = 'Full name is required';
 
-    // Email Validation
     if (!formData.email.trim()) {
-      newErrors.email = 'Email Address is required';
+      newErrors.email = 'Email address is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address';
     }
 
-    // Phone Validation (Indian 10-digit format)
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Contact Number is required';
-    } else if (!/^[6-9]\d{9}$/.test(formData.phone.replace(/[\s-]/g, ''))) {
+      newErrors.phone = 'Contact number is required';
+    } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
       newErrors.phone = 'Please enter a valid 10-digit mobile number';
     }
 
-    if (!formData.course) newErrors.course = 'Please select a course program';
-    if (!formData.parentSignature) newErrors.parentSignature = "Parent's signature file upload is required";
-    if (!formData.declaration) newErrors.declaration = 'You must accept the admission terms and declaration';
+    if (!formData.course) newErrors.course = 'Please select a course programme';
+    if (!formData.parentSignature) newErrors.parentSignature = "Please upload the parent's signature";
+    if (!formData.declaration) newErrors.declaration = 'Please accept the declaration to continue';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -102,23 +84,21 @@ export default function OnlineAdmission() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      const errorField = document.querySelector('.admission-form__error');
-      if (errorField) {
-        errorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      // Wait for the error messages to render, then bring the first one into view
+      requestAnimationFrame(() => {
+        document.querySelector('.oa-error')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate API registration call
+    // Simulated registration call (no backend yet)
     setTimeout(() => {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      const generatedReceiptId = `AS-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
       setReceiptData({
         ...formData,
-        receiptId: generatedReceiptId,
+        receiptId: `AS-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`,
         submissionDate: new Date().toLocaleDateString('en-IN', {
           day: 'numeric',
           month: 'long',
@@ -131,353 +111,264 @@ export default function OnlineAdmission() {
     }, 1500);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
   const resetForm = () => {
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      course: '',
-      parentSignature: null,
-      parentSignatureName: '',
-      declaration: false,
-    });
+    setFormData(EMPTY_FORM);
     setErrors({});
-    setIsSubmitted(false);
     setReceiptData(null);
   };
 
-  if (isSubmitted && receiptData) {
-    return (
-      <div className="admission-success container">
-        <div className="admission-success__card">
-          <div className="admission-success__header">
-            <div className="admission-success__badge">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                <polyline points="22 4 12 14.01 9 11.01" />
-              </svg>
-            </div>
-            <h2 className="admission-success__title">Admission Registered!</h2>
-            <p className="admission-success__subtitle">
-              Your simplified enrollment application has been logged successfully.
-            </p>
-          </div>
-
-          {/* Printable Ticket Receipt */}
-          <div className="admission-receipt" id="printable-admission-receipt">
-            <div className="admission-receipt__header">
-              <div className="admission-receipt__brand">
-                <span className="receipt-brand-text">ASHOKA IAS ACADEMY</span>
-                <span className="receipt-brand-tag">PROVISIONAL ADMISSION RECEIPT</span>
-              </div>
-              <div className="admission-receipt__id">
-                <span className="receipt-id-label">Receipt ID</span>
-                <strong className="receipt-id-val">{receiptData.receiptId}</strong>
-              </div>
-            </div>
-
-            <div className="admission-receipt__grid">
-              <div className="receipt-info-item receipt-info-item--full">
-                <span className="receipt-info-label">Candidate Name</span>
-                <span className="receipt-info-value">{receiptData.fullName}</span>
-              </div>
-              <div className="receipt-info-item">
-                <span className="receipt-info-label">Contact Number</span>
-                <span className="receipt-info-value">+91 {receiptData.phone}</span>
-              </div>
-              <div className="receipt-info-item">
-                <span className="receipt-info-label">Registered Email</span>
-                <span className="receipt-info-value">{receiptData.email}</span>
-              </div>
-              <div className="receipt-info-item receipt-info-item--full">
-                <span className="receipt-info-label">Program Course</span>
-                <span className="receipt-info-value">
-                  {receiptData.course === 'one-year-foundation' && 'One Year Foundation Course (UPSC/APSC)'}
-                  {receiptData.course === 'two-year-integrated' && 'Integrated Program - Class 11 & 12 (UPSC/APSC)'}
-                  {receiptData.course === 'pre-foundation' && '6-Month Pre-Foundation Course'}
-                  {receiptData.course === 'degree-coaching' && 'Integrated Degree + Coaching Programme'}
-                  {receiptData.course === 'crash-course' && 'Crash Course Program (UPSC/APSC)'}
-                </span>
-              </div>
-              <div className="receipt-info-item">
-                <span className="receipt-info-label">Parent Signature Document</span>
-                <span className="receipt-info-value" style={{ color: '#22C55E' }}>
-                  ✓ Uploaded ({receiptData.parentSignatureName})
-                </span>
-              </div>
-              <div className="receipt-info-item">
-                <span className="receipt-info-label">Registration Timestamp</span>
-                <span className="receipt-info-value">{receiptData.submissionDate}</span>
-              </div>
-            </div>
-
-            <div className="admission-receipt__footer">
-              <div className="receipt-stamp">PROVISIONALLY VERIFIED</div>
-              <p className="receipt-note">
-                <strong>Important Policy:</strong> Admission fee is strictly non-refundable and non-transferable under any circumstances after batch commencement. Seat is subject to final document verification.
-              </p>
-            </div>
-          </div>
-
-          <div className="admission-success__actions">
-            <button className="btn-print" onClick={handlePrint}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginRight: '8px' }}>
-                <polyline points="6 9 6 2 18 2 18 9" />
-                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-                <rect x="6" y="14" width="12" height="8" />
-              </svg>
-              Print Receipt
-            </button>
-
-            <button className="btn-new-admission" onClick={resetForm}>
-              Enroll Another Student
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const fieldClass = (name) => `oa-input${errors[name] ? ' oa-input--invalid' : ''}`;
 
   return (
-    <div className="online-admission-page">
-      <SEO 
+    <div className="oa-page">
+      <SEO
         title="Online Admission Form"
         description="Reserve your seat in our upcoming batches online. Fill out the provisional admission form for UPSC and APSC coaching programs."
       />
-      <PageHeader 
+      <PageHeader
         title="Online Admission"
         breadcrumbs={[
           { label: 'Home', to: '/' },
           { label: 'Admissions', to: '/offline-admission' },
-          { label: 'Online Admission' }
+          { label: 'Online Admission' },
         ]}
       />
 
-      <div className="admission-container">
+      {receiptData ? (
+        /* ── Success + receipt ── */
+        <section className="oa-success">
+          <div className="container">
+            <div className="oa-success__head">
+              <span className="oa-success__icon"><i className="fa-solid fa-circle-check" aria-hidden="true" /></span>
+              <h2 className="oa-title">Application <span>received</span></h2>
+              <p className="oa-lead">Your provisional admission has been registered. Keep this receipt for your records.</p>
+            </div>
 
-        {/* LEFT COLUMN: Clean Brand Banner Image (No Overlay Text) */}
-        <div className="admission-banner" style={{ backgroundImage: `url(${admissionBg})` }} />
+            <div className="oa-receipt" id="printable-admission-receipt">
+              <div className="oa-receipt__top">
+                <div>
+                  <strong className="oa-receipt__brand">Ashoka IAS Academy</strong>
+                  <span className="oa-receipt__kind">Provisional Admission Receipt</span>
+                </div>
+                <div className="oa-receipt__id">
+                  <span>Receipt ID</span>
+                  <strong>{receiptData.receiptId}</strong>
+                </div>
+              </div>
 
-        {/* RIGHT COLUMN: Online Admission Enrollment Form */}
-        <div className="admission-form-wrapper">
-          <div className="admission-form__card">
+              <dl className="oa-receipt__grid">
+                <div className="oa-receipt__item oa-receipt__item--full">
+                  <dt>Candidate name</dt>
+                  <dd>{receiptData.fullName}</dd>
+                </div>
+                <div className="oa-receipt__item">
+                  <dt>Contact number</dt>
+                  <dd>+91 {receiptData.phone}</dd>
+                </div>
+                <div className="oa-receipt__item">
+                  <dt>Email</dt>
+                  <dd>{receiptData.email}</dd>
+                </div>
+                <div className="oa-receipt__item oa-receipt__item--full">
+                  <dt>Programme</dt>
+                  <dd>{courseLabel(receiptData.course)}</dd>
+                </div>
+                <div className="oa-receipt__item">
+                  <dt>Parent signature</dt>
+                  <dd><i className="fa-solid fa-check" aria-hidden="true" /> Uploaded ({receiptData.parentSignatureName})</dd>
+                </div>
+                <div className="oa-receipt__item">
+                  <dt>Registered on</dt>
+                  <dd>{receiptData.submissionDate}</dd>
+                </div>
+              </dl>
 
-            <div className="admission-form__header">
-              <h1 className="admission-form__title">Online Admission</h1>
-              <p className="admission-form__subtitle">
-                Complete our simplified form below to reserve your coaching seat.
+              <p className="oa-receipt__note">
+                <strong>Note:</strong> The admission fee is non-refundable and non-transferable after
+                batch commencement. Your seat is subject to final document verification.
               </p>
             </div>
 
-            <form className="admission-form" onSubmit={handleSubmit} noValidate>
+            <div className="oa-success__actions">
+              <button type="button" className="oa-btn oa-btn--primary" onClick={() => window.print()}>
+                <i className="fa-solid fa-print" aria-hidden="true" /> Print receipt
+              </button>
+              <button type="button" className="oa-btn oa-btn--ghost" onClick={resetForm}>
+                Enrol another student
+              </button>
+            </div>
+          </div>
+        </section>
+      ) : (
+        /* ── Form ── */
+        <section className="oa-main">
+          <div className="container oa-main__grid">
 
-              {/* Full Name */}
-              <div className="admission-form__group">
-                <label className="admission-form__label" htmlFor="fullName">Full Name <span className="text-danger">*</span></label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  className={`admission-form__input ${errors.fullName ? 'admission-form__input--invalid' : ''}`}
-                  placeholder="Enter candidate's full name"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                />
-                {errors.fullName && <span className="admission-form__error">{errors.fullName}</span>}
-              </div>
+            <div className="oa-form-col">
+              <h2 className="oa-title">Reserve your seat <span>online</span></h2>
+              <p className="oa-lead">Fill in a few details to register your provisional admission. It takes about two minutes.</p>
 
-              {/* Contact Details Row */}
-              <div className="admission-form__row">
-                <div className="admission-form__group">
-                  <label className="admission-form__label" htmlFor="email">Email Address <span className="text-danger">*</span></label>
+              <form className="oa-form" onSubmit={handleSubmit} noValidate>
+                <div className="oa-field">
+                  <label htmlFor="fullName">Full name <span className="oa-req">*</span></label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className={`admission-form__input ${errors.email ? 'admission-form__input--invalid' : ''}`}
-                    placeholder="name@example.com"
-                    value={formData.email}
+                    id="fullName"
+                    name="fullName"
+                    type="text"
+                    autoComplete="name"
+                    className={fieldClass('fullName')}
+                    placeholder="Candidate's full name"
+                    value={formData.fullName}
                     onChange={handleChange}
                   />
-                  {errors.email && <span className="admission-form__error">{errors.email}</span>}
+                  {errors.fullName && <span className="oa-error">{errors.fullName}</span>}
                 </div>
 
-                <div className="admission-form__group">
-                  <label className="admission-form__label" htmlFor="phone">Contact Number <span className="text-danger">*</span></label>
-                  <div className="admission-form__phone-wrapper">
-                    <span className="phone-prefix">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="22" height="15" style={{ borderRadius: '2px', boxShadow: '0 1px 3px rgba(0,0,0,0.18)', flexShrink: 0 }}>
-                        <rect width="900" height="200" fill="#FF9933" />
-                        <rect y="200" width="900" height="200" fill="#FFFFFF" />
-                        <rect y="400" width="900" height="200" fill="#138808" />
-                        <circle cx="450" cy="300" r="90" fill="none" stroke="#000080" strokeWidth="9" />
-                        {[...Array(24)].map((_, i) => {
-                          const a = (i / 24) * 2 * Math.PI;
-                          return <line key={i} x1={450 + 70 * Math.cos(a)} y1={300 + 70 * Math.sin(a)} x2={450 + 90 * Math.cos(a)} y2={300 + 90 * Math.sin(a)} stroke="#000080" strokeWidth="4" />;
-                        })}
-                        <circle cx="450" cy="300" r="18" fill="#000080" />
-                      </svg>
-                      <span className="phone-prefix__divider">|</span>
-                      <span className="phone-prefix__code">+91</span>
-                    </span>
+                <div className="oa-row">
+                  <div className="oa-field">
+                    <label htmlFor="email">Email address <span className="oa-req">*</span></label>
                     <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      maxLength="10"
-                      className={`admission-form__input admission-form__input--phone ${errors.phone ? 'admission-form__input--invalid' : ''}`}
-                      placeholder="10-digit mobile"
-                      value={formData.phone}
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      className={fieldClass('email')}
+                      placeholder="name@example.com"
+                      value={formData.email}
                       onChange={handleChange}
                     />
+                    {errors.email && <span className="oa-error">{errors.email}</span>}
                   </div>
-                  {errors.phone && <span className="admission-form__error">{errors.phone}</span>}
-                </div>
-              </div>
 
-              {/* Course Program Selection */}
-              <div className="admission-form__group">
-                <label className="admission-form__label" htmlFor="course">Select Course Program <span className="text-danger">*</span></label>
-                <div className="select-container">
-                  <select
-                    id="course"
-                    name="course"
-                    className={`admission-form__select ${errors.course ? 'admission-form__select--invalid' : ''}`}
-                    value={formData.course}
-                    onChange={handleChange}
-                  >
-                    <option value="">Select a coaching program</option>
-                    <option value="one-year-foundation">One Year Foundation Course (UPSC/APSC)</option>
-                    <option value="two-year-integrated">Integrated Program - Class 11 & 12 (UPSC/APSC)</option>
-                    <option value="pre-foundation">6-Month Pre-Foundation Course</option>
-                    <option value="degree-coaching">Integrated Degree + Competitive Exam Coaching Programme</option>
-                    <option value="crash-course">Crash Course Programme (APSC CCE / ADRE)</option>
-                  </select>
-                  <div className="select-arrow">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </div>
-                </div>
-                {errors.course && <span className="admission-form__error">{errors.course}</span>}
-              </div>
-
-              {/* Parent's Signature Upload Box */}
-              <div className="admission-form__group">
-                <label className="admission-form__label">Upload Parent's Signature <span className="text-danger">*</span></label>
-                <div className={`admission-upload-zone ${errors.parentSignature ? 'admission-upload-zone--invalid' : ''}`}>
-                  {!formData.parentSignature ? (
-                    <label className="upload-label">
+                  <div className="oa-field">
+                    <label htmlFor="phone">Mobile number <span className="oa-req">*</span></label>
+                    <div className={`oa-phone${errors.phone ? ' oa-input--invalid' : ''}`}>
+                      <span className="oa-phone__code">+91</span>
                       <input
-                        type="file"
-                        accept="image/*,application/pdf"
-                        onChange={handleFileChange}
-                        className="upload-input-hidden"
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        inputMode="numeric"
+                        autoComplete="tel-national"
+                        maxLength="10"
+                        placeholder="10-digit mobile"
+                        value={formData.phone}
+                        onChange={handleChange}
                       />
-                      <div className="upload-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                          <polyline points="17 8 12 3 7 8" />
-                          <line x1="12" y1="3" x2="12" y2="15" />
-                        </svg>
-                      </div>
-                      <span className="upload-text">Click to choose image or PDF</span>
-                      <span className="upload-limits">JPG, PNG or PDF (Max 2MB)</span>
+                    </div>
+                    {errors.phone && <span className="oa-error">{errors.phone}</span>}
+                  </div>
+                </div>
+
+                <div className="oa-field">
+                  <label htmlFor="course">Course programme <span className="oa-req">*</span></label>
+                  <div className="oa-select">
+                    <select
+                      id="course"
+                      name="course"
+                      className={fieldClass('course')}
+                      value={formData.course}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select a coaching programme</option>
+                      {COURSES.map((c) => (
+                        <option key={c.value} value={c.value}>{c.label}</option>
+                      ))}
+                    </select>
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+                  </div>
+                  {errors.course && <span className="oa-error">{errors.course}</span>}
+                </div>
+
+                <div className="oa-field">
+                  <span className="oa-label">Parent&apos;s signature <span className="oa-req">*</span></span>
+                  {!formData.parentSignature ? (
+                    <label className={`oa-upload${errors.parentSignature ? ' oa-input--invalid' : ''}`}>
+                      <input type="file" accept="image/*,application/pdf" onChange={handleFileChange} />
+                      <i className="fa-solid fa-cloud-arrow-up oa-upload__icon" aria-hidden="true" />
+                      <span className="oa-upload__text">
+                        <strong>Click to upload</strong>
+                        <span>JPG, PNG or PDF · max 2MB</span>
+                      </span>
                     </label>
                   ) : (
-                    <div className="uploaded-file-capsule">
-                      <div className="uploaded-file-details">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-success-icon" style={{ marginRight: '8px' }}>
-                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                          <polyline points="14 2 14 8 20 8" />
-                          <line x1="16" y1="13" x2="8" y2="13" />
-                          <line x1="16" y1="17" x2="8" y2="17" />
-                          <polyline points="10 9 9 9 8 9" />
-                        </svg>
-                        <span className="uploaded-file-name" title={formData.parentSignatureName}>
-                          {formData.parentSignatureName}
-                        </span>
-                      </div>
-                      <button type="button" className="btn-remove-file" onClick={removeFile} aria-label="Remove uploaded file">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <line x1="18" y1="6" x2="6" y2="18" />
-                          <line x1="6" y1="6" x2="18" y2="18" />
-                        </svg>
+                    <div className="oa-file">
+                      <i className="fa-regular fa-file-lines" aria-hidden="true" />
+                      <span className="oa-file__name" title={formData.parentSignatureName}>{formData.parentSignatureName}</span>
+                      <button type="button" className="oa-file__remove" onClick={removeFile} aria-label="Remove uploaded file">
+                        <i className="fa-solid fa-xmark" aria-hidden="true" />
                       </button>
                     </div>
                   )}
+                  {errors.parentSignature && <span className="oa-error">{errors.parentSignature}</span>}
                 </div>
-                {errors.parentSignature && <span className="admission-form__error">{errors.parentSignature}</span>}
+
+                <div className="oa-note">
+                  <i className="fa-solid fa-circle-info" aria-hidden="true" />
+                  <p>The admission fee once paid is non-refundable and non-transferable after batch commencement.</p>
+                </div>
+
+                <div className="oa-field">
+                  <label className="oa-check">
+                    <input
+                      type="checkbox"
+                      id="declaration"
+                      name="declaration"
+                      checked={formData.declaration}
+                      onChange={handleChange}
+                    />
+                    <span className="oa-check__box" aria-hidden="true"><i className="fa-solid fa-check" /></span>
+                    <span>
+                      I agree to the fee guidelines and declare that the details provided are accurate
+                      and the uploaded signature is genuine.
+                    </span>
+                  </label>
+                  {errors.declaration && <span className="oa-error">{errors.declaration}</span>}
+                </div>
+
+                <button type="submit" className="oa-btn oa-btn--primary oa-btn--submit" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <span className="oa-spinner" aria-hidden="true" />
+                      Submitting…
+                    </>
+                  ) : (
+                    <>
+                      Submit application
+                      <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+
+            <aside className="oa-aside">
+              <div className="oa-aside__card">
+                <h3>Before you start</h3>
+                <ul className="oa-aside__list">
+                  <li><i className="fa-solid fa-check" aria-hidden="true" />A valid mobile number and email</li>
+                  <li><i className="fa-solid fa-check" aria-hidden="true" />Parent&apos;s signature as an image or PDF</li>
+                  <li><i className="fa-solid fa-check" aria-hidden="true" />The programme you want to join</li>
+                </ul>
               </div>
 
-              {/* CRITICAL FEE POLICY WARNING BOX */}
-              <div className="admission-policy-alert">
-                <div className="policy-alert-icon">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                    <line x1="12" y1="9" x2="12" y2="13" />
-                    <line x1="12" y1="17" x2="12.01" y2="17" />
-                  </svg>
-                </div>
-                <div className="policy-alert-content">
-                  <strong>Strict Refund Policy Warning</strong>
-                  <p>The admission fee once paid is strictly non-refundable and non-transferable under any circumstances after batch commencement.</p>
-                </div>
+              <div className="oa-aside__card oa-aside__card--navy">
+                <h3>Need help choosing?</h3>
+                <p>Talk to a counsellor about the right programme for you.</p>
+                <a href="tel:+919181411843" className="oa-aside__call">
+                  <i className="fa-solid fa-phone" aria-hidden="true" /> +91 91814 11843
+                </a>
+                <Link to="/offline-admission" className="oa-aside__link">
+                  Prefer to apply in person? <span>Offline admission <i className="fa-solid fa-arrow-right" aria-hidden="true" /></span>
+                </Link>
               </div>
+            </aside>
 
-              {/* Declaration Checkbox */}
-              <div className="admission-form__checkbox-group">
-                <label className="checkbox-container">
-                  <input
-                    type="checkbox"
-                    id="declaration"
-                    name="declaration"
-                    checked={formData.declaration}
-                    onChange={handleChange}
-                  />
-                  <span className="checkmark" />
-                  <span className="checkbox-label">
-                    I agree to the non-refundable fee guidelines, and I declare that the details provided are accurate and the signature uploaded is verified. <span className="text-danger">*</span>
-                  </span>
-                </label>
-                {errors.declaration && <span className="admission-form__error" style={{ display: 'block', marginTop: '6px' }}>{errors.declaration}</span>}
-              </div>
-
-              {/* Submit Admission Button */}
-              <button
-                type="submit"
-                className={`btn-submit-admission ${isSubmitting ? 'btn-submit-admission--loading' : ''}`}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? (
-                  <>
-                    <span className="loading-spinner" />
-                    Submitting Application...
-                  </>
-                ) : (
-                  <>
-                    Submit Admission Application
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ marginLeft: '8px' }}>
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  </>
-                )}
-              </button>
-
-            </form>
           </div>
-        </div>
+        </section>
+      )}
 
-      </div>
-
-      {/* Common CTA Section  */}
       <CtaSection />
-
     </div>
   );
 }

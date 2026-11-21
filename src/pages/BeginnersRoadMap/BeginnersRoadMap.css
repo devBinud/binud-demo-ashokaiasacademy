@@ -51,7 +51,7 @@
 
 .roadmap-hero__title {
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-white);
   margin-top: 0.75rem;
   margin-bottom: 1rem;
@@ -103,7 +103,7 @@
 .roadmap-hero__bc-current {
   font-size: 0.75rem;
   color: var(--color-gold-light);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* ============================================================
@@ -142,7 +142,7 @@
 
 .section-title-wrapper h3 {
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin: 0;
   letter-spacing: -0.01em;
@@ -183,7 +183,7 @@
 .intro-badge {
   display: inline-block;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   background: rgba(184, 146, 42, 0.1);
@@ -195,7 +195,7 @@
 
 .tab-intro-card h2 {
   font-size: 1.65rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
@@ -237,7 +237,7 @@
   gap: 0.5rem;
   font-family: inherit;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-navy);
   background: var(--color-white);
   border: 1px solid rgba(39, 60, 104, 0.1);
@@ -339,7 +339,7 @@
   height: 36px;
   background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-dark) 100%);
   color: var(--color-white);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.95rem;
   border-radius: 50%;
   display: flex;
@@ -356,7 +356,7 @@
 
 .phase-duration {
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-gold);
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -364,7 +364,7 @@
 
 .phase-title-group h4 {
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin: 0;
 }
@@ -435,7 +435,7 @@
 
 .ncert-sub-list h4 {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-navy);
   border-bottom: 2px solid #F3F4F6;
   padding-bottom: 0.5rem;
@@ -475,7 +475,7 @@
   display: block;
   font-size: 0.785rem;
   color: var(--color-text-primary);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -483,14 +483,14 @@
   display: block;
   font-size: 0.65rem;
   color: var(--color-text-muted);
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   margin-top: 1px;
 }
 
 .static-priority {
   font-size: 0.55rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 2px 6px;
@@ -541,7 +541,7 @@
 
 .routine-header h4 {
   font-size: 1rem;
-  font-weight: 800;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -581,7 +581,7 @@
   align-items: center;
   gap: 0.35rem;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-gold);
   background: rgba(184, 146, 42, 0.06);
   padding: 2px 8px;
@@ -591,7 +591,7 @@
 
 .routine-item h5 {
   font-size: 0.85rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-text-primary);
   margin: 0 0 2px 0;
 }
@@ -616,7 +616,7 @@
 
 .tips-banner-title {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-gold-light);
   margin-bottom: 2rem;
   text-transform: uppercase;
@@ -641,7 +641,7 @@
   height: 30px;
   background: rgba(184, 146, 42, 0.2);
   color: var(--color-gold-light);
-  font-weight: 800;
+  font-weight: 600;
   font-size: 0.9rem;
   border-radius: 50%;
   display: flex;
@@ -653,7 +653,7 @@
 
 .tip-row h4 {
   font-size: 0.95rem;
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-white);
   margin: 0 0 0.35rem 0;
 }

@@ -2,6 +2,12 @@
    POPULAR COURSES SECTION
    ============================================================ */
 .popular-courses {
+  --pc-ink: #10182d;
+  --pc-text: #5d6678;
+  --pc-navy: var(--nav-indigo, #273c68);
+  --pc-navy-dark: #1b2a4a;
+  --pc-tint: #f1f4f9;
+  --pc-gold: #f5c542;
   background: var(--color-bg-page);
 }
 
@@ -12,7 +18,7 @@
 
 .popular-courses__title {
   font-size: var(--text-3xl);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-navy);
   margin-bottom: var(--space-3);
   margin-top: var(--space-2);
@@ -29,182 +35,234 @@
   color: #2D3748;
 }
 
-/* Grid */
+/* ── Grid: 3 per row, last row centred ── */
 .popular-courses__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
 }
 
-@media (min-width: 768px) {
-  .popular-courses__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-  }
-}
-
-@media (min-width: 1024px) {
-  .popular-courses__grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-8);
-  }
-}
-
-/* Card Container */
 .pc-card {
+  flex: 0 1 calc((100% - 48px) / 3);
   display: flex;
   flex-direction: column;
-  background: var(--color-bg-white);
-  border-radius: 10px;
-  text-decoration: none;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
-  transition: box-shadow 0.25s ease, border-color 0.25s ease;
-  height: 100%;
+  padding: 12px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 1px 2px rgba(13, 27, 53, 0.04), 0 10px 30px rgba(13, 27, 53, 0.07);
 }
 
-.pc-card:hover {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-  border-color: #cbd5e1;
-}
-
-/* Banner Area */
-.pc-card__banner {
-  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  padding: 24px 16px 18px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-bottom: 1px solid #edf2f7;
+/* ── Poster ── */
+.pc-poster {
   position: relative;
-  gap: 12px;
-}
-
-/* Subtle background pattern in banner */
-.pc-card__banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(0, 59, 145, 0.03) 1.5px, transparent 1.5px);
-  background-size: 12px 12px;
-  pointer-events: none;
-}
-
-.pc-card__banner-logo {
-  height: 38px;
-  width: auto;
-  object-fit: contain;
-  z-index: 1;
-}
-
-.pc-card__banner-badge {
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  z-index: 1;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-}
-
-.pc-card__banner-title {
-  background: var(--color-navy);
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 5px 12px;
-  border-radius: 4px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  max-width: 95%;
-  z-index: 1;
-  box-shadow: 0 2px 6px rgba(0, 59, 145, 0.12);
-  margin-top: 2px;
-}
-
-.pc-card__banner-date {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: var(--color-text-secondary);
-  font-weight: 600;
-  z-index: 1;
-  margin-top: 2px;
-}
-
-.pc-card__banner-date-icon {
-  color: var(--color-gold);
-}
-
-/* Body Area */
-.pc-card__body {
-  padding: var(--space-5);
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-
-.pc-card__title {
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--color-navy);
-  line-height: 1.45;
-  margin-bottom: var(--space-4);
-  font-family: var(--font-body);
-  flex-grow: 1;
-}
-
-.pc-card__meta-row {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-block: var(--space-2);
-}
-
-.pc-card__meta-label {
-  font-size: 13px;
-  color: var(--color-text-muted);
-  font-weight: 500;
-}
-
-.pc-card__meta-value {
-  font-size: 13px;
-  color: var(--color-navy);
-  font-weight: 700;
-}
-
-.pc-card__divider {
-  height: 1px;
-  background-color: #edf2f7;
-  margin-block: 4px;
-}
-
-/* Footer & CTA Button */
-.pc-card__footer {
-  margin-top: var(--space-5);
-}
-
-.pc-card__btn {
-  display: block;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  padding: 18px 16px 34px;
   text-align: center;
-  background: var(--color-navy);
-  color: #ffffff;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 10px 16px;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  width: 100%;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(245, 197, 66, 0.22) 0%, transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+    linear-gradient(135deg, #1b2a4a 0%, #273c68 60%, #31508a 100%);
 }
 
-.pc-card:hover .pc-card__btn {
-  background: var(--color-gold);
-  color: #ffffff;
+.pc-poster--img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  object-fit: cover;
+}
+
+.pc-poster__bg-icon {
+  position: absolute;
+  right: -10px;
+  bottom: -18px;
+  font-size: 7.5rem;
+  color: rgba(255, 255, 255, 0.06);
+  transform: rotate(-12deg);
+}
+
+.pc-poster__top {
+  position: relative;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pc-gold);
+}
+
+.pc-poster__main {
+  position: relative;
+  margin: 2px 0 4px;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.pc-poster__sub {
+  position: relative;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.pc-poster__ribbon {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--pc-navy-dark);
+  background: var(--pc-gold);
+  border-radius: 8px;
+  transform: translateX(-50%);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.pc-poster__mode {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 3px 10px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Body ── */
+.pc-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 20px 10px 10px;
+  text-align: center;
+}
+
+.pc-card__name {
+  margin: 0 0 8px;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--pc-ink);
+}
+
+.pc-card__info {
+  margin: 0 0 16px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--pc-text);
+}
+
+.pc-card__info span {
+  display: block;
+}
+
+.pc-card__date {
+  margin-bottom: 20px;
+  padding: 8px 16px;
+  font-size: 0.88rem;
+  color: var(--pc-ink);
+  background: var(--pc-tint);
+  border-radius: 10px;
+}
+
+.pc-card__date strong {
+  font-weight: 600;
+}
+
+/* Buttons */
+.pc-card__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: auto;
+}
+
+.pc-btn {
+  /* size: hero CTA tokens (index.css) */
+  display: inline-flex;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 12px;
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
+  gap: var(--btn-gap);
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pc-btn i {
+  font-size: 0.8rem;
+}
+
+.pc-btn--outline {
+  color: var(--pc-navy);
+  background: #fff;
+  box-shadow: inset 0 0 0 1.5px var(--pc-navy);
+}
+
+.pc-btn--outline:hover {
+  color: var(--pc-navy);
+  background: var(--pc-tint);
+}
+
+.pc-btn--solid {
+  color: #fff;
+  background: var(--pc-navy);
+}
+
+.pc-btn--solid:hover {
+  color: #fff;
+  background: var(--pc-navy-dark);
+}
+
+.pc-btn:focus-visible {
+  outline: 3px solid var(--color-gold, #d3a62c);
+  outline-offset: 2px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1023px) {
+  .pc-card {
+    flex-basis: calc((100% - 24px) / 2);
+  }
+}
+
+@media (max-width: 640px) {
+  .popular-courses__grid {
+    gap: 16px;
+  }
+
+  .pc-card {
+    flex-basis: 100%;
+  }
+
+  .pc-card__name {
+    font-size: 1.05rem;
+  }
 }

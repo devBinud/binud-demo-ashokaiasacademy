@@ -68,11 +68,9 @@ export default function WhyUsSection() {
     <section className="whyus section">
       <div className="container">
         <div className="whyus__header">
-          <span className="section-label">Why Choose Us</span>
           <h2 className="whyus__title">
             The Ashoka <span className="text-gold">Advantage</span>
           </h2>
-          <div className="divider-gold" />
           <p className="whyus__subtitle">
             Founded in 2021 with the vision of combining academic excellence,
             ethical leadership, and disciplined preparation.

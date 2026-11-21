@@ -33,7 +33,6 @@ export default function Blog() {
         <div className="container">
           <div className="blog__head">
             <div>
-              <span className="blog__kicker">From Our Mentors</span>
               <h2 className="blog__title">Preparation tips &amp; insights</h2>
             </div>
 

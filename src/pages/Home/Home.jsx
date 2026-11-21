@@ -2,6 +2,7 @@ import SEO from '../../components/common/SEO';
 import HeroSection from './sections/HeroSection';
 import StatsStrip from './sections/StatsStrip';
 import AboutNoticeSection from './sections/AboutNoticeSection';
+import CounsellingBanner from './sections/CounsellingBanner';
 import PopularCourses from './sections/PopularCourses';
 import TestimonialsSection from './sections/TestimonialsSection';
 import StandsOutSection from './sections/StandsOutSection';
@@ -17,6 +18,7 @@ export default function Home() {
       <HeroSection />
       <StatsStrip />
       <AboutNoticeSection />
+      <CounsellingBanner />
       <PopularCourses />
       <TestimonialsSection />
       <StandsOutSection />

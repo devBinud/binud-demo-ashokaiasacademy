@@ -21,11 +21,9 @@ export default function Results() {
       {/* Hero */}
       <section className="page-hero">
         <div className="container">
-          <span className="section-label">Our Achievements</span>
           <h1 className="page-hero__title">
             Our <span className="text-gold">Results</span>
           </h1>
-          <div className="divider-gold" />
           <p className="page-hero__desc">
             Proud of every aspirant who turned their dream into reality with Ashoka IAS Academy.
           </p>

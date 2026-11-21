@@ -43,7 +43,7 @@
 
 .stats-strip__item strong {
   font-size: var(--text-2xl);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-gold);
   line-height: 1;
   white-space: nowrap;

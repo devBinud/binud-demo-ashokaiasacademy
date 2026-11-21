@@ -35,7 +35,7 @@
 .dpp-header-title h2 {
   font-size: var(--text-lg);
   color: var(--color-navy);
-  font-weight: 800;
+  font-weight: 600;
   margin-bottom: 4px;
   font-family: var(--font-navbar);
 }
@@ -112,7 +112,7 @@
   padding: 18px 24px;
   color: var(--color-navy);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-bottom: 1.5px dashed #cbd5e1;
@@ -151,7 +151,7 @@
   display: inline-block;
   font-family: var(--font-body);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--color-navy, #0d1b35);
@@ -231,14 +231,18 @@
 
 /* Buttons */
 .dpp-action-btn-modern {
+  /* size: hero CTA tokens (index.css) */
   display: inline-flex;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
+  gap: var(--btn-gap);
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 8px 18px;
-  font-size: 11.5px;
-  font-weight: 700;
-  border-radius: 6px;
+  font-weight: 600;
   border: 1px solid transparent;
   cursor: pointer;
   transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
@@ -366,7 +370,7 @@
 .dpp-modal-banner h3 {
   color: var(--color-white);
   font-size: 22px;
-  font-weight: 800;
+  font-weight: 600;
   margin-bottom: var(--space-2);
   font-family: var(--font-heading);
   letter-spacing: -0.01em;
@@ -399,7 +403,7 @@
 
 .dpp-modal-field label {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-navy);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -458,7 +462,7 @@
 
 .dpp-phone-country-code {
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-navy, #0d2154);
 }
 
@@ -516,14 +520,21 @@
 }
 
 .dpp-submit-btn {
+  /* size: hero CTA tokens (index.css) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
   width: 100%;
-  padding: 14px;
   background: var(--color-navy, #273c68);
   color: var(--color-white);
   border: none;
-  border-radius: var(--radius-lg);
-  font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 14px rgba(39, 60, 104, 0.25);

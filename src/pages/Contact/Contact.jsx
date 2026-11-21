@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase/config';
-import CustomSelect from '../../components/ui/CustomSelect';
-import { MapPin, Clock, Phone, Mail, MessageCircle, CheckCircle } from 'lucide-react';
 import SEO from '../../components/common/SEO';
 import PageHeader from '../../components/common/PageHeader';
-import './Contact.css';
 import CtaSection from '../Home/sections/CtaSection';
+import './Contact.css';
 
 const COURSES = [
   'Foundation Program — 1 Year',
@@ -17,19 +15,56 @@ const COURSES = [
   'Answer Writing Program',
 ];
 
+const QUICK_CONTACTS = [
+  {
+    icon: 'fa-solid fa-phone',
+    label: 'Call us',
+    value: '+91 91814 11843',
+    href: 'tel:+919181411843',
+  },
+  {
+    icon: 'fa-brands fa-whatsapp',
+    label: 'WhatsApp',
+    value: '+91 88228 23003',
+    href: 'https://wa.me/918822823003',
+    external: true,
+  },
+  {
+    icon: 'fa-regular fa-envelope',
+    label: 'Email',
+    value: 'ashokaiasacademy123@gmail.com',
+    href: 'mailto:ashokaiasacademy123@gmail.com',
+  },
+];
+
+const CAMPUSES = [
+  {
+    name: 'Guwahati',
+    address: '1st Floor, Nath Complex, Opp. Aruna Memorial Hospital, Rajgarh Road, Bhangagarh, Guwahati – 781005',
+    hours: 'Mon – Sat · 10:00 AM – 6:00 PM',
+  },
+  {
+    name: 'Nagaon',
+    address: 'Sankar Mission, Panigaon Chari Ali, Opp. Reliance Trends, Nagaon – 782001',
+    hours: 'Mon – Sat · 9:30 AM – 5:30 PM',
+  },
+];
+
+const mapsUrl = (address) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+const EMPTY_FORM = { name: '', phone: '', email: '', course: '', message: '' };
+
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', course: '', message: '' });
+  const [form, setForm] = useState(EMPTY_FORM);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'phone') {
-      setForm((prev) => ({ ...prev, phone: value.replace(/\D/g, '').slice(0, 10) }));
-    } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
-    }
-    // Clear error on change
+    const next = name === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value;
+    setForm((prev) => ({ ...prev, [name]: next }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
@@ -45,7 +80,12 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      return;
+    }
+
+    setIsSubmitting(true);
     try {
       await addDoc(collection(db, 'enquiries'), {
         ...form,
@@ -57,194 +97,204 @@ export default function Contact() {
     } catch (err) {
       console.error('Error saving enquiry:', err);
     } finally {
-      setForm({ name: '', phone: '', email: '', course: '', message: '' });
+      setForm(EMPTY_FORM);
       setErrors({});
+      setIsSubmitting(false);
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 5000);
     }
   };
 
+  const fieldClass = (name) => `ct-input${errors[name] ? ' ct-input--invalid' : ''}`;
+
   return (
-    <div className="contact-page">
-      <SEO 
+    <div className="ct-page">
+      <SEO
         title="Admissions & Enquiries | Contact Us"
         description="Get in touch with Ashoka IAS Academy for admissions, course queries, and career counseling. Contact our Guwahati and Nagaon centers today."
       />
 
-      {/* Page Header */}
-      <PageHeader 
-        title="Admissions & Enquiries"
+      <PageHeader
+        title="Contact Us"
         breadcrumbs={[
           { label: 'Home', to: '/' },
-          { label: 'Contact Us' }
+          { label: 'Contact Us' },
         ]}
       />
 
-      <section className="section contact-main">
-        <div className="container contact-main__grid">
-
-          {/* ── LEFT INFO ── */}
-          <div className="contact-info">
-            <h2 className="contact-info__title">
-              We're Here to <span className="text-gold">Help</span>
-            </h2>
-            <div className="divider-gold" />
-            <p className="contact-info__desc">
-              Reach out to us for admissions, course enquiries, or any other information.
-              Our team will get back to you within 24 hours.
+      {/* ── Quick contact ── */}
+      <section className="ct-quick">
+        <div className="container">
+          <div className="ct-quick__head">
+            <h2 className="ct-title">We&apos;re here to <span>help</span></h2>
+            <p className="ct-lead">
+              Reach out for admissions, course enquiries or anything else. Our team gets back to
+              you within 24 hours.
             </p>
-
-            <div className="contact-info__items">
-
-              {/* Guwahati Branch */}
-              <div className="contact-info__branch-label">
-                <MapPin size={19} strokeWidth={2} />   Guwahati Branch
-              </div>
-              <div className="contact-info__item">
-                <div className="contact-info__icon"><MapPin size={18} strokeWidth={1.8} /></div>
-                <div>
-                  <strong>Address</strong>
-                  <span>1st Floor, Nath Complex, Opp. Aruna Memorial Hospital, Rajgarh Road, Bhangagarh, Guwahati – 781005</span>
-                </div>
-              </div>
-              <div className="contact-info__item">
-                <div className="contact-info__icon"><Clock size={18} strokeWidth={1.8} /></div>
-                <div>
-                  <strong>Office Hours</strong>
-                  <span>Mon – Sat: 10:00 AM – 6:00 PM</span>
-                </div>
-              </div>
-
-              {/* Nagaon Branch */}
-              <div className="contact-info__branch-label" style={{ marginTop: 'var(--space-2)' }}>
-                <MapPin size={18} strokeWidth={2} /> Nagaon Branch
-              </div>
-              <div className="contact-info__item">
-                <div className="contact-info__icon"><MapPin size={18} strokeWidth={1.8} /></div>
-                <div>
-                  <strong>Address</strong>
-                  <span>Sankar Mission, Panigaon Chari Ali, Opp. Reliance Trends, Nagaon – 782001</span>
-                </div>
-              </div>
-              <div className="contact-info__item">
-                <div className="contact-info__icon"><Clock size={18} strokeWidth={1.8} /></div>
-                <div>
-                  <strong>Office Hours</strong>
-                  <span>Mon – Sat: 9:30 AM – 5:30 PM</span>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="contact-info__item">
-                <div className="contact-info__icon"><Phone size={18} strokeWidth={1.8} /></div>
-                <div>
-                  <strong>Phone</strong>
-                  <div className="contact-phone-list">
-                    <div className="contact-phone-row">
-                      <a href="https://wa.me/918822823003" target="_blank" rel="noreferrer"
-                        className="contact-phone-icon contact-phone-icon--wa" aria-label="WhatsApp">
-                        <MessageCircle size={14} strokeWidth={2} />
-                      </a>
-                      <a href="https://wa.me/918822823003" target="_blank" rel="noreferrer"
-                        className="contact-phone-num">+91 88228 23003</a>
-                    </div>
-                    <div className="contact-phone-row">
-                      <a href="tel:+919181411843" className="contact-phone-icon" aria-label="Call">
-                        <Phone size={14} strokeWidth={2} />
-                      </a>
-                      <a href="tel:+919181411843" className="contact-phone-num">+91 91814 11843</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="contact-info__item">
-                <div className="contact-info__icon"><Mail size={18} strokeWidth={1.8} /></div>
-                <div>
-                  <strong>Email</strong>
-                  <a href="mailto:ashokaiasacademy123@gmail.com">ashokaiasacademy123@gmail.com</a>
-                </div>
-              </div>
-
-            </div>
           </div>
 
-          {/* ── RIGHT FORM ── */}
-          <div className="contact-form-wrap">
-            <form className="contact-form" onSubmit={handleSubmit} noValidate>
-              <div className="contact-form__header">
-                <h2>Apply Now</h2>
-                <p>Fill in your details and we'll get back to you shortly.</p>
-              </div>
+          <div className="ct-quick__grid">
+            {QUICK_CONTACTS.map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                className="ct-quick__item"
+                {...(c.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                <i className={`${c.icon} ct-quick__icon`} aria-hidden="true" />
+                <span className="ct-quick__text">
+                  <span className="ct-quick__label">{c.label}</span>
+                  <strong className="ct-quick__value">{c.value}</strong>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="contact-form__row">
-                <div className="contact-form__field">
-                  <label htmlFor="name">Full Name *</label>
-                  <input id="name" name="name" type="text" className={`input${errors.name ? ' input--error' : ''}`}
-                    placeholder="Enter your full name" value={form.name}
-                    onChange={handleChange} />
-                  {errors.name && <span className="form-error">{errors.name}</span>}
+      {/* ── Form + campuses ── */}
+      <section className="ct-main">
+        <div className="container ct-main__grid">
+
+          <div className="ct-form-col">
+            <h2 className="ct-title ct-title--sm">Send us a <span>message</span></h2>
+            <p className="ct-lead">Share your details and a counsellor will call you back.</p>
+
+            <form className="ct-form" onSubmit={handleSubmit} noValidate>
+              <div className="ct-row">
+                <div className="ct-field">
+                  <label htmlFor="name">Full name <span className="ct-req">*</span></label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    className={fieldClass('name')}
+                    placeholder="Your full name"
+                    value={form.name}
+                    onChange={handleChange}
+                  />
+                  {errors.name && <span className="ct-error">{errors.name}</span>}
                 </div>
-                <div className="contact-form__field">
-                  <label htmlFor="phone">Phone Number </label>
-                  <div className={`contact-phone-input-wrap${errors.phone ? ' input-wrap--error' : ''}`}>
-                    <div className="contact-phone-prefix">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="16" height="11" style={{ borderRadius: '1px', boxShadow: '0 1px 2px rgba(0,0,0,0.18)', flexShrink: 0 }}>
-                        <rect width="3" height="0.667" fill="#FF9933"/>
-                        <rect y="0.667" width="3" height="0.667" fill="#ffffff"/>
-                        <rect y="1.333" width="3" height="0.667" fill="#138808"/>
-                        <circle cx="1.5" cy="1" r="0.2" fill="#000080"/>
-                        <circle cx="1.5" cy="1" r="0.15" fill="#ffffff"/>
-                        <circle cx="1.5" cy="1" r="0.05" fill="#000080"/>
-                        <path d="M1.5 0.8v0.4M1.3 1h0.4M1.36 0.86l0.28 0.28M1.36 1.14l0.28-0.28" stroke="#000080" strokeWidth="0.02" />
-                      </svg>
-                      <span>+91</span>
-                    </div>
-                    <input id="phone" name="phone" type="tel" inputMode="numeric"
-                      className="input" placeholder="XXXXX XXXXX"
-                      value={form.phone} onChange={handleChange} maxLength={10} />
+
+                <div className="ct-field">
+                  <label htmlFor="phone">Mobile number <span className="ct-req">*</span></label>
+                  <div className={`ct-phone${errors.phone ? ' ct-input--invalid' : ''}`}>
+                    <span className="ct-phone__code">+91</span>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      inputMode="numeric"
+                      autoComplete="tel-national"
+                      maxLength={10}
+                      placeholder="10-digit mobile"
+                      value={form.phone}
+                      onChange={handleChange}
+                    />
                   </div>
-                  {errors.phone && <span className="form-error">{errors.phone}</span>}
+                  {errors.phone && <span className="ct-error">{errors.phone}</span>}
                 </div>
               </div>
 
-              <div className="contact-form__field">
-                <label htmlFor="email">Email Address</label>
-                <input id="email" name="email" type="email" className="input"
-                  placeholder="your@email.com" value={form.email} onChange={handleChange} />
-              </div>
-
-              <div className="contact-form__field">
-                <label htmlFor="course">Select Course <span style={{color:'red'}}>*</span> </label>
-                <CustomSelect id="course" name="course" value={form.course}
-                  onChange={handleChange} options={COURSES} placeholder="Select a Course" />
-                {errors.course && <span className="form-error">{errors.course}</span>}
-              </div>
-
-              <div className="contact-form__field">
-                <label htmlFor="message">Message (Optional)</label>
-                <textarea id="message" name="message" className="input contact-form__textarea"
-                  placeholder="Any specific questions or requirements..."
-                  value={form.message} onChange={handleChange} rows={4} />
-              </div>
-
-              {submitted && (
-                <div className="contact-success-banner">
-                  <CheckCircle size={16} strokeWidth={2} />
-                  <span>Application submitted! We'll contact you within 24 hours.</span>
+              <div className="ct-row">
+                <div className="ct-field">
+                  <label htmlFor="email">Email <span className="ct-optional">(optional)</span></label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    className="ct-input"
+                    placeholder="you@email.com"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
                 </div>
-              )}
 
-              <button type="submit" className="btn btn-primary contact-form__submit">
-                Submit Application →
-              </button>
+                <div className="ct-field">
+                  <label htmlFor="course">Course <span className="ct-req">*</span></label>
+                  <div className="ct-select">
+                    <select
+                      id="course"
+                      name="course"
+                      className={fieldClass('course')}
+                      value={form.course}
+                      onChange={handleChange}
+                    >
+                      <option value="">Select a course</option>
+                      {COURSES.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                    <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+                  </div>
+                  {errors.course && <span className="ct-error">{errors.course}</span>}
+                </div>
+              </div>
+
+              <div className="ct-field">
+                <label htmlFor="message">Message <span className="ct-optional">(optional)</span></label>
+                <textarea
+                  id="message"
+                  name="message"
+                  className="ct-input ct-textarea"
+                  placeholder="Any questions or requirements…"
+                  rows={4}
+                  value={form.message}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="ct-form__foot">
+                <button type="submit" className="ct-btn" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <span className="ct-spinner" aria-hidden="true" />
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      Send message
+                      <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+                    </>
+                  )}
+                </button>
+
+                {submitted && (
+                  <p className="ct-success" role="status">
+                    <i className="fa-solid fa-circle-check" aria-hidden="true" />
+                    Thank you! We&apos;ll contact you within 24 hours.
+                  </p>
+                )}
+              </div>
             </form>
           </div>
 
+          <aside className="ct-campuses">
+            <h3>Our campuses</h3>
+            {CAMPUSES.map((c) => (
+              <article key={c.name} className="ct-campus">
+                <h4>
+                  <i className="fa-solid fa-location-dot" aria-hidden="true" />
+                  {c.name}
+                </h4>
+                <p>{c.address}</p>
+                <span className="ct-campus__hours">
+                  <i className="fa-regular fa-clock" aria-hidden="true" />
+                  {c.hours}
+                </span>
+                <a className="ct-campus__link" href={mapsUrl(c.address)} target="_blank" rel="noopener noreferrer">
+                  Get directions <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+                </a>
+              </article>
+            ))}
+          </aside>
+
         </div>
       </section>
-      <CtaSection/>
+
+      <CtaSection />
     </div>
   );
 }

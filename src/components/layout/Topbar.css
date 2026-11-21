@@ -70,13 +70,6 @@
   color: #fff;
 }
 
-.topbar__enroll svg {
-  transition: transform 0.2s ease;
-}
-
-.topbar__enroll:hover svg {
-  transform: translateX(3px);
-}
 
 /* ── Contact / social strip ── */
 .topbar__strip {
@@ -178,8 +171,14 @@
   }
 
   .topbar__announce-inner {
-    gap: 8px;
-    padding: 8px 16px;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 6px 16px;
+  }
+
+  /* Phones: just "Admissions Open:" + Enroll Now */
+  .topbar__announce-detail {
+    display: none;
   }
 
   .topbar__enroll {

@@ -230,12 +230,19 @@
 }
 
 .pdf-retry-btn {
-  padding: 8px 18px;
-  border-radius: 6px;
+  /* size: hero CTA tokens (index.css) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
   background: var(--color-gold, #d4a843);
   color: #0d1b35;
-  font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   cursor: pointer;
   border: none;
   transition: opacity 0.2s ease;

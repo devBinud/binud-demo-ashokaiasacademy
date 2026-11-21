@@ -103,7 +103,7 @@
   --font-regular: 400;
   --font-medium: 500;
   --font-semibold: 600;
-  --font-bold: 700;
+  --font-bold: 600; /* site-wide cap: nothing heavier than 600 */
 
   /* Line Heights */
   --leading-tight: 1.25;
@@ -188,6 +188,31 @@
   /* Nav text */
   --nav-tint: #f1f4f9;
   /* Hover background */
+
+  /* --- Button size: every text button matches the hero
+         "Start Your Journey With Us" CTA (its 1440px-wide size) --- */
+  --btn-font-size: 16.5px;
+  --btn-line-height: 1.2;
+  --btn-pad-y: 11.5px;
+  --btn-pad-x: 32px;
+  --btn-padding: var(--btn-pad-y) var(--btn-pad-x);
+  --btn-radius: 10px;
+  --btn-gap: 14px;
+  --btn-icon: 18px;
+  /* outer height whatever the border: text line + top/bottom padding */
+  --btn-height: calc(var(--btn-font-size) * var(--btn-line-height) + 2 * var(--btn-pad-y));
+}
+
+/* Phones: the hero CTA's phone size */
+@media (max-width: 699px) {
+  :root {
+    --btn-font-size: 14px;
+    --btn-pad-y: 9.5px;
+    --btn-pad-x: 21.5px;
+    --btn-radius: 8px;
+    --btn-gap: 8px;
+    --btn-icon: 15px;
+  }
 }
 
 /* ------------------------------------------------------------
@@ -206,6 +231,11 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+}
+
+/* Browsers default these to bold (700); the site caps weight at 600 */
+h1, h2, h3, h4, h5, h6, b, strong, th {
+  font-weight: 600;
 }
 
 body {
@@ -440,13 +470,14 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-md);
+  gap: var(--btn-gap);
+  /* minus the 2px border so the outer size matches the hero CTA */
+  padding: calc(var(--btn-pad-y) - 2px) calc(var(--btn-pad-x) - 2px);
+  border-radius: var(--btn-radius);
   font-family: var(--font-body);
-  font-size: var(--text-base);
+  font-size: var(--btn-font-size);
   font-weight: var(--font-semibold);
-  line-height: 1;
+  line-height: var(--btn-line-height);
   transition: all var(--transition-base);
   cursor: pointer;
   border: 2px solid transparent;
@@ -524,12 +555,20 @@ p {
 }
 
 /* Gold divider line */
-.divider-gold {
-  width: 48px;
-  height: 3px;
-  background: var(--color-gold);
-  border-radius: var(--radius-full);
-  margin-block: var(--space-4);
+/* Gold underline dividers were removed site-wide; these headings keep the
+   breathing room the divider used to provide. */
+h2.about-notice__title,
+h2.courses__right-title,
+h2.founders-vision__title,
+h2.stands-out__title,
+h2.testimonials__title,
+h2.whyus__title,
+h1.page-hero__title {
+  margin-bottom: var(--space-4);
+}
+
+h2.mains-article-title {
+  margin-bottom: var(--space-5);
 }
 
 /* ------------------------------------------------------------
@@ -635,7 +674,7 @@ strong,
 [class*="--title"],
 .hero__stat strong,
 .stats-strip__num {
-  font-weight: 700 !important;
+  font-weight: 600 !important;
 }
 
 /* Enforce consistent 3xl size for all major section titles */

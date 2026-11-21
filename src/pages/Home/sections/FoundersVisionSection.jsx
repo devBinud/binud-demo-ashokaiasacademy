@@ -9,9 +9,7 @@ export default function FoundersVisionSection() {
         <div className="founders-vision__wrapper">
           {/* Header */}
           <div className="founders-vision__header">
-            <span className="section-label">Leadership & Mission</span>
             <h2 className="founders-vision__title">Founder's Vision</h2>
-            <div className="divider-gold" />
           </div>
 
           <div className="founders-vision__grid">

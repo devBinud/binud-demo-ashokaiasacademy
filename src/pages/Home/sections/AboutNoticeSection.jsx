@@ -27,11 +27,9 @@ export default function AboutNoticeSection() {
 
         {/* ── LEFT - About ── */}
         <div className="about-notice__left">
-          <span className="section-label">Who We Are</span>
           <h2 className="about-notice__title">
             Ashoka IAS Academy
           </h2>
-          <div className="divider-gold" />
 
           <p className="about-notice__desc">
             Ashoka IAS Academy is a premier institute dedicated to shaping the next generation of civil servants and professionals. Founded on the principles of quality education, discipline, and mentorship, the academy has emerged as a trusted destination for aspirants preparing for UPSC, APSC, SSC, Banking, and Defence examinations.
@@ -114,7 +112,8 @@ export default function AboutNoticeSection() {
 
             <div className="notice-board__footer">
               <Link to="/results" className="notice-board__view-all">
-                View All Updates →
+                View all updates
+                <i className="fa-solid fa-arrow-right" aria-hidden="true" />
               </Link>
             </div>
 

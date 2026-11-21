@@ -1,109 +1,116 @@
 /* ============================================================
-   PAGE HEADER / HERO BANNER (REUSABLE COMPONENT)
+   PAGE HEADER — photo banner with title + breadcrumb
+   (shared by all inner pages)
    ============================================================ */
 .page-banner {
-  background: linear-gradient(90deg, #0e3b5e 0%, #164e63 50%, #0e3b5e 100%);
-  color: #ffffff;
   position: relative;
+  overflow: hidden;
+  background-color: #eef1f6;
+  background-image: var(--page-banner-bg);
+  background-size: cover;
+  background-position: center 40%;
 }
 
-.page-banner__main {
-  padding: 42px 0 32px 0;
-  text-align: center;
+/* Light wash over the photo — stronger on the left so the text reads clearly */
+.page-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(255, 255, 255, 0.86) 45%,
+    rgba(255, 255, 255, 0.72) 100%
+  );
+}
+
+.page-banner__inner {
+  position: relative;
+  padding-block: 30px 26px;
 }
 
 .page-banner__title {
-  font-family: "STIX Two Text", serif;
-  font-optical-sizing: auto;
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #4a4c53;
+  margin: 0 0 8px;
 }
 
-@media (min-width: 768px) {
-  .page-banner__title {
-    font-size: 1.85rem;
-  }
+.page-banner__title span {
+  color: var(--nav-indigo, #273c68);
 }
 
-/* ── Separate Breadcrumb Bar with dark accent background ── */
-.page-breadcrumb-bar {
-  background: rgba(13, 27, 53, 0.45);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 10px 16px;
-  overflow: hidden;
-}
-
-.page-breadcrumb {
-  font-family: "STIX Two Text", serif;
-  font-optical-sizing: auto;
+/* ── Breadcrumb ── */
+.page-breadcrumb ol {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.75);
   flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+}
+
+.page-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
 }
 
 .page-breadcrumb__link {
-  font-family: "STIX Two Text", serif;
-  font-optical-sizing: auto;
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--nav-indigo, #273c68);
   font-weight: 500;
-  transition: color 0.15s ease;
+  text-decoration: none;
   white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.page-breadcrumb__link svg {
+  flex-shrink: 0;
+  color: #10182d;
 }
 
 .page-breadcrumb__link:hover {
-  color: var(--color-gold, #fbbf24);
+  color: #1b2a4a;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .page-breadcrumb__sep {
-  opacity: 0.6;
-  font-size: 0.8rem;
-  flex-shrink: 0;
+  color: #5d6678;
   user-select: none;
 }
 
 .page-breadcrumb__current {
-  font-family: "STIX Two Text", serif;
-  font-optical-sizing: auto;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 500;
-  white-space: nowrap;
+  color: #3a4253;
+  font-weight: 400;
 }
 
-/* ── Mobile Responsive Breadcrumb UX ── */
 @media (max-width: 640px) {
-  .page-breadcrumb-bar {
-    padding: 8px 12px;
+  .page-banner__inner {
+    padding-block: 22px 20px;
   }
 
-  .page-breadcrumb {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    font-size: 0.72rem;
-    gap: 6px;
+  .page-banner::before {
+    background: rgba(255, 255, 255, 0.9);
   }
 
-  .page-breadcrumb::-webkit-scrollbar {
-    display: none;
+  .page-breadcrumb ol {
+    font-size: 0.82rem;
   }
 
-  .page-breadcrumb__link,
   .page-breadcrumb__current {
-    display: inline-block;
-    max-width: 160px;
     overflow: hidden;
     text-overflow: ellipsis;
-    vertical-align: middle;
+    white-space: nowrap;
+    max-width: 200px;
   }
 }

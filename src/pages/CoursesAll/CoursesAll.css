@@ -86,7 +86,7 @@
 
 .courses-all-hero__title {
   font-size: var(--text-3xl);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-white);
   margin-bottom: var(--space-4);
   margin-top: var(--space-3);
@@ -141,7 +141,7 @@
 .courses-all-hero__bc-current {
   font-size: var(--text-xs);
   color: var(--color-gold);
-  font-weight: 700;
+  font-weight: 600;
   font-family: var(--font-navbar);
 }
 
@@ -252,7 +252,7 @@
 
 .courses-all-tab--active .courses-all-tab__label {
   color: var(--color-white);
-  font-weight: 800;
+  font-weight: 600;
   padding-bottom: 5px;
 }
 
@@ -325,7 +325,7 @@
 .courses-all-detail__tag {
   display: inline-block;
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-gold);
   background: rgba(184, 146, 42, 0.1);
   padding: 4px 12px;
@@ -345,7 +345,7 @@
 
 .courses-all-detail__title {
   font-size: var(--text-2xl);
-  font-weight: 800;
+  font-weight: 600;
   color: #1a1a1a;
   margin-bottom: var(--space-2);
   line-height: 1.2;
@@ -359,7 +359,7 @@
 
 .courses-all-detail__subtitle {
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-gold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -385,7 +385,7 @@
 
 .courses-all-section__title {
   font-size: var(--text-base);
-  font-weight: 800;
+  font-weight: 600;
   color: #1a1a1a;
   margin-bottom: var(--space-4);
   letter-spacing: 0.01em;
@@ -468,7 +468,7 @@
 courses-all-goal strong {
   display: block;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   color: #1a1a1a !important;
   margin-bottom: 4px;
   text-transform: uppercase;
@@ -504,7 +504,7 @@ courses-all-goal strong {
 
 .courses-all-contact__text strong {
   font-size: var(--text-base);
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
 }
 
@@ -514,15 +514,20 @@ courses-all-goal strong {
 }
 
 .courses-all-contact__btn {
+  /* size: hero CTA tokens (index.css) */
   display: inline-flex;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
+  gap: var(--btn-gap);
   align-items: center;
-  gap: var(--space-2);
   background: #25D366;
   color: #fff;
-  font-size: var(--text-sm);
-  font-weight: 700;
-  padding: 11px 22px;
-  border-radius: 8px;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.15s ease, transform 0.15s ease;

@@ -131,13 +131,6 @@ function Slide({ slide, index }) {
   );
 }
 
-const QUICK_LINKS = [
-  { icon: 'fa-solid fa-laptop', title: 'Online Admission', text: 'Apply from anywhere', to: '/online-application' },
-  { icon: 'fa-solid fa-school', title: 'Offline Admission', text: 'Guwahati & Nagaon centres', to: '/offline-admission' },
-  { icon: 'fa-solid fa-book-open', title: 'Free Study Material', text: 'Notes, PYQs & current affairs', to: '/prelims-notes' },
-  { icon: 'fa-solid fa-phone', title: 'Talk to a Counsellor', text: '+91 91814 11843', href: 'tel:+919181411843' },
-];
-
 export default function HeroSection() {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -248,24 +241,6 @@ export default function HeroSection() {
               </div>
             </div>
 
-            <div className="hero-intro__tiles">
-              {QUICK_LINKS.map((q) => {
-                const inner = (
-                  <>
-                    <span className="hero-intro__tile-icon"><i className={q.icon} aria-hidden="true" /></span>
-                    <span className="hero-intro__tile-body">
-                      <strong>{q.title}</strong>
-                      <span>{q.text}</span>
-                    </span>
-                  </>
-                );
-                return q.href ? (
-                  <a key={q.title} href={q.href} className="hero-intro__tile">{inner}</a>
-                ) : (
-                  <Link key={q.title} to={q.to} className="hero-intro__tile">{inner}</Link>
-                );
-              })}
-            </div>
           </div>
         </div>
       </section>

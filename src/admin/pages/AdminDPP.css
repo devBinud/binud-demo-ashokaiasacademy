@@ -96,7 +96,7 @@
 .dpp-search-header h2 {
   font-size: var(--text-md) !important;
   color: var(--color-navy);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .search-box {
@@ -134,7 +134,7 @@
   display: inline-block;
   padding: 4px 10px;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 600;
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;

@@ -49,7 +49,7 @@
 
 .scholarship-hero__title {
   font-size: var(--text-3xl);
-  font-weight: 800;
+  font-weight: 600;
   color: #fff;
   margin-bottom: var(--space-4);
   margin-top: var(--space-3);
@@ -110,7 +110,7 @@
 
 .scholarship-section-title {
   font-size: var(--text-2xl);
-  font-weight: 800;
+  font-weight: 600;
   color: #0f172a;
   margin-bottom: var(--space-3);
   letter-spacing: -0.01em;
@@ -200,7 +200,7 @@
 
 .card-badge {
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 4px 10px;
@@ -228,14 +228,14 @@
 
 .card-title {
   font-size: var(--text-lg);
-  font-weight: 800;
+  font-weight: 600;
   color: #0f172a;
   margin-bottom: 2px;
 }
 
 .card-target {
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-gold);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -257,7 +257,7 @@
 
 .card-action-text {
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-navy);
   transition: color 0.2s ease;
 }
@@ -304,7 +304,7 @@
 
 .spec-header h3 {
   font-size: var(--text-lg);
-  font-weight: 800;
+  font-weight: 600;
   color: #0f172a;
 }
 
@@ -328,7 +328,7 @@
 .hl-label {
   font-size: 0.65rem;
   color: #94a3b8;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -336,12 +336,12 @@
 .hl-value {
   font-size: var(--text-sm);
   color: #1e293b;
-  font-weight: 800;
+  font-weight: 600;
 }
 
 .section-subheading {
   font-size: var(--text-sm);
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--color-navy);
   letter-spacing: 0.04em;
@@ -410,7 +410,7 @@
   color: #fff;
   border-radius: 5px;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -419,7 +419,7 @@
 
 .syllabus-item-header h5 {
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 600;
   color: #1e293b;
   margin: 0;
 }
@@ -459,7 +459,7 @@
 
 .form-header h3 {
   font-size: var(--text-lg);
-  font-weight: 800;
+  font-weight: 600;
   color: #0f172a;
 }
 
@@ -483,7 +483,7 @@
 
 .form-group label {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   color: #475569;
   letter-spacing: 0.04em;
@@ -564,7 +564,7 @@
 
 .radio-label-wrapper span {
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 600;
   color: #475569;
 }
 
@@ -619,8 +619,16 @@
 }
 
 .btn-submit-registration {
-  padding-block: 13px;
-  font-size: var(--text-sm);
+  /* size: hero CTA tokens (index.css) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
   margin-top: var(--space-2);
 }
 
@@ -657,7 +665,7 @@
 
 .registration-success-view h3 {
   font-size: var(--text-xl);
-  font-weight: 800;
+  font-weight: 600;
   color: #0f172a;
   margin-bottom: var(--space-2);
 }
@@ -702,7 +710,7 @@
 
 .success-details-row strong {
   color: #1e293b;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .success-next-steps {
@@ -712,7 +720,7 @@
 
 .success-next-steps h4 {
   font-size: var(--text-xs);
-  font-weight: 800;
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--color-navy);
   letter-spacing: 0.05em;
@@ -750,11 +758,6 @@
   justify-content: center;
 }
 
-.success-action-row .btn {
-  font-size: var(--text-xs);
-  padding: 10px 20px;
-}
-
 @media (max-width: 480px) {
   .success-action-row {
     flex-direction: column;
@@ -772,7 +775,7 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-navy);
   text-decoration: none;
   transition: all 0.2s ease;

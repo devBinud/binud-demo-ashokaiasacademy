@@ -22,7 +22,7 @@
 /* ── LEFT ── */
 .about-notice__title {
   font-size: var(--text-2xl);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-navy);
   margin-bottom: var(--space-2);
 }
@@ -42,7 +42,8 @@
 
 .about-notice__desc strong {
   color: var(--color-navy);
-  font-weight: 700;
+  /* index.css forces every <strong> to 700 !important */
+  font-weight: 600 !important;
 }
 
 .about-notice__points {
@@ -77,10 +78,9 @@
 /* ── RIGHT — Notice Board ── */
 .notice-board {
   background: var(--color-bg-white);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 1px 3px rgba(13, 27, 53, 0.06);
 }
 
 /* Header bar */
@@ -98,17 +98,14 @@
 }
 
 .notice-board__header-title {
-  font-size: var(--text-xs);
-  font-weight: var(--font-bold);
+  font-size: 0.98rem;
+  font-weight: 600;
   color: #ffffff;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 /* Tabs */
 .notice-board__tabs {
   display: flex;
-  border-bottom: 1px solid var(--color-border);
   background: #ffffff;
 }
 
@@ -122,8 +119,6 @@
   border: none;
   cursor: pointer;
   transition: color 0.15s ease, background 0.15s ease;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -1px;
 }
 
 .notice-board__tab:hover {
@@ -138,7 +133,6 @@
 .notice-board__tab--active {
   color: var(--color-navy);
   background: linear-gradient(to right, #eff6ff 0%, #ffffff 100%);
-  border-bottom-color: var(--color-navy);
   font-weight: var(--font-semibold);
 }
 
@@ -234,10 +228,14 @@
 .notice-item__title {
   font-size: var(--text-sm);
   color: var(--color-navy);
-  font-weight: 600;
   line-height: 1.45;
   margin: 0;
   display: inline-block;
+}
+
+/* index.css forces every [class*="__title"] to 700 !important — keep notice titles light */
+.notice-board .notice-item__title {
+  font-weight: 300 !important;
 }
 
 .notice-item__badge-new {
@@ -247,7 +245,7 @@
   background-color: #ef4444;
   color: #ffffff;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   padding: 1px 5px;
   border-radius: 3px;
   margin-left: 8px;
@@ -265,7 +263,7 @@
   background-color: #dc2626;
   color: #ffffff;
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 600;
   padding: 2px 6px;
   border-radius: 3px;
   margin-left: 8px;
@@ -296,15 +294,29 @@
 }
 
 .notice-board__view-all {
-  font-size: var(--text-xs);
-  font-weight: var(--font-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
   color: var(--color-navy);
+  background: #f1f4f9;
+  border-radius: 999px;
   text-decoration: none;
-  transition: color 0.15s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.notice-board__view-all i {
+  font-size: 0.78rem;
+  transition: transform 0.2s ease;
 }
 
 .notice-board__view-all:hover {
-  color: var(--color-gold);
+  color: #fff;
+  background: var(--color-navy);
+}
+
+.notice-board__view-all:hover i {
+  transform: translateX(3px);
 }

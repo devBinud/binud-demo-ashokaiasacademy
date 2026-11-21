@@ -59,7 +59,6 @@ export default function CoursesSection() {
               {/* Text */}
               <div className="course-row__body">
                 <h3 className="course-row__title">{course.title}</h3>
-                <div className="course-row__divider" />
                 <p className="course-row__subtitle">{course.subtitle}</p>
               </div>
               {/* Arrow */}
@@ -75,12 +74,10 @@ export default function CoursesSection() {
 
         {/* RIGHT — Heading + Info */}
         <div className="courses__right">
-          <span className="section-label">Our Programs</span>
           <h2 className="courses__right-title">
             Choose Your Path<br />
             to <span className="text-gold">Success</span>
           </h2>
-          <div className="divider-gold" />
           <p className="courses__right-desc">
             Whether you're just starting out or gearing up for your final attempt,
             we have a program built for every stage of your civil services journey.

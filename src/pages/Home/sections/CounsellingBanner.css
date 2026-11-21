@@ -1,0 +1,114 @@
+/* ============================================================
+   COUNSELLING CTA BANNER (Home, before Popular Courses)
+   ============================================================ */
+.cb {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 78% 20%, rgba(245, 197, 66, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 15% 100%, rgba(255, 255, 255, 0.06) 0%, transparent 45%),
+    linear-gradient(120deg, #16233f 0%, #1b2a4a 45%, #273c68 100%);
+}
+
+.cb__inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 48px;
+  padding-block: 36px;
+}
+
+.cb-art {
+  display: block;
+  width: 220px;
+  height: auto;
+  margin-bottom: -36px; /* figure sits on the bottom edge of the band */
+  align-self: end;
+}
+
+.cb__title,
+section h2.cb__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2.1vw, 1.75rem) !important;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.cb__title span {
+  color: #f5c542;
+}
+
+.cb__btn {
+  /* size: hero CTA tokens (index.css) */
+  display: inline-flex;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
+  gap: var(--btn-gap);
+  align-items: center;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #1b2a4a;
+  background: #f5c542;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cb__btn i {
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.cb__btn:hover {
+  color: #1b2a4a;
+  background: #ffd45c;
+}
+
+.cb__btn:hover i {
+  transform: translateX(3px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1023px) {
+  .cb__inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 24px 32px;
+  }
+
+  .cb-art {
+    grid-row: span 2;
+    width: 180px;
+  }
+
+  .cb__btn {
+    justify-self: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .cb__inner {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 20px;
+    padding-block: 36px 40px;
+    text-align: center;
+  }
+
+  .cb-art {
+    grid-row: auto;
+    width: 170px;
+    margin-bottom: 0;
+    align-self: auto;
+  }
+
+  .cb__btn {
+    justify-self: center;
+  }
+}

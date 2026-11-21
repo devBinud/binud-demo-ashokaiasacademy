@@ -3,7 +3,6 @@
    ============================================================ */
 .study-material-page {
   background: #f7f8fc;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -70,7 +69,7 @@
 
 .sm-hero__title {
   font-size: 2rem;
-  font-weight: 800;
+  font-weight: 600;
   color: #fff;
   margin: 12px 0 20px;
   font-family: var(--font-body);
@@ -120,100 +119,21 @@
 .sm-hero__bc-current {
   font-size: 0.75rem;
   color: var(--color-gold);
-  font-weight: 700;
+  font-weight: 600;
 }
 
-/* ── Coming soon body ── */
+/* ── Placeholder: one line, matching the Blog page ── */
 .sm-coming-soon {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 70px 20px;
-}
-
-.sm-coming-soon__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 96px 16px;
   text-align: center;
-  gap: 20px;
-  max-width: 480px;
-  margin-inline: auto;
-  background: #fff;
-  border: 1.5px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 50px 40px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-  width: 100%;
+  background: #f7f9fc;
 }
 
-.sm-coming-soon__icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(184, 146, 42, 0.07);
-  border: 2px solid rgba(184, 146, 42, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-gold);
-  flex-shrink: 0;
-}
-
-/* Upcoming badge */
-.sm-coming-soon__badge {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff;
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 14px;
-  border-radius: 99px;
-}
-
-/* Heading */
-.sm-coming-soon__inner h2 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #1a1a1a;
+.sm-coming-soon__line {
   margin: 0;
-  font-family: var(--font-body);
-}
-
-/* Body text */
-.sm-coming-soon__inner p {
-  font-size: 0.9rem;
-  color: #6b7280;
-  line-height: 1.7;
-  margin: 0;
-  font-family: var(--font-body);
-}
-
-/* Divider */
-.sm-coming-soon__inner::before {
-  display: none;
-}
-
-/* Back button */
-.sm-back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 24px;
-  border-radius: 10px;
-  background: #1a1a1a;
-  color: #fff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-decoration: none;
-  font-family: var(--font-body);
-  transition: background 0.15s ease;
-  margin-top: 4px;
-}
-
-.sm-back-btn:hover {
-  background: #333;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #5d6678;
 }
 
 /* ── Responsive ── */
@@ -224,22 +144,5 @@
 
   .sm-hero__title {
     font-size: 1.5rem;
-  }
-
-  .sm-coming-soon {
-    padding: 40px 16px;
-  }
-
-  .sm-coming-soon__inner {
-    padding: 36px 24px;
-  }
-
-  .sm-coming-soon__icon {
-    width: 68px;
-    height: 68px;
-  }
-
-  .sm-coming-soon__inner h2 {
-    font-size: 1.25rem;
   }
 }

@@ -82,28 +82,41 @@ const VIDEO_ITEMS = [
   },
 ];
 
-
-
 const TABS = [
-  { id: 'all',          label: 'All'          },
-  { id: 'classroom',    label: 'Classroom'    },
-  { id: 'news',         label: 'News & Media' },
-  { id: 'events',       label: 'Events'       },
-  { id: 'achievements', label: 'Achievements' },
-  { id: 'videos',       label: 'Videos'       },
+  { id: 'all',          label: 'All',          icon: 'fa-solid fa-border-all' },
+  { id: 'classroom',    label: 'Classroom',    icon: 'fa-solid fa-chalkboard-user' },
+  { id: 'news',         label: 'News & Media', icon: 'fa-solid fa-newspaper' },
+  { id: 'events',       label: 'Events',       icon: 'fa-solid fa-calendar-check' },
+  { id: 'achievements', label: 'Achievements', icon: 'fa-solid fa-trophy' },
+  { id: 'videos',       label: 'Videos',       icon: 'fa-solid fa-circle-play' },
 ];
 
+const CATEGORY_LABEL = Object.fromEntries(TABS.map((t) => [t.id, t.label]));
+
+const PAGE_SIZE = 16;
+
+/* Repeating bento pattern — some tiles are bigger so the grid feels editorial.
+   Every 16 tiles fill exactly 6 rows of a 4-column grid (no holes):
+   big tile on the left, then a big tile on the right, each with a wide tile. */
+function tileClass(index) {
+  const n = index % 16;
+  if (n === 0 || n === 10) return ' gallery-item--feature';
+  if (n === 5 || n === 15) return ' gallery-item--wide';
+  return '';
+}
+
 // ── Lazy image with skeleton + fade-in ──
-function GalleryImage({ src, caption, onClick }) {
+function GalleryImage({ item, index, onClick }) {
   const [loaded, setLoaded] = useState(false);
   const [error, setError]   = useState(false);
   const imgRef = useRef(null);
+  const label = CATEGORY_LABEL[item.category];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && imgRef.current) {
-          imgRef.current.src = src;
+          imgRef.current.src = item.src;
           observer.disconnect();
         }
       },
@@ -111,41 +124,43 @@ function GalleryImage({ src, caption, onClick }) {
     );
     if (imgRef.current) observer.observe(imgRef.current);
     return () => observer.disconnect();
-  }, [src]);
+  }, [item.src]);
 
   return (
-    <div className={`gallery-item${loaded ? ' gallery-item--loaded' : ''}`} onClick={onClick}>
-      {!loaded && !error && <div className="gallery-item__skeleton" />}
+    <button
+      type="button"
+      className={`gallery-item${tileClass(index)}${loaded ? ' gallery-item--loaded' : ''}`}
+      style={{ animationDelay: `${Math.min(index % PAGE_SIZE, 12) * 40}ms` }}
+      onClick={onClick}
+      aria-label={`Open ${label} photo`}
+    >
+      {!loaded && !error && <span className="gallery-item__skeleton" />}
       <img
         ref={imgRef}
-        alt={caption}
+        alt={item.caption || `${label} at Ashoka IAS Academy`}
         className="gallery-item__img"
         onLoad={() => setLoaded(true)}
         onError={() => { setError(true); setLoaded(true); }}
       />
       {error && (
-        <div className="gallery-item__fallback">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <circle cx="8.5" cy="8.5" r="1.5" />
-            <polyline points="21 15 16 10 5 21" />
-          </svg>
+        <span className="gallery-item__fallback">
+          <i className="fa-regular fa-image" aria-hidden="true" />
           <span>Photo coming soon</span>
-        </div>
+        </span>
       )}
-      <div className="gallery-item__overlay">
-        <p className="gallery-item__caption">{caption}</p>
-      </div>
-    </div>
+      <span className="gallery-item__overlay">
+        <span className="gallery-item__tag">{label}</span>
+        <span className="gallery-item__zoom"><i className="fa-solid fa-expand" aria-hidden="true" /></span>
+      </span>
+    </button>
   );
 }
 
 // ── Video Card ──
 function VideoCard({ video, onClick }) {
   return (
-    <div className="video-card" onClick={() => onClick(video)}>
-      {/* Thumbnail / video preview */}
-      <div className="video-card__thumb">
+    <button type="button" className="video-card" onClick={() => onClick(video)}>
+      <span className="video-card__thumb">
         <video
           className="video-card__img"
           src={video.src}
@@ -154,28 +169,21 @@ function VideoCard({ video, onClick }) {
           playsInline
           preload="metadata"
         />
-        {/* Play button */}
-        <div className="video-card__play">
-          <div className="video-card__play-ring" />
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <polygon points="5,3 19,12 5,21" />
-          </svg>
-        </div>
-        {/* Label pill */}
-        {video.label && (
-          <span className="video-card__label">{video.label}</span>
-        )}
-      </div>
-      {/* Info */}
-      <div className="video-card__info">
-        <p className="video-card__title">{video.title}</p>
-      </div>
-    </div>
+        <span className="video-card__shade" />
+        <span className="video-card__play">
+          <i className="fa-solid fa-play" aria-hidden="true" />
+        </span>
+        {video.label && <span className="video-card__label">{video.label}</span>}
+        <span className="video-card__title">{video.title}</span>
+      </span>
+    </button>
   );
 }
 
 // ── Image Lightbox ──
-function Lightbox({ item, onClose, onPrev, onNext }) {
+function Lightbox({ item, index, total, onClose, onPrev, onNext }) {
+  const touchX = useRef(null);
+
   useEffect(() => {
     const handler = (e) => {
       if (e.key === 'Escape')     onClose();
@@ -188,26 +196,45 @@ function Lightbox({ item, onClose, onPrev, onNext }) {
 
   if (!item) return null;
 
+  const onTouchStart = (e) => { touchX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(dx) > 40) (dx < 0 ? onNext : onPrev)();
+    touchX.current = null;
+  };
+
   return (
-    <div className="lightbox" onClick={onClose}>
-      <button className="lightbox__close" onClick={onClose} aria-label="Close">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </button>
-      <button className="lightbox__nav lightbox__nav--prev" onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
-      <div className="lightbox__content" onClick={(e) => e.stopPropagation()}>
-        <img src={item.src} alt={item.caption} className="lightbox__img" />
-        {item.caption && <p className="lightbox__caption">{item.caption}</p>}
+    <div
+      className="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Photo viewer"
+      onClick={onClose}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      <div className="lightbox__bar" onClick={(e) => e.stopPropagation()}>
+        <span className="lightbox__meta">
+          <span className="lightbox__tag">{CATEGORY_LABEL[item.category]}</span>
+          <span className="lightbox__count">{index + 1} / {total}</span>
+        </span>
+        <button type="button" className="lightbox__close" onClick={onClose} aria-label="Close">
+          <i className="fa-solid fa-xmark" aria-hidden="true" />
+        </button>
       </div>
-      <button className="lightbox__nav lightbox__nav--next" onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <polyline points="9 18 15 12 9 6" />
-        </svg>
+
+      <button type="button" className="lightbox__nav lightbox__nav--prev" onClick={(e) => { e.stopPropagation(); onPrev(); }} aria-label="Previous photo">
+        <i className="fa-solid fa-chevron-left" aria-hidden="true" />
+      </button>
+
+      <figure className="lightbox__content" onClick={(e) => e.stopPropagation()}>
+        <img key={item.id} src={item.src} alt={item.caption || CATEGORY_LABEL[item.category]} className="lightbox__img" />
+        {item.caption && <figcaption className="lightbox__caption">{item.caption}</figcaption>}
+      </figure>
+
+      <button type="button" className="lightbox__nav lightbox__nav--next" onClick={(e) => { e.stopPropagation(); onNext(); }} aria-label="Next photo">
+        <i className="fa-solid fa-chevron-right" aria-hidden="true" />
       </button>
     </div>
   );
@@ -224,24 +251,25 @@ function VideoLightbox({ video, onClose }) {
   if (!video) return null;
 
   return (
-    <div className="lightbox video-lightbox" onClick={onClose}>
-      <button className="lightbox__close" onClick={onClose} aria-label="Close">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-        </svg>
-      </button>
+    <div className="lightbox video-lightbox" role="dialog" aria-modal="true" aria-label={video.title} onClick={onClose}>
+      <div className="lightbox__bar" onClick={(e) => e.stopPropagation()}>
+        <span className="lightbox__meta">
+          <span className="lightbox__tag">Video</span>
+          <span className="lightbox__count">{video.title}</span>
+        </span>
+        <button type="button" className="lightbox__close" onClick={onClose} aria-label="Close">
+          <i className="fa-solid fa-xmark" aria-hidden="true" />
+        </button>
+      </div>
       <div className="video-lightbox__content" onClick={(e) => e.stopPropagation()}>
-        <div className="video-lightbox__frame-wrap">
-          <video
-            className="video-lightbox__player"
-            src={video.src}
-            poster={video.poster || undefined}
-            controls
-            autoPlay
-            playsInline
-          />
-        </div>
-        <p className="video-lightbox__title">{video.title}</p>
+        <video
+          className="video-lightbox__player"
+          src={video.src}
+          poster={video.poster || undefined}
+          controls
+          autoPlay
+          playsInline
+        />
       </div>
     </div>
   );
@@ -249,9 +277,10 @@ function VideoLightbox({ video, onClose }) {
 
 // ── Main Gallery Page ──
 export default function Gallery() {
-  const [activeTab,    setActiveTab]    = useState('all');
-  const [lightbox,     setLightbox]     = useState(null);
-  const [videoModal,   setVideoModal]   = useState(null);
+  const [activeTab,  setActiveTab]  = useState('all');
+  const [visible,    setVisible]    = useState(PAGE_SIZE);
+  const [lightboxId, setLightboxId] = useState(null);
+  const [videoModal, setVideoModal] = useState(null);
 
   const isVideoTab = activeTab === 'videos';
 
@@ -264,30 +293,35 @@ export default function Gallery() {
     [activeTab, isVideoTab]
   );
 
-  const openLightbox  = useCallback((item)  => setLightbox(item),  []);
-  const closeLightbox = useCallback(()      => setLightbox(null),  []);
+  const shown = filtered.slice(0, visible);
+  const lightboxIndex = lightboxId === null ? -1 : filtered.findIndex(i => i.id === lightboxId);
+  const lightboxItem = lightboxIndex >= 0 ? filtered[lightboxIndex] : null;
+
+  const changeTab = (id) => {
+    setActiveTab(id);
+    setVisible(PAGE_SIZE);
+  };
+
+  const closeLightbox = useCallback(() => setLightboxId(null), []);
   const openVideo     = useCallback((video) => setVideoModal(video), []);
-  const closeVideo    = useCallback(()      => setVideoModal(null), []);
+  const closeVideo    = useCallback(() => setVideoModal(null), []);
 
   const prevItem = useCallback(() => {
-    if (!lightbox) return;
-    const idx = filtered.findIndex(i => i.id === lightbox.id);
-    setLightbox(filtered[(idx - 1 + filtered.length) % filtered.length]);
-  }, [lightbox, filtered]);
+    if (lightboxIndex < 0) return;
+    setLightboxId(filtered[(lightboxIndex - 1 + filtered.length) % filtered.length].id);
+  }, [lightboxIndex, filtered]);
 
   const nextItem = useCallback(() => {
-    if (!lightbox) return;
-    const idx = filtered.findIndex(i => i.id === lightbox.id);
-    setLightbox(filtered[(idx + 1) % filtered.length]);
-  }, [lightbox, filtered]);
+    if (lightboxIndex < 0) return;
+    setLightboxId(filtered[(lightboxIndex + 1) % filtered.length].id);
+  }, [lightboxIndex, filtered]);
 
   // Lock body scroll when any modal is open
   useEffect(() => {
-    document.body.style.overflow = (lightbox || videoModal) ? 'hidden' : '';
+    document.body.style.overflow = (lightboxItem || videoModal) ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [lightbox, videoModal]);
+  }, [lightboxItem, videoModal]);
 
-  // Tab count helper
   const getCount = (tabId) => {
     if (tabId === 'all')    return GALLERY_ITEMS.length;
     if (tabId === 'videos') return VIDEO_ITEMS.length;
@@ -296,13 +330,12 @@ export default function Gallery() {
 
   return (
     <div className="gallery-page">
-      <SEO 
+      <SEO
         title="Photo & Event Gallery"
         description="View photos of our classroom sessions, seminars, topper talk events, scholarship distributions, and academy highlights."
       />
 
-      {/* ── Page Header ── */}
-      <PageHeader 
+      <PageHeader
         title="Photo & Video Gallery"
         breadcrumbs={[
           { label: 'Home', to: '/' },
@@ -310,18 +343,31 @@ export default function Gallery() {
         ]}
       />
 
-      {/* ── Gallery Section ── */}
-      <section className="section gallery-main">
+      <section className="gallery-main">
         <div className="container">
 
+          <div className="gallery-head">
+            <div>
+              <h2 className="gallery-title">Life at the <span>Academy</span></h2>
+            </div>
+            <p className="gallery-intro">
+              Classroom sessions, seminars, topper talks and celebrations from our journey
+              since 2021.
+            </p>
+          </div>
+
           {/* Tabs */}
-          <div className="gallery-tabs">
+          <div className="gallery-tabs" role="tablist" aria-label="Gallery categories">
             {TABS.map(tab => (
               <button
                 key={tab.id}
-                className={`gallery-tab${activeTab === tab.id ? ' gallery-tab--active' : ''}${tab.id === 'videos' ? ' gallery-tab--video' : ''}`}
-                onClick={() => setActiveTab(tab.id)}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                className={`gallery-tab${activeTab === tab.id ? ' gallery-tab--active' : ''}`}
+                onClick={() => changeTab(tab.id)}
               >
+                <i className={tab.icon} aria-hidden="true" />
                 {tab.label}
                 <span className="gallery-tab__count">{getCount(tab.id)}</span>
               </button>
@@ -331,24 +377,30 @@ export default function Gallery() {
           {/* ── Image Grid ── */}
           {!isVideoTab && (
             <>
-              <div className="gallery-grid">
-                {filtered.map(item => (
+              <div className="gallery-grid" key={activeTab}>
+                {shown.map((item, i) => (
                   <GalleryImage
                     key={item.id}
-                    src={item.src}
-                    caption={item.caption}
-                    onClick={() => openLightbox(item)}
+                    item={item}
+                    index={i}
+                    onClick={() => setLightboxId(item.id)}
                   />
                 ))}
               </div>
+
               {filtered.length === 0 && (
                 <div className="gallery-empty">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21 15 16 10 5 21" />
-                  </svg>
+                  <i className="fa-regular fa-images" aria-hidden="true" />
                   <p>No photos in this category yet.</p>
+                </div>
+              )}
+
+              {filtered.length > visible && (
+                <div className="gallery-more">
+                  <button type="button" className="gallery-more__btn" onClick={() => setVisible(v => v + PAGE_SIZE)}>
+                    Load more photos
+                    <span>{filtered.length - visible} more</span>
+                  </button>
                 </div>
               )}
             </>
@@ -368,21 +420,20 @@ export default function Gallery() {
 
       <CtaSection />
 
-      {/* Image Lightbox */}
-      {lightbox && (
+      {lightboxItem && (
         <Lightbox
-          item={lightbox}
+          item={lightboxItem}
+          index={lightboxIndex}
+          total={filtered.length}
           onClose={closeLightbox}
           onPrev={prevItem}
           onNext={nextItem}
         />
       )}
 
-      {/* Video Modal */}
       {videoModal && (
         <VideoLightbox video={videoModal} onClose={closeVideo} />
       )}
-
     </div>
   );
 }

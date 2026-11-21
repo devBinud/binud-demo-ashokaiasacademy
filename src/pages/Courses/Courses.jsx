@@ -117,11 +117,9 @@ export default function Courses() {
       {/* Hero */}
       <section className="page-hero">
         <div className="container">
-          <span className="section-label">Our Programs</span>
           <h1 className="page-hero__title">
             UPSC & APSC <span className="text-gold">Coaching Programs</span>
           </h1>
-          <div className="divider-gold" />
           <p className="page-hero__desc">
             Tailored programs for every stage of your civil services journey —
             from foundation to final selection.

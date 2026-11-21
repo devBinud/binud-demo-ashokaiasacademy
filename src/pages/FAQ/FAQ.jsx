@@ -249,7 +249,6 @@ export default function FAQ() {
 
             {/* Left info */}
             <div className="faq-ask__info">
-              <span className="section-label">Still have doubts?</span>
               <h2 className="faq-ask__title">Ask Your <span className="text-gold">Question</span></h2>
               <p className="faq-ask__desc">
                 Didn't find what you were looking for? Submit your question and our team will get back to you personally.

@@ -7,7 +7,7 @@
 .hs {
   --hs-yellow: #ffc906;
   --hs-navy: #0d1b35;
-  --hs-overlap: 14px; /* how far the intro card overlaps the slider */
+  --hs-overlap: 0px; /* intro no longer overlaps the slider */
   container-type: inline-size;
   position: relative;
   font-family: var(--font-heading);
@@ -77,7 +77,7 @@
   font-family: inherit;
   /* !important beats the global `section h2` size rule in index.css */
   font-size: 3.9cqw !important;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 1.06;
   letter-spacing: -0.02em;
   color: #fff;
@@ -113,7 +113,7 @@
   background: var(--hs-yellow);
   color: var(--hs-navy);
   font-size: 1.15cqw;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.2;
   padding: 0.8cqw 2.2cqw;
   border-radius: 0.7cqw;
@@ -190,7 +190,7 @@
   background: #e5001e;
   color: #fff;
   font-size: 1.3cqw;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -211,7 +211,7 @@
 
 .hs__caption strong {
   font-size: 1.6cqw;
-  font-weight: 700;
+  font-weight: 600;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.02em;
@@ -465,31 +465,24 @@
 /* ============================================================
    INTRO CARD — overlaps the bottom of the slider
    ============================================================ */
+/* Plain intro text on the page background — no card, no shadow */
 .hero-intro {
-  position: relative;
-  z-index: 2;
-  margin-top: -14px; /* keep in sync with --hs-overlap */
-  padding-bottom: var(--space-10);
+  padding-block: 56px;
 }
 
 .hero-intro__card {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 48px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background: #fff;
-  border: 1px solid #e8edf5;
-  border-radius: 20px;
-  padding: 44px 48px;
-  box-shadow: 0 2px 4px rgba(13, 27, 53, 0.04), 0 20px 50px rgba(13, 27, 53, 0.1);
+  text-align: center;
 }
 
 .hero-intro__title {
   font-family: var(--font-heading);
-  font-size: clamp(1.85rem, 3.3vw, 2.9rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+  font-weight: 500 !important; /* beats index.css [class*="__title"] !important */
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: #10182d;
   margin: 0 0 16px;
 }
@@ -502,31 +495,34 @@
   font-size: 1rem;
   line-height: 1.7;
   color: #5d6678;
-  margin: 0 0 26px;
-  max-width: 60ch;
+  margin: 0 auto 26px;
+  max-width: 68ch;
 }
 
 .hero-intro__actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
 }
 
 .hero-intro__btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.95rem;
+  gap: var(--btn-gap);
+  font-size: var(--btn-font-size);
   font-weight: 600;
-  padding: 12px 24px;
-  border-radius: 10px;
+  line-height: var(--btn-line-height);
+  /* minus the 1.5px border: same outer size as the hero CTA */
+  padding: calc(var(--btn-pad-y) - 1.5px) calc(var(--btn-pad-x) - 1.5px);
+  border-radius: var(--btn-radius);
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .hero-intro__btn svg {
-  width: 16px;
-  height: 16px;
+  width: var(--btn-icon);
+  height: var(--btn-icon);
   transition: transform 0.2s ease;
 }
 
@@ -558,88 +554,12 @@
   color: var(--nav-indigo);
 }
 
-/* Quick-action tiles */
-.hero-intro__tiles {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-
-.hero-intro__tile {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 18px;
-  background: #f7f9fc;
-  border: 1px solid #e6eaf1;
-  border-radius: 14px;
-  text-decoration: none;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.hero-intro__tile:hover {
-  background: #fff;
-  border-color: var(--nav-indigo);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(39, 60, 104, 0.1);
-}
-
-.hero-intro__tile-icon {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border-radius: 10px;
-  background: #e8edf5;
-  color: var(--nav-indigo);
-  font-size: 1rem;
-}
-
-.hero-intro__tile-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.hero-intro__tile-body strong {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #10182d;
-  line-height: 1.3;
-}
-
-.hero-intro__tile-body span {
-  font-size: 0.8rem;
-  color: #5d6678;
-  line-height: 1.4;
-}
-
-@media (max-width: 1023px) {
-  .hero-intro__card {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 36px 32px;
-  }
-}
-
 @media (max-width: 640px) {
-  .hero-intro__card {
-    padding: 26px 20px;
-    border-radius: 16px;
+  .hero-intro {
+    padding-block: 36px;
   }
 
   .hero-intro__desc {
     font-size: 0.93rem;
-  }
-
-  .hero-intro__tiles {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .hero-intro__tile {
-    padding: 14px;
   }
 }

@@ -44,13 +44,6 @@ export default function TestimonialsSection() {
     });
   }, []);
 
-  const goTo = useCallback((index) => {
-    if (testimonials.length === 0) return;
-    const next = (index + testimonials.length) % testimonials.length;
-    setActive(next);
-    scrollToCard(next);
-  }, [testimonials.length, scrollToCard]);
-
   const startAuto = useCallback(() => {
     clearInterval(autoRef.current);
     if (testimonials.length <= 1) return;
@@ -90,11 +83,9 @@ export default function TestimonialsSection() {
 
         {/* Header */}
         <div className="testimonials__header">
-          <span className="section-label">Student Stories</span>
           <h2 className="testimonials__title">
             What Our <span className="text-gold">Students Say</span>
           </h2>
-          <div className="divider-gold" />
         </div>
 
         {/* Loading state */}
@@ -125,54 +116,17 @@ export default function TestimonialsSection() {
                   className={`testimonial-card${active === i ? ' testimonial-card--active' : ''}`}
                   onClick={() => setActive(i)}>
                   
-                  {/* Card Header: Rating & Quote Icon */}
-                  <div className="testimonial-card__top">
-                    <div className="testimonial-card__rating">
-                      <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                    </div>
-                    <div className="testimonial-card__quote">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                      </svg>
-                    </div>
-                  </div>
+                  <i className="fa-solid fa-quote-left testimonial-card__quote" aria-hidden="true" />
 
-                  <p className="testimonial-card__text">"{t.text}"</p>
+                  <p className="testimonial-card__text">{t.text}</p>
 
                   <div className="testimonial-card__author">
-                    <div className="testimonial-card__avatar">{t.initials}</div>
-                    <div className="testimonial-card__author-info">
-                      <strong className="testimonial-card__name">{t.name}</strong>
-                      <span className="testimonial-card__role">{t.role}</span>
-                    </div>
+                    <strong className="testimonial-card__name">{t.name}</strong>
+                    <span className="testimonial-card__role">{t.role}</span>
                   </div>
 
                 </div>
               ))}
-            </div>
-
-            {/* Controls */}
-            <div className="testimonials__controls">
-              <button className="testimonials__arrow"
-                onClick={() => { goTo(active - 1); startAuto(); }} aria-label="Previous">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="15 18 9 12 15 6"/>
-                </svg>
-              </button>
-              <div className="testimonials__dots">
-                {testimonials.map((_, i) => (
-                  <button key={i}
-                    className={`testimonials__dot${active === i ? ' testimonials__dot--active' : ''}`}
-                    onClick={() => { goTo(i); startAuto(); }}
-                    aria-label={`Testimonial ${i + 1}`} />
-                ))}
-              </div>
-              <button className="testimonials__arrow"
-                onClick={() => { goTo(active + 1); startAuto(); }} aria-label="Next">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="9 18 15 12 9 6"/>
-                </svg>
-              </button>
             </div>
 
           </div>

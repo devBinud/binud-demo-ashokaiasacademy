@@ -22,7 +22,7 @@
   align-items: center;
   gap: 12px;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--nav-red);
@@ -296,12 +296,19 @@
 }
 
 .post__cta-btn {
-  padding: 11px 22px;
-  border-radius: 10px;
+  /* size: hero CTA tokens (index.css) */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
   background: #ffc906;
   color: #0d1b35;
-  font-weight: 700;
-  font-size: 0.92rem;
+  font-weight: 600;
   text-decoration: none;
   transition: background 0.2s ease;
 }

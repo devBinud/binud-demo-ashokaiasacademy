@@ -1,47 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../firebase/config';
 import SEO from '../../../components/common/SEO';
 import PageHeader from '../../../components/common/PageHeader';
-import apscForestRangerImg from '../../../assets/images/courses/apsc_forest_ranger.jpeg';
-import {
-  MessageCircle,
-  Phone,
-  CheckCircle,
-  CheckCircle2,
-  X,
-  Send,
-  FileCheck,
-  BookOpen,
-  PhoneCall,
-  GraduationCap,
-  AlertCircle
-} from 'lucide-react';
-import '../StudyMaterial.css';
+import posterImg from '../../../assets/images/courses/apsc_forest_ranger.jpeg';
 import './APSCTestSeries.css';
+
+const COURSE_NAME = 'APSC Forest Ranger Prelims Test Series 2026';
+
+const WHATSAPP_URL =
+  'https://wa.me/918822823003?text=Hi%2C%20I%20am%20interested%20in%20APSC%20Forest%20Ranger%20Prelims%20Test%20Series%202026';
+
+const EMPTY_FORM = {
+  name: '',
+  phone: '',
+  email: '',
+  optionals: 'Forestry & Environment',
+  branch: 'Guwahati',
+};
 
 export default function APSCTestSeries() {
   const [showEnrolModal, setShowEnrolModal] = useState(false);
-  const [form, setForm] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    optionals: 'Forestry & Environment',
-    branch: 'Guwahati',
-    message: '',
-  });
-
+  const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Close the modal with Escape and lock page scroll while it is open
+  useEffect(() => {
+    if (!showEnrolModal) return undefined;
+    const onKey = (e) => { if (e.key === 'Escape') setShowEnrolModal(false); };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [showEnrolModal]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'phone') {
-      setForm((prev) => ({ ...prev, phone: value.replace(/\D/g, '').slice(0, 10) }));
-    } else {
-      setForm((prev) => ({ ...prev, [name]: value }));
-    }
+    const next = name === 'phone' ? value.replace(/\D/g, '').slice(0, 10) : value;
+    setForm((prev) => ({ ...prev, [name]: next }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
@@ -67,10 +67,10 @@ export default function APSCTestSeries() {
         name: form.name,
         phone: '+91' + form.phone,
         email: form.email,
-        course: 'APSC Forest Ranger Prelims Test Series 2026',
+        course: COURSE_NAME,
         optionals: form.optionals,
         preferredBranch: form.branch,
-        message: form.message,
+        message: '',
         status: 'new',
         createdAt: serverTimestamp(),
         source: 'apsc-forest-ranger-test-series',
@@ -79,14 +79,7 @@ export default function APSCTestSeries() {
       setTimeout(() => {
         setSubmitted(false);
         setShowEnrolModal(false);
-        setForm({
-          name: '',
-          phone: '',
-          email: '',
-          optionals: 'Forestry & Environment',
-          branch: 'Guwahati',
-          message: '',
-        });
+        setForm(EMPTY_FORM);
       }, 3000);
     } catch (err) {
       console.error('Error submitting enquiry:', err);
@@ -96,7 +89,7 @@ export default function APSCTestSeries() {
   };
 
   return (
-    <div className="study-material-page apsc-page-container">
+    <div className="ts-page">
       <SEO
         title="APSC Forest Ranger Prelims Test Series 2026 | Ashoka IAS Academy"
         description="Prepare with confidence for the APSC Forest Ranger Preliminary Examination through our comprehensive Test Series."
@@ -111,211 +104,149 @@ export default function APSCTestSeries() {
         ]}
       />
 
-      <section className="apsc-content-section">
-        <div className="container">
-          <div className="apsc-layout-wrap">
-            <div className="apsc-post-card">
-              {/* ── Top/Left Poster Image ── */}
-              <div className="apsc-image-wrapper">
-                <img
-                  src={apscForestRangerImg}
-                  alt="APSC Forest Ranger Prelims Test Series 2026"
-                  className="apsc-poster-image"
-                />
-              </div>
+      <section className="ts-main">
+        <div className="container ts-grid">
 
-              {/* ── Right Text Body ── */}
-              <div className="apsc-text-body">
-                <div className="apsc-badge">
-                  Launching Soon
-                </div>
+          {/* ── Summary + enrol ── */}
+          <div className="ts-content">
+            <span className="ts-status">
+              <span className="ts-status__dot" aria-hidden="true" /> Launching soon
+            </span>
+            <h2 className="ts-title">
+              APSC Forest Ranger <span>Prelims Test Series 2026</span>
+            </h2>
+            <p className="ts-lead">
+              15 tests on the latest exam pattern - General Studies, General English and any two
+              optionals.
+            </p>
 
-                <h2 className="apsc-headline">
-                  APSC Forest Ranger Prelims Test Series 2026
-                </h2>
+            <div className="ts-price">
+              <strong>₹499</strong>
+              <s>₹1,499</s>
+              <span className="ts-price__off">Limited period offer</span>
+            </div>
 
-                <p className="apsc-greeting">Dear Aspirants,</p>
-
-                <p className="apsc-intro">
-                  Prepare with confidence for the <strong>APSC Forest Ranger Preliminary Examination</strong> through our <strong>comprehensive Test Series</strong>, designed as per the latest exam pattern.
-                </p>
-
-                <div className="apsc-details-section">
-                  <div className="apsc-total-tests">
-                    <FileCheck className="apsc-info-icon" size={18} />
-                    <span><strong>Total Tests:</strong> 15</span>
-                  </div>
-
-                  <p className="apsc-includes-heading">
-                    <BookOpen className="apsc-info-icon" size={16} />
-                    <span>Test Series Includes:</span>
-                  </p>
-
-                  <ul className="apsc-check-list">
-                    <li>
-                      <CheckCircle2 className="check-icon" size={16} />
-                      <span>3 General Studies Tests (Objective)</span>
-                    </li>
-                    <li>
-                      <CheckCircle2 className="check-icon" size={16} />
-                      <span>2 General English Tests (Descriptive)</span>
-                    </li>
-                    <li>
-                      <CheckCircle2 className="check-icon" size={16} />
-                      <span>5 Tests in Optional Subject I (Objective)</span>
-                    </li>
-                    <li>
-                      <CheckCircle2 className="check-icon" size={16} />
-                      <span>5 Tests in Optional Subject II (Objective)</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="apsc-full-divider" />
-
-                <div className="apsc-contact-section">
-                  <p className="apsc-contact-heading">
-                    <PhoneCall className="apsc-info-icon" size={16} />
-                    <span>For Admission & Enquiries:</span>
-                  </p>
-                  <div className="apsc-contact-numbers">
-                    <span>Contact: </span>
-                    <a href="tel:+918822823003" className="phone-link">8822823003</a>
-                    <span className="divider">|</span>
-                    <a href="tel:+919181411843" className="phone-link">9181411843</a>
-                  </div>
-                  <p className="apsc-academy-name">
-                    <GraduationCap className="apsc-info-icon" size={16} />
-                    <span>Ashoka IAS Academy</span>
-                  </p>
-                </div>
-
-                <div className="apsc-footer-alert">
-                  <AlertCircle size={15} className="alert-icon" />
-                  <span>Seats are limited. Enrol now and begin your preparation with confidence!</span>
-                </div>
-
-                {/* ── Action Buttons ── */}
-                <div className="apsc-action-row">
-                  <button
-                    className="apsc-btn-primary"
-                    onClick={() => setShowEnrolModal(true)}
-                  >
-                    <Send size={15} /> Enrol Now
-                  </button>
-                  <a
-                    href="https://wa.me/918822823003?text=Hi%2C%20I%20am%20interested%20in%20APSC%20Forest%20Ranger%20Prelims%20Test%20Series%202026"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="apsc-btn-whatsapp"
-                  >
-                    <MessageCircle size={16} /> WhatsApp Enquiry
-                  </a>
-                  <a href="tel:+918822823003" className="apsc-btn-phone">
-                    <Phone size={15} /> Call 8822823003
-                  </a>
-                </div>
-              </div>
+            <div className="ts-actions">
+              <button type="button" className="ts-btn ts-btn--primary" onClick={() => setShowEnrolModal(true)}>
+                Enrol now
+              </button>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="ts-btn ts-btn--soft">
+                <i className="fa-brands fa-whatsapp" aria-hidden="true" /> WhatsApp
+              </a>
             </div>
           </div>
+
+          {/* ── Poster ── */}
+          <a href={posterImg} target="_blank" rel="noopener noreferrer" className="ts-poster" title="Open full poster">
+            <img src={posterImg} alt={`${COURSE_NAME} poster`} />
+            <span className="ts-poster__zoom"><i className="fa-solid fa-expand" aria-hidden="true" /> View poster</span>
+          </a>
+
         </div>
       </section>
 
-      {/* ── Enrolment Modal ── */}
+      {/* ── Enrolment modal ── */}
       {showEnrolModal && (
-        <div className="apsc-modal-overlay" onClick={() => setShowEnrolModal(false)}>
-          <div className="apsc-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="apsc-modal-close"
-              onClick={() => setShowEnrolModal(false)}
-              aria-label="Close"
-            >
-              <X size={20} />
+        <div className="ts-modal" onClick={() => setShowEnrolModal(false)}>
+          <div
+            className="ts-modal__card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="ts-modal-title"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button type="button" className="ts-modal__close" onClick={() => setShowEnrolModal(false)} aria-label="Close">
+              <i className="fa-solid fa-xmark" aria-hidden="true" />
             </button>
 
-            <div className="apsc-modal-header">
-              <h3>Enrolment & Admission Enquiry</h3>
-              <p>APSC Forest Ranger Prelims Test Series 2026</p>
-            </div>
+            <h3 id="ts-modal-title" className="ts-modal__title">Enrol / Enquire</h3>
+            <p className="ts-modal__sub">{COURSE_NAME}</p>
 
             {submitted ? (
-              <div className="apsc-success-box">
-                <CheckCircle size={40} color="#166534" />
-                <h4>Enquiry Submitted!</h4>
-                <p>We will contact you shortly regarding admission details.</p>
+              <div className="ts-modal__done" role="status">
+                <i className="fa-solid fa-circle-check" aria-hidden="true" />
+                <h4>Enquiry submitted</h4>
+                <p>We will contact you shortly with admission details.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmitEnquiry}>
-                <div className="apsc-form-group">
-                  <label>Full Name *</label>
+              <form className="ts-form" onSubmit={handleSubmitEnquiry} noValidate>
+                <div className="ts-field">
+                  <label htmlFor="ts-name">Full name <span className="ts-req">*</span></label>
                   <input
-                    type="text"
+                    id="ts-name"
                     name="name"
+                    type="text"
+                    autoComplete="name"
+                    className={`ts-input${errors.name ? ' ts-input--invalid' : ''}`}
+                    placeholder="Your full name"
                     value={form.name}
                     onChange={handleInputChange}
-                    placeholder="Enter your full name"
-                    className="apsc-form-input"
                   />
-                  {errors.name && <span className="apsc-field-error">{errors.name}</span>}
+                  {errors.name && <span className="ts-error">{errors.name}</span>}
                 </div>
 
-                <div className="apsc-form-group">
-                  <label>Phone Number *</label>
-                  <div className="apsc-phone-input-wrap">
-                    <span className="prefix">+91</span>
+                <div className="ts-field">
+                  <label htmlFor="ts-phone">Mobile number <span className="ts-req">*</span></label>
+                  <div className={`ts-phone${errors.phone ? ' ts-input--invalid' : ''}`}>
+                    <span>+91</span>
                     <input
-                      type="tel"
+                      id="ts-phone"
                       name="phone"
+                      type="tel"
+                      inputMode="numeric"
+                      autoComplete="tel-national"
+                      maxLength={10}
+                      placeholder="10-digit mobile"
                       value={form.phone}
                       onChange={handleInputChange}
-                      placeholder="10-digit mobile number"
-                      maxLength={10}
-                      className="apsc-form-input"
                     />
                   </div>
-                  {errors.phone && <span className="apsc-field-error">{errors.phone}</span>}
+                  {errors.phone && <span className="ts-error">{errors.phone}</span>}
                 </div>
 
-                <div className="apsc-form-group">
-                  <label>Email Address</label>
+                <div className="ts-field">
+                  <label htmlFor="ts-email">Email <span className="ts-optional">(optional)</span></label>
                   <input
-                    type="email"
+                    id="ts-email"
                     name="email"
+                    type="email"
+                    autoComplete="email"
+                    className="ts-input"
+                    placeholder="you@email.com"
                     value={form.email}
                     onChange={handleInputChange}
-                    placeholder="your@email.com"
-                    className="apsc-form-input"
                   />
                 </div>
 
-                <div className="apsc-form-group">
-                  <label>Selected Optional Subjects</label>
-                  <input
-                    type="text"
-                    name="optionals"
-                    value={form.optionals}
-                    onChange={handleInputChange}
-                    placeholder="e.g. Forestry, Environment, Agriculture"
-                    className="apsc-form-input"
-                  />
+                <div className="ts-row">
+                  <div className="ts-field">
+                    <label htmlFor="ts-optionals">Optional subjects</label>
+                    <input
+                      id="ts-optionals"
+                      name="optionals"
+                      type="text"
+                      className="ts-input"
+                      placeholder="e.g. Forestry & Environment"
+                      value={form.optionals}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+
+                  <div className="ts-field">
+                    <label htmlFor="ts-branch">Branch</label>
+                    <div className="ts-select">
+                      <select id="ts-branch" name="branch" className="ts-input" value={form.branch} onChange={handleInputChange}>
+                        <option value="Guwahati">Guwahati (Bhangagarh)</option>
+                        <option value="Nagaon">Nagaon (Panigaon)</option>
+                        <option value="Online">Online</option>
+                      </select>
+                      <i className="fa-solid fa-chevron-down" aria-hidden="true" />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="apsc-form-group">
-                  <label>Branch Preference</label>
-                  <select
-                    name="branch"
-                    value={form.branch}
-                    onChange={handleInputChange}
-                    className="apsc-form-select"
-                  >
-                    <option value="Guwahati">Guwahati Center (Bhangagarh)</option>
-                    <option value="Nagaon">Nagaon Center (Panigaon)</option>
-                    <option value="Online">Online Access</option>
-                  </select>
-                </div>
-
-                <button type="submit" disabled={submitting} className="apsc-form-submit-btn">
-                  {submitting ? 'Submitting...' : 'Submit Enquiry →'}
+                <button type="submit" className="ts-btn ts-btn--primary" disabled={submitting}>
+                  {submitting ? 'Submitting…' : 'Submit enquiry'}
                 </button>
               </form>
             )}

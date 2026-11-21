@@ -1,65 +1,82 @@
 import { Link } from 'react-router-dom';
-import { Calendar } from 'lucide-react';
-import logoImg from '../../../assets/images/logo.png';
 import './PopularCourses.css';
 
+/* Each card shows a poster on top. Add `image: someImport` to a course to use a
+   real poster instead of the built-in navy/gold one. */
 const COURSES = [
   {
+    poster: { top: 'Integrated', main: 'Program', sub: 'Class 11 & 12 · UPSC / APSC' },
+    icon: 'fa-solid fa-school',
+    mode: 'Class 11 & 12',
     title: 'Integrated Program for Class 11 & 12 Students',
-    duration: '2 Years',
     eligibility: 'Class 11 & 12 Students',
+    duration: '2 Years',
     batch: 'Enrolling Now',
-    to: '/courses-all',
-    state: { courseId: 'integrated-class-11-12' },
-    bannerTitle: 'INTEGRATED PROGRAM 2026',
-    bannerBadge: 'CLASS 11 & 12',
-    badgeColor: '#e53e3e',
+    courseId: 'integrated-class-11-12',
   },
   {
+    poster: { top: 'One Year', main: 'Foundation', sub: 'UPSC & APSC Preparation' },
+    icon: 'fa-solid fa-graduation-cap',
+    mode: 'Live & Offline',
     title: 'One Year Foundation Course',
-    duration: '1 Year',
     eligibility: 'Degree Students / Beginners',
+    duration: '1 Year',
     batch: '1st July 2026',
-    to: '/courses-all',
-    state: { courseId: 'one-year-foundation' },
-    bannerTitle: 'ONE YEAR FOUNDATION BATCH',
-    bannerBadge: 'LIVE & OFFLINE',
-    badgeColor: '#38a169',
+    courseId: 'one-year-foundation',
   },
   {
+    poster: { top: '6-Month', main: 'Pre-Foundation', sub: 'Build Strong Basics Early' },
+    icon: 'fa-solid fa-seedling',
+    mode: '6 Months',
     title: '6-Month Pre-Foundation Course',
-    duration: '6 Months',
     eligibility: 'College Students / Beginners',
+    duration: '6 Months',
     batch: 'June 2026',
-    to: '/courses-all',
-    state: { courseId: 'pre-foundation' },
-    bannerTitle: 'PRE-FOUNDATION BATCH',
-    bannerBadge: '6-MONTHS',
-    badgeColor: '#3182ce',
+    courseId: 'pre-foundation',
   },
   {
+    poster: { top: 'Exam Ready', main: 'Crash Course', sub: 'APSC · UPSC · SSC' },
+    icon: 'fa-solid fa-bolt',
+    mode: '3–4 Months',
     title: 'Crash Course Programme',
-    duration: '3–4 Months',
     eligibility: 'APSC / UPSC / SSC Aspirants',
+    duration: '3–4 Months',
     batch: 'Available Now',
-    to: '/courses-all',
-    state: { courseId: 'crash-course' },
-    bannerTitle: 'CRASH COURSE PROGRAMME',
-    bannerBadge: '3-4 MONTHS',
-    badgeColor: '#d69e2e',
+    courseId: 'crash-course',
   },
   {
+    poster: { top: 'Integrated', main: 'Degree + Coaching', sub: 'Graduation with Exam Preparation' },
+    icon: 'fa-solid fa-building-columns',
+    mode: '3 Years',
     title: 'Integrated Degree + Competitive Exam Coaching Programme',
-    duration: '36 Months',
     eligibility: 'APSC / UPSC / SSC Aspirants',
+    duration: '36 Months',
     batch: 'Available Now',
-    to: '/courses-all',
-    state: { courseId: 'crash-course' },
-    bannerTitle: 'INTEGRATED DEGREE + COACHING',
-    bannerBadge: '3 YEAR PROGRAM',
-    badgeColor: '#805ad5',
+    courseId: 'integrated-degree-competitive-coaching-programme',
   },
 ];
+
+/* "Enrolling Now" / "Available Now" → admission open; otherwise it's a start date */
+const isOpenNow = (batch) => /now/i.test(batch);
+
+function Poster({ course }) {
+  if (course.image) {
+    return <img src={course.image} alt={course.title} className="pc-poster pc-poster--img" loading="lazy" />;
+  }
+  const { top, main, sub } = course.poster;
+  return (
+    <div className="pc-poster" aria-hidden="true">
+      <i className={`${course.icon} pc-poster__bg-icon`} />
+      <span className="pc-poster__top">{top}</span>
+      <strong className="pc-poster__main">{main}</strong>
+      <span className="pc-poster__sub">{sub}</span>
+      <span className="pc-poster__ribbon">
+        {isOpenNow(course.batch) ? 'Admissions Open' : `Batch starts ${course.batch}`}
+      </span>
+      <span className="pc-poster__mode">{course.mode}</span>
+    </div>
+  );
+}
 
 export default function PopularCourses() {
   return (
@@ -67,7 +84,6 @@ export default function PopularCourses() {
       <div className="container">
 
         <div className="popular-courses__header">
-          <span className="section-label">Our Programs</span>
           <h2 className="popular-courses__title">
             Popular <span className="text-gold">Courses</span>
           </h2>
@@ -78,47 +94,39 @@ export default function PopularCourses() {
 
         <div className="popular-courses__grid">
           {COURSES.map((course) => (
-            <Link to={course.to} state={course.state} key={course.title} className="pc-card">
-              
-              {/* Banner Area (Matches screenshot header format) */}
-              <div className="pc-card__banner">
-                <img src={logoImg} alt="Ashoka IAS Academy" className="pc-card__banner-logo" />
-                <span className="pc-card__banner-badge" style={{ backgroundColor: course.badgeColor }}>
-                  {course.bannerBadge}
-                </span>
-                <div className="pc-card__banner-title">
-                  {course.bannerTitle}
-                </div>
-                <div className="pc-card__banner-date">
-                  <Calendar size={12} className="pc-card__banner-date-icon" />
-                  <span>Batch Starts: {course.batch}</span>
-                </div>
-              </div>
+            <article key={course.title} className="pc-card">
+              <Poster course={course} />
 
-              {/* Body Area */}
               <div className="pc-card__body">
-                <h3 className="pc-card__title">{course.title}</h3>
-                
-                <div className="pc-card__meta-row">
-                  <span className="pc-card__meta-label">Eligibility</span>
-                  <span className="pc-card__meta-value">{course.eligibility}</span>
-                </div>
+                <h3 className="pc-card__name">{course.title}</h3>
 
-                <div className="pc-card__divider" />
+                <p className="pc-card__info">
+                  For {course.eligibility}
+                  <span>Duration: {course.duration}</span>
+                </p>
 
-                <div className="pc-card__meta-row">
-                  <span className="pc-card__meta-label">Duration</span>
-                  <span className="pc-card__meta-value">{course.duration}</span>
-                </div>
+                <span className="pc-card__date">
+                  {isOpenNow(course.batch) ? (
+                    'Admission Open'
+                  ) : (
+                    <>Course Start Date: <strong>{course.batch}</strong></>
+                  )}
+                </span>
 
-                <div className="pc-card__divider" />
-
-                <div className="pc-card__footer">
-                  <div className="pc-card__btn">View Details</div>
+                <div className="pc-card__actions">
+                  <Link
+                    to="/courses-all"
+                    state={{ courseId: course.courseId }}
+                    className="pc-btn pc-btn--outline"
+                  >
+                    View Details <i className="fa-regular fa-eye" aria-hidden="true" />
+                  </Link>
+                  <Link to="/online-application" className="pc-btn pc-btn--solid">
+                    Enroll Now <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+                  </Link>
                 </div>
               </div>
-
-            </Link>
+            </article>
           ))}
         </div>
 

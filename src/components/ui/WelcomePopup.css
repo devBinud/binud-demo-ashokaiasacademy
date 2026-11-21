@@ -157,7 +157,7 @@
 
 .wp-title {
   font-size: var(--text-xl);
-  font-weight: 800;
+  font-weight: 600;
   color: #1a1a1a;
   line-height: 1.25;
   margin: 0;
@@ -201,7 +201,7 @@
 
 .wp-stat strong {
   font-size: var(--text-lg);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--color-navy);
   line-height: 1;
 }
@@ -228,15 +228,19 @@
 }
 
 .wp-btn {
-  flex: 1;
+  /* size: hero CTA tokens (index.css) */
   display: inline-flex;
+  box-sizing: border-box;
+  min-height: var(--btn-height);
+  padding: 0 var(--btn-pad-x);
+  font-size: var(--btn-font-size);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
+  gap: var(--btn-gap);
+  flex: 1;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  font-weight: 700;
-  padding: 12px var(--space-4);
-  border-radius: 10px;
+  font-weight: 600;
   text-decoration: none;
   transition: transform 0.15s ease, opacity 0.15s ease;
   cursor: pointer;

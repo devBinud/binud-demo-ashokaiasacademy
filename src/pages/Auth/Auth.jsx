@@ -320,7 +320,6 @@ export default function Auth({ initialMode = 'signup' }) {
         <div className="auth__card">
           {/* Left — brand panel */}
           <aside className="auth__panel">
-            <span className="auth__kicker">Student Portal</span>
             <h1 className="auth__title">
               Your UPSC &amp; APSC journey <span>starts here.</span>
             </h1>

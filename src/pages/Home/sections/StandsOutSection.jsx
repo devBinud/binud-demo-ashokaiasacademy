@@ -11,7 +11,6 @@ export default function StandsOutSection() {
           <h2 className="stands-out__title">
             Why Ashoka IAS Academy <span className="text-gold">Stands Out?</span>
           </h2>
-          <div className="divider-gold" />
         </div>
 
         {/* Features Grid */}
