@@ -131,7 +131,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
-          <p>© {new Date().getFullYear()} Ashoka IAS Academy. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Ashoka IAS Academy THIS IS JUST TESTING AFTER SO LONG .</p>
           <p className="footer__developer">
             Developed & Maintained by <a href="https://binudsoftwaresolutions.in" target="_blank" rel="noopener noreferrer">Binud Software Solutions</a>
           </p>
