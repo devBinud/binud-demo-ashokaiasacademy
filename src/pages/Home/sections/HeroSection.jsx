@@ -229,7 +229,6 @@ export default function HeroSection() {
         <div className="container">
           <div className="hero-intro__card">
             <div className="hero-intro__content">
-              <span className="hero-intro__kicker">Ashoka IAS Academy · Guwahati &amp; Nagaon</span>
               <h1 className="hero-intro__title">
                 Premier Coaching for UPSC, <span>APSC &amp; Allied Exams.</span>
               </h1>

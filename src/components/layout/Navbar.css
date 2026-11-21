@@ -18,7 +18,7 @@
 }
 
 .navbar--scrolled {
-  box-shadow: 0 6px 24px rgba(13, 22, 66, 0.14);
+  box-shadow: 0 6px 24px rgba(13, 27, 53, 0.14);
 }
 
 .navbar__inner {
@@ -145,9 +145,9 @@
   border-radius: 8px;
   border-top: 3px solid var(--nav-indigo-ink);
   box-shadow:
-    0 2px 4px rgba(13, 22, 66, 0.04),
-    0 10px 22px rgba(13, 22, 66, 0.14),
-    0 20px 40px rgba(13, 22, 66, 0.08);
+    0 2px 4px rgba(13, 27, 53, 0.04),
+    0 10px 22px rgba(13, 27, 53, 0.14),
+    0 20px 40px rgba(13, 27, 53, 0.08);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
@@ -255,9 +255,9 @@
   border-radius: 8px;
   border-top: 3px solid var(--nav-indigo-ink);
   box-shadow:
-    0 2px 4px rgba(13, 22, 66, 0.04),
-    0 10px 22px rgba(13, 22, 66, 0.14),
-    0 20px 40px rgba(13, 22, 66, 0.08);
+    0 2px 4px rgba(13, 27, 53, 0.04),
+    0 10px 22px rgba(13, 27, 53, 0.14),
+    0 20px 40px rgba(13, 27, 53, 0.08);
   opacity: 0;
   visibility: hidden;
   transform: translateX(6px);
@@ -365,7 +365,7 @@
   padding-block: var(--space-2);
   flex-shrink: 0;
   border-top: 4px solid var(--nav-indigo);
-  border-bottom: 1px solid #eeedfb;
+  border-bottom: 1px solid #e8edf5;
 }
 
 .fs-menu__logo {
@@ -395,7 +395,7 @@
 }
 
 .fs-menu__close:hover {
-  background: #e6e4fb;
+  background: #dfe6f1;
   transform: rotate(90deg);
 }
 

@@ -9,7 +9,7 @@
 /* ── Announcement bar ── */
 .topbar__announce {
   background: var(--nav-indigo-deep);
-  color: #dcdbf5;
+  color: #d6deeb;
   font-size: 0.84rem;
   line-height: 1.5;
 }

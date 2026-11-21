@@ -6,7 +6,7 @@
    ============================================================ */
 .hs {
   --hs-yellow: #ffc906;
-  --hs-navy: #0d1642;
+  --hs-navy: #0d1b35;
   --hs-overlap: 14px; /* how far the intro card overlaps the slider */
   container-type: inline-size;
   position: relative;
@@ -19,10 +19,10 @@
   isolation: isolate;
   color: #fff;
   background:
-    radial-gradient(55% 85% at 50% 38%, rgba(64, 104, 255, 0.55) 0%, rgba(64, 104, 255, 0) 70%),
-    radial-gradient(40% 70% at 0% 100%, rgba(8, 14, 80, 0.9) 0%, rgba(8, 14, 80, 0) 70%),
-    radial-gradient(40% 70% at 100% 100%, rgba(8, 14, 80, 0.9) 0%, rgba(8, 14, 80, 0) 70%),
-    linear-gradient(180deg, #1736c4 0%, #1128a6 45%, #0b1a80 100%);
+    radial-gradient(55% 85% at 50% 38%, rgba(92, 128, 196, 0.55) 0%, rgba(92, 128, 196, 0) 70%),
+    radial-gradient(40% 70% at 0% 100%, rgba(13, 27, 53, 0.9) 0%, rgba(13, 27, 53, 0) 70%),
+    radial-gradient(40% 70% at 100% 100%, rgba(13, 27, 53, 0.9) 0%, rgba(13, 27, 53, 0) 70%),
+    linear-gradient(180deg, #34508a 0%, #273c68 45%, #1b2a4a 100%);
 }
 
 /* Light streaks + fine dot grid */
@@ -93,7 +93,7 @@
   font-size: 1.3cqw;
   font-weight: 500;
   line-height: 1.5;
-  color: #dfe3ff;
+  color: #dbe3f2;
   margin: 0;
 }
 
@@ -478,30 +478,10 @@
   gap: 48px;
   align-items: center;
   background: #fff;
-  border: 1px solid #eeedfb;
+  border: 1px solid #e8edf5;
   border-radius: 20px;
   padding: 44px 48px;
-  box-shadow: 0 2px 4px rgba(13, 22, 66, 0.04), 0 20px 50px rgba(13, 22, 66, 0.1);
-}
-
-.hero-intro__kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--nav-red);
-  margin-bottom: 14px;
-}
-
-.hero-intro__kicker::before {
-  content: '';
-  width: 28px;
-  height: 2px;
-  background: var(--nav-red);
-  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(13, 27, 53, 0.04), 0 20px 50px rgba(13, 27, 53, 0.1);
 }
 
 .hero-intro__title {
@@ -557,7 +537,7 @@
 }
 
 .hero-intro__btn--primary:hover {
-  background: #0f0b66;
+  background: #1b2a4a;
   color: #fff;
   transform: translateY(-1px);
 }
@@ -569,7 +549,7 @@
 .hero-intro__btn--ghost {
   background: #fff;
   color: var(--nav-indigo);
-  border: 1.5px solid #cfcbf5;
+  border: 1.5px solid #c5d0e3;
 }
 
 .hero-intro__btn--ghost:hover {
@@ -601,7 +581,7 @@
   background: #fff;
   border-color: var(--nav-indigo);
   transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(22, 16, 140, 0.1);
+  box-shadow: 0 10px 24px rgba(39, 60, 104, 0.1);
 }
 
 .hero-intro__tile-icon {
@@ -611,7 +591,7 @@
   display: grid;
   place-items: center;
   border-radius: 10px;
-  background: #eeedfb;
+  background: #e8edf5;
   color: var(--nav-indigo);
   font-size: 1rem;
 }
@@ -648,11 +628,6 @@
   .hero-intro__card {
     padding: 26px 20px;
     border-radius: 16px;
-  }
-
-  .hero-intro__kicker {
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
   }
 
   .hero-intro__desc {

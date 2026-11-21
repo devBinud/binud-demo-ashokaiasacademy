@@ -176,17 +176,17 @@
   --header-height-desktop: 62px;
 
   /* --- Header / Navbar palette --- */
-  --nav-indigo-deep: #0f0b66;
+  --nav-indigo-deep: #1b2a4a;
   /* Announcement bar */
-  --nav-indigo: #16108c;
-  /* Contact strip, active link */
-  --nav-indigo-ink: #0d1642;
+  --nav-indigo: #273c68;
+  /* Brand navy (same as --color-navy): contact strip, active link, buttons */
+  --nav-indigo-ink: #0d1b35;
   /* Dropdown top border */
   --nav-red: #e5001e;
   /* Underline, live dot, CTA */
   --nav-ink: #2a2a2a;
   /* Nav text */
-  --nav-tint: #f5f4ff;
+  --nav-tint: #f1f4f9;
   /* Hover background */
 }
 
