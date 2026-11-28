@@ -73,6 +73,7 @@
   --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-navbar: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Oswald', 'Poppins', 'Arial Narrow', sans-serif; /* course poster headers only */
   --font-serif: "STIX Two Text", serif;
   --font-mono: 'Courier New', Courier, monospace;
 

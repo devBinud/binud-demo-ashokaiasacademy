@@ -61,12 +61,12 @@ export default function WelcomePopup() {
           {/* Stats row */}
           <div className="wp-stats">
             <div className="wp-stat">
-              <strong>500+</strong>
+              <strong>150+</strong>
               <span>Students</span>
             </div>
             <div className="wp-stat-sep" />
             <div className="wp-stat">
-              <strong>150+</strong>
+              <strong>50+</strong>
               <span>Selections</span>
             </div>
             <div className="wp-stat-sep" />

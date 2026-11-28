@@ -1,7 +1,7 @@
 import './StatsStrip.css';
 
 const STATS = [
-  { value: '500+', label: 'Students Enrolled' },
+  { value: '150+', label: 'Students Enrolled' },
   { value: '50+',  label: 'Selections' },
   { value: '15+',  label: 'Expert Faculty' },
   { value: '2021', label: 'Est. Year' },

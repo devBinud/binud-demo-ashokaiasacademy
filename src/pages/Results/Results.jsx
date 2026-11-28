@@ -34,7 +34,7 @@ export default function Results() {
       <section className="section results-stats">
         <div className="container results-stats__grid">
           {[
-            { value: '500+', label: 'Students Enrolled' },
+            { value: '150+', label: 'Students Enrolled' },
             { value: '50+', label: 'Selections' },
             { value: '15+', label: 'Expert Faculty' },
             { value: '2021', label: 'Est. Year' },
